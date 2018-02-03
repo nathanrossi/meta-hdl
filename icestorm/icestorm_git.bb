@@ -6,7 +6,7 @@ SECTION = "devel/fpga"
 LIC_FILES_CHKSUM = "file://README;beginline=8;endline=18;md5=8104f3444ed967701dafaeab14d572b9"
 
 SRC_URI = "git://github.com/cliffordwolf/icestorm;protocol=https"
-SRCREV = "69613a26d3e3a5c6f0836a773717b03360df85ce"
+SRCREV = "722790ad3cdb497e1b13cd1b4368d8380371eb37"
 
 S = "${WORKDIR}/git"
 
@@ -17,7 +17,7 @@ inherit pkgconfig
 # diffutils (provided by hosttools)
 DEPENDS = "gawk-native python3-native"
 
-PACKAGECONFIG = "icebox icetime"
+PACKAGECONFIG = "icebox icetime iceprog"
 PACKAGECONFIG[iceprog] = ",,libftdi"
 PACKAGECONFIG[icetime] = ",,,python3"
 PACKAGECONFIG[icebox] = ",,,python3"
