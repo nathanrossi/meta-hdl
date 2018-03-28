@@ -6,7 +6,7 @@ SECTION = "devel/fpga"
 LIC_FILES_CHKSUM = "file://README;beginline=8;endline=18;md5=8104f3444ed967701dafaeab14d572b9"
 
 SRC_URI = "git://github.com/cliffordwolf/icestorm;protocol=https"
-SRCREV = "722790ad3cdb497e1b13cd1b4368d8380371eb37"
+SRCREV = "9b0603c4bc156b350918c3a8762ffac28b3de42b"
 
 S = "${WORKDIR}/git"
 
