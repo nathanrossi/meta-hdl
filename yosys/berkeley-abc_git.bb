@@ -4,14 +4,14 @@ HOMEPAGE = "http://www.eecs.berkeley.edu/~alanmi/abc/"
 LICENSE = "MIT"
 SECTION = "devel/hardware"
 
-LIC_FILES_CHKSUM = "file://copyright.txt;md5=04eb1ba7f36d87b164b6224e5417b860"
+LIC_FILES_CHKSUM = "file://copyright.txt;md5=bddcabf9df6d33e12310a00780d3a87c"
 
-SRC_URI = "hg://bitbucket.org/alanmi/abc;protocol=https;branch=default;module=root"
-SRCREV = "902018356af42d7653a3a5114ab0d2aaa28cc9f0"
+SRC_URI = "git://github.com/berkeley-abc/abc;protocol=https"
+SRCREV = "a2d59be3f7f05c4757ade8b3b6f9fdf425de5cc0"
 
-S = "${WORKDIR}/root"
+S = "${WORKDIR}/git"
 
-PV = "1.01+hg${SRCPV}"
+PV = "1.01+git${SRCPV}"
 
 DEPENDS = "readline"
 
