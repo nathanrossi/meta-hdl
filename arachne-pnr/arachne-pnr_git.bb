@@ -6,7 +6,7 @@ SECTION = "devel/fpga"
 LIC_FILES_CHKSUM = "file://COPYING;md5=3bb65c4bee625d497d43f50e6dacb4e2"
 
 SRC_URI = "git://github.com/cseed/arachne-pnr;protocol=https"
-SRCREV = "7e135edb31feacde85ec5b7e5c03fc9157080977"
+SRCREV = "6701132cbd5c7b31edd0ff18ca6727eb3691186b"
 
 PV = "0+git${SRCPV}"
 
@@ -29,13 +29,18 @@ do_compile () {
 
 	# manually build the chipdb.bin files
 	mkdir -p ${B}/share/arachne-pnr
-	for i in 384 1k 8k; do
-		${ARACHNEPNR} -d 384 -c ${ICEBOX}/chipdb-$i.txt --write-binary-chipdb ${B}/share/arachne-pnr/chipdb-$i.bin
-	done
+	${ARACHNEPNR} -d 384 -c ${ICEBOX}/chipdb-384.txt --write-binary-chipdb ${B}/share/arachne-pnr/chipdb-384.bin
+	${ARACHNEPNR} -d 1k -c ${ICEBOX}/chipdb-1k.txt --write-binary-chipdb ${B}/share/arachne-pnr/chipdb-1k.bin
+	${ARACHNEPNR} -d 5k -c ${ICEBOX}/chipdb-5k.txt --write-binary-chipdb ${B}/share/arachne-pnr/chipdb-5k.bin
+	${ARACHNEPNR} -d 8k -c ${ICEBOX}/chipdb-8k.txt --write-binary-chipdb ${B}/share/arachne-pnr/chipdb-8k.bin
 }
 
 do_install () {
-	oe_runmake PREFIX="${prefix}" DESTDIR="${D}" install
+	install -Dm 755 ${B}/bin/arachne-pnr ${D}/${bindir}/arachne-pnr
+	install -Dm 644 ${B}/share/arachne-pnr/chipdb-384.bin ${D}/${datadir}/arachne-pnr/chipdb-384.bin
+	install -Dm 644 ${B}/share/arachne-pnr/chipdb-1k.bin ${D}/${datadir}/arachne-pnr/chipdb-1k.bin
+	install -Dm 644 ${B}/share/arachne-pnr/chipdb-5k.bin ${D}/${datadir}/arachne-pnr/chipdb-5k.bin
+	install -Dm 644 ${B}/share/arachne-pnr/chipdb-8k.bin ${D}/${datadir}/arachne-pnr/chipdb-8k.bin
 }
 
 # populate the chipdb into the sysroot (not enabled by default on -native)
