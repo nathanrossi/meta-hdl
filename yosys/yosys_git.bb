@@ -5,8 +5,8 @@ SECTION = "devel/verilog"
 
 LIC_FILES_CHKSUM = "file://README.md;beginline=2;endline=16;md5=1fb4f531540bbdf872e3c7e0927a7b14"
 
-SRC_URI = "git://github.com/cliffordwolf/yosys;protocol=https"
-SRCREV = "6c00e064e2024b7b41d3c32ed4cf7f0f6857506b"
+SRC_URI = "git://github.com/YosysHQ/yosys;protocol=https"
+SRCREV = "0acea3548b54a2acf6f3b554e6878f884a4414fe"
 
 S = "${WORKDIR}/git"
 
@@ -49,7 +49,8 @@ do_compile() {
 }
 
 do_install() {
-	oe_runmake PREFIX="${prefix}" PRETTY=0 DESTDIR="${D}" install
+	# override STRIP to prevent the makefile from stripping during the install
+	oe_runmake PREFIX="${prefix}" PRETTY=0 DESTDIR="${D}" STRIP="echo" install
 }
 
 BBCLASSEXTEND = "native nativesdk"
