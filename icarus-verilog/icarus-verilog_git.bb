@@ -26,6 +26,7 @@ DEPENDS = " \
 	flex-native bison-native \
 	gperf-native \
 	readline ncurses \
+	zlib \
 	"
 
 FILES_${PN} += "${libdir}/ivl"
