@@ -6,7 +6,7 @@ SECTION = "devel/fpga"
 LIC_FILES_CHKSUM = "file://COPYING;md5=3bb65c4bee625d497d43f50e6dacb4e2"
 
 SRC_URI = "git://github.com/cseed/arachne-pnr;protocol=https"
-SRCREV = "ea2d04215bc0fd6072cda244caeb6670892033b3"
+SRCREV = "5d830dd94ad956d17d77168fe7718f22f8b55b33"
 
 PV = "0+git${SRCPV}"
 
