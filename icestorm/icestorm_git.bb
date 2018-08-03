@@ -6,7 +6,7 @@ SECTION = "devel/fpga"
 LIC_FILES_CHKSUM = "file://README;beginline=8;endline=18;md5=8104f3444ed967701dafaeab14d572b9"
 
 SRC_URI = "git://github.com/cliffordwolf/icestorm;protocol=https"
-SRCREV = "16a9962fb16d50683a7b69835194703c48bc1759"
+SRCREV = "8cac6c584044034210fe0ba1e6b930ff1cc59465"
 
 S = "${WORKDIR}/git"
 
@@ -15,14 +15,9 @@ PV = "0+git${SRCPV}"
 inherit pkgconfig
 
 # diffutils (provided by hosttools)
-DEPENDS = "gawk-native python3-native"
+DEPENDS = "gawk-native python3-native libftdi"
 
-PACKAGECONFIG = "icebox icetime iceprog"
-PACKAGECONFIG[iceprog] = ",,libftdi"
-PACKAGECONFIG[icetime] = ",,,python3"
-PACKAGECONFIG[icebox] = ",,,python3"
-
-MAKE_SUBDIRS = "icepack icemulti icepll icebram ${PACKAGECONFIG}"
+MAKE_SUBDIRS = "icebox icepack iceprog icemulti icepll icetime icebram"
 
 do_configure () {
 	# remove posioned directories
