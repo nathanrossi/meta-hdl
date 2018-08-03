@@ -12,6 +12,7 @@ The following tools are available in this layer.
 * [Arachne-PNR](https://github.com/cseed/arachne-pnr)
 * [Icarus Verilog](http://iverilog.icarus.com/)
 * [IceStorm](http://www.clifford.at/icestorm/)
+* [nextpnr](https://github.com/YosysHQ/nextpnr)
 * [Yosys](http://www.clifford.at/yosys/)
 
 # Examples
