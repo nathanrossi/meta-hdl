@@ -25,6 +25,9 @@ ARACHNEPNR_class-native = "${B}/bin/arachne-pnr"
 ARACHNEPNR = "arachne-pnr"
 
 do_compile () {
+	# prevent the version string from containing the compiler, as this differs between host/target/nativesdk
+	sed -i 's/, $(notdir $(CXX)) `$(CXX) --version.*` $(filter.*$(CXXFLAGS))//' ${S}/Makefile
+
 	oe_runmake bin/arachne-pnr
 
 	# manually build the chipdb.bin files
