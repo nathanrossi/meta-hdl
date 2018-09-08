@@ -14,12 +14,8 @@ PV = "0+git${SRCPV}"
 
 inherit cmake python3native
 
-DEPENDS += "python3 boost icestorm"
+DEPENDS += "python3 boost"
 
-# default ice40
-EXTRA_OECMAKE += "-DARCH=ice40"
-# icestorm/icebox chipdb
-EXTRA_OECMAKE += "-DICEBOX_ROOT=${STAGING_DIR_NATIVE}${datadir_native}/icebox"
 # don't build the gui components
 EXTRA_OECMAKE += "-DBUILD_GUI=no"
 
@@ -34,7 +30,7 @@ BBCLASSEXTEND = "native nativesdk"
 python () {
     if not bb.data.inherits_class("native", d):
         # needs a native build of bbasm tool
-        d.appendVar("DEPENDS", " nextpnr-native")
+        d.appendVar("DEPENDS", " {0}-native".format(d.getVar("BPN")))
         d.appendVar("EXTRA_OECMAKE", " -DIMPORT_EXECUTABLES=${WORKDIR}/bbasm.cmake")
         bb.build.addtask("do_configure_bbasm", "do_configure", None, d)
 }
