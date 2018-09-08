@@ -14,6 +14,7 @@ The following tools are available in this layer.
 * [Icarus Verilog](http://iverilog.icarus.com/)
 * [IceStorm](http://www.clifford.at/icestorm/)
 * [nextpnr](https://github.com/YosysHQ/nextpnr)
+* [prjtrellis](https://github.com/SymbiFlow/prjtrellis)
 * [Yosys](http://www.clifford.at/yosys/)
 
 # Examples
