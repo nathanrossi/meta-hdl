@@ -24,11 +24,15 @@ export ICEBOX = "${STAGING_DIR_NATIVE}${datadir_native}/icebox"
 ARACHNEPNR_class-native = "${B}/bin/arachne-pnr"
 ARACHNEPNR = "arachne-pnr"
 
+EXE ?= ""
+EXE_mingw32 = ".exe"
+EXTRA_OEMAKE_append_mingw32 = " EXE=.exe"
+
 do_compile () {
 	# prevent the version string from containing the compiler, as this differs between host/target/nativesdk
 	sed -i 's/, $(notdir $(CXX)) `$(CXX) --version.*` $(filter.*$(CXXFLAGS))//' ${S}/Makefile
 
-	oe_runmake bin/arachne-pnr
+	oe_runmake bin/arachne-pnr${EXE}
 
 	# manually build the chipdb.bin files
 	mkdir -p ${B}/share/arachne-pnr
@@ -39,7 +43,7 @@ do_compile () {
 }
 
 do_install () {
-	install -Dm 755 ${B}/bin/arachne-pnr ${D}/${bindir}/arachne-pnr
+	install -Dm 755 ${B}/bin/arachne-pnr${EXE} ${D}/${bindir}/arachne-pnr${EXE}
 	install -Dm 644 ${B}/share/arachne-pnr/chipdb-384.bin ${D}/${datadir}/arachne-pnr/chipdb-384.bin
 	install -Dm 644 ${B}/share/arachne-pnr/chipdb-1k.bin ${D}/${datadir}/arachne-pnr/chipdb-1k.bin
 	install -Dm 644 ${B}/share/arachne-pnr/chipdb-5k.bin ${D}/${datadir}/arachne-pnr/chipdb-5k.bin

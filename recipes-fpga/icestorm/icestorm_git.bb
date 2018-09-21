@@ -15,9 +15,11 @@ PV = "0+git${SRCPV}"
 inherit pkgconfig
 
 # diffutils (provided by hosttools)
-DEPENDS = "gawk-native python3-native libftdi"
+DEPENDS = "gawk-native python3-native"
 
-MAKE_SUBDIRS = "icebox icepack iceprog icemulti icepll icetime icebram"
+MAKE_SUBDIRS = "icebox icepack icemulti icepll icetime icebram"
+
+EXTRA_OEMAKE_append_mingw32 = " EXE=.exe"
 
 do_configure () {
 	# remove posioned directories
