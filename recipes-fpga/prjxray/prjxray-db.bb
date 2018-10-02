@@ -19,6 +19,7 @@ do_compile[noexec] = "1"
 
 do_install() {
     install -d ${D}${datadir}/xray/database
+    install ${S}/Info.md ${D}${datadir}/xray/database
     for i in ${S}/*; do
         if [ -d $i ]; then
             for f in $(cd ${S}; find $(basename $i) -type f); do
