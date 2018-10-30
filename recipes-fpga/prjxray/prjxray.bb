@@ -12,13 +12,15 @@ SRC_URI = " \
         git://github.com/google/googletest;protocol=https;destsuffix=git/third_party/googletest;name=googletest \
         git://github.com/jbeder/yaml-cpp;protocol=https;destsuffix=git/third_party/yaml-cpp;name=yaml-cpp \
         git://github.com/gflags/gflags;protocol=https;destsuffix=git/third_party/gflags;name=gflags \
+        git://github.com/SymbiFlow/fasm;protocol=https;destsuffix=git/third_party/fasm;name=fasm \
         "
-SRCREV_prjxray = "825d2dd9f003471b180ad2381d4e4ce3e202207f"
+SRCREV_prjxray = "6a989b6934521e7722eead85707932925c6b190d"
 SRCREV_cctz = "a59b930afc821e5f5a0b868dfee56482075db185"
 SRCREV_abseil-cpp = "95ddf85f8075d5645a754bac5742b72ec9c81f2a"
 SRCREV_googletest = "d175c8bf823e709d570772b038757fadf63bc632"
 SRCREV_yaml-cpp = "86ae3a5aa7e2109d849b2df89176d6432a35265d"
 SRCREV_gflags = "77592648e3f3be87d6c7123eb81cbad75f9aef5a"
+SRCREV_fasm = "f78c27ecc34236df3cd4c845c13bdf279d30608c"
 SRCREV_FORMAT = "prjxray"
 
 S = "${WORKDIR}/git"
