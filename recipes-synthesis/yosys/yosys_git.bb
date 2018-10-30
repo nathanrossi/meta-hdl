@@ -3,14 +3,14 @@ HOMEPAGE = "http://www.clifford.at/yosys/"
 LICENSE = "ISC"
 SECTION = "devel/verilog"
 
-LIC_FILES_CHKSUM = "file://README.md;beginline=2;endline=16;md5=1fb4f531540bbdf872e3c7e0927a7b14"
+LIC_FILES_CHKSUM = "file://README.md;beginline=2;endline=16;md5=8248ba3ca46fd8ff645653ed33b79217"
 
 SRC_URI = "git://github.com/YosysHQ/yosys;protocol=https"
-SRCREV = "d36d11936f6725b9fc0702e9406bc55533d8e273"
+SRCREV = "82965d60f53c817fea303abf8d6887ced8c8420e"
 
 S = "${WORKDIR}/git"
 
-PV = "0.7+git${SRCPV}"
+PV = "0.8+git${SRCPV}"
 
 inherit pkgconfig
 

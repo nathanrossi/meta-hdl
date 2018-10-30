@@ -6,7 +6,7 @@ SECTION = "bsp"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/ISC;md5=f3b90e78ea0cffb20bf5cca7947a896d"
 
 SRC_URI = "git://github.com/cliffordwolf/picorv32;protocol=https"
-SRCREV = "028aa757dfdf1c4ed667cea5dec3c30d22bcd36e"
+SRCREV = "de479b09055ac8dec74558209a9abff3957da81f"
 
 inherit deploy
 
