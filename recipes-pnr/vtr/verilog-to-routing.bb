@@ -11,7 +11,7 @@ LIC_FILES_CHKSUM = "file://LICENSE.md;md5=633281c5b6ab9bbb4b7dcbef1aa323db"
 
 # symbiflow version
 SRC_URI = "git://github.com/SymbiFlow/vtr-verilog-to-routing;protocol=https;nobranch=1"
-SRCREV = "1169f2e67baaef436eebe277c86aef972a1f6367"
+SRCREV = "9ccef38386bc0186197ad66227bea44cedd8308e"
 
 S = "${WORKDIR}/git"
 
