@@ -1,0 +1,57 @@
+#!/usr/bin/env python3
+import os
+import sys
+import re
+import subprocess
+
+def find_recipes(root):
+	for path, dirs, files in os.walk(root):
+		for i in dirs:
+			if i.startswith("."):
+				dirs.remove(i)
+
+		for f in files:
+			if os.path.splitext(f)[1] in [".bb", ".inc"]:
+				yield os.path.join(path, f)
+
+def recipe_gitinfo(path):
+	with open(path, "r") as f:
+		content = f.read()
+		srcuri, srcrev = None, None
+		m = re.search("^SRC_URI\\s*=\\s*\"(.*?)\"", content, re.MULTILINE)
+		if m:
+			srcuri = m.group(1).split(";")[0]
+			if "protocol=https" in m.group(1):
+				srcuri = srcuri.replace("git://", "https://")
+		m = re.search("^SRCREV\\s*=\\s*\"(.*?)\"", content, re.MULTILINE)
+		if m:
+			srcrev = m.group(1)
+		return srcuri, srcrev
+
+def recipe_gitinfo_update(path, srcrev):
+	with open(path, "r") as f:
+		content = f.read()
+	newcontent = re.sub("^(SRCREV\\s*=\\s*\")(.*?)(\")", "\\g<1>" + srcrev + "\\g<3>", content, flags = re.MULTILINE)
+	with open(path, "w") as f:
+		f.write(newcontent)
+
+def remote_refs(remote):
+	r = subprocess.run(["git", "ls-remote", "--heads", "--tags", remote], stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+	if r.returncode != 0:
+		raise Exception("Failed to query remote {0}".format(remote))
+
+	for i in r.stdout.decode().splitlines():
+		rid, ref, *_ = i.split("\t")
+		yield rid, ref
+
+layerroot = os.path.abspath(os.path.dirname(__file__))
+for path in find_recipes(layerroot):
+	remote, current = recipe_gitinfo(path)
+	if remote is not None and current is not None and current != "${AUTOREV}":
+		for i, ref in remote_refs(remote):
+			if ref == "refs/heads/master":
+				if current != i:
+					print(path, "updated to ->", i)
+					recipe_gitinfo_update(path, i)
+				break
+
