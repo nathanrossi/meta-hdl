@@ -6,7 +6,7 @@ SECTION = "devel/fpga"
 LIC_FILES_CHKSUM = "file://../COPYING;md5=0a676b266f07580d67852e8e29fe81b1"
 
 SRC_URI = "git://github.com/SymbiFlow/prjtrellis;protocol=https"
-SRCREV = "7f28f116e470f58182661dc1d7d5453df6dc491b"
+SRCREV = "7b84101c0c55964115815fb2be1e46a53bb2259a"
 
 S = "${WORKDIR}/git/libtrellis"
 
@@ -37,6 +37,12 @@ do_install_append() {
     for i in ${S}/../util/common/*; do
         install -m 0644 $i ${D}${libdir}/prjtrellis/util/common/
     done
+
+    # install the timing/util python modules
+    install -d ${D}${libdir}/prjtrellis/timing/util
+    for i in ${S}/../timing/util/*; do
+        install -m 0644 $i ${D}${libdir}/prjtrellis/timing/util/
+    done
 }
 
 FILES_${PN}-dev = ""
@@ -45,6 +51,7 @@ FILES_${PN} += " \
         ${libdir}/libtrellis.so \
         ${libdir}/prjtrellis/libtrellis/pytrellis.so \
         ${libdir}/prjtrellis/util/common \
+        ${libdir}/prjtrellis/timing/util \
         "
 RDEPENDS_${PN} += "prjtrellis-db python3"
 
