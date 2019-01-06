@@ -6,7 +6,7 @@ SECTION = "devel/fpga"
 LIC_FILES_CHKSUM = "file://COPYING;md5=3894bff8746d28aca6650d596b65b37a"
 
 SRC_URI = "git://github.com/SymbiFlow/symbiflow-arch-defs;protocol=https"
-SRCREV = "12e6f330e20bf7271ab33ece417f30ce01fedc39"
+SRCREV = "c11cc38091996e785de2e32e2e97b4de1928959e"
 
 S = "${WORKDIR}/git"
 
@@ -44,9 +44,10 @@ EXTRA_OECMAKE += "-DPRJXRAY_DIR=${STAGING_DIR_NATIVE}${datadir_native}/xray/data
 # disable non-ci targets
 export CI = "1"
 
-# dependencies not available, they are not needed for defs+tests
+# dependencies not available or unused (board/device access), they are not needed for defs+tests
 export TINYFPGAB = "/dev/null"
 export TINYPROG = "/dev/null"
+export OPENOCD = "/dev/null"
 
 do_configure_prepend() {
     # want to be able to import them
@@ -58,6 +59,8 @@ do_configure_prepend() {
         rmdir ${S}/third_party/prjxray-db
     fi
     ln -sf ${STAGING_DIR_NATIVE}${datadir_native}/xray/database ${S}/third_party/prjxray-db
+    # prevent the CMake from including prjxray as a subdirectory
+    sed -i '/^add_subdirectory.*third_party\/prjxray.*/d' ${S}/CMakeLists.txt
 
     # HACK: disable netlistsvg setup for now, it is not used during the build targets below
     sed -i 's/^\(setup_netlistsvg.*\)/# \1/g' ${S}/make/image_gen.cmake
