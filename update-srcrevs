@@ -17,16 +17,20 @@ def find_recipes(root):
 def recipe_gitinfo(path):
 	with open(path, "r") as f:
 		content = f.read()
-		srcuri, srcrev = None, None
+		srcuri, srcrev, srcbranch = None, None, None
 		m = re.search("^SRC_URI\\s*=\\s*\"(.*?)\"", content, re.MULTILINE)
 		if m:
-			srcuri = m.group(1).split(";")[0]
+			uriparts = m.group(1).split(";")
 			if "protocol=https" in m.group(1):
-				srcuri = srcuri.replace("git://", "https://")
+				srcuri = uriparts[0].replace("git://", "https://")
+			for p in uriparts[1:]:
+				if "branch=" in p:
+					srcbranch = p.split("=")[1]
+
 		m = re.search("^SRCREV\\s*=\\s*\"(.*?)\"", content, re.MULTILINE)
 		if m:
 			srcrev = m.group(1)
-		return srcuri, srcrev
+		return srcuri, srcrev, srcbranch
 
 def recipe_gitinfo_update(path, srcrev):
 	with open(path, "r") as f:
@@ -46,12 +50,16 @@ def remote_refs(remote):
 
 layerroot = os.path.abspath(os.path.dirname(__file__))
 for path in find_recipes(layerroot):
-	remote, current = recipe_gitinfo(path)
+	remote, current, currentref = recipe_gitinfo(path)
 	if remote is not None and current is not None and current != "${AUTOREV}":
 		for i, ref in remote_refs(remote):
-			if ref == "refs/heads/master":
-				if current != i:
-					print(path, "updated to ->", i)
-					recipe_gitinfo_update(path, i)
-				break
+			if currentref is not None and ref != "refs/heads/{0}".format(currentref):
+				continue
+			if currentref is None and ref != "refs/heads/master":
+				continue
+
+			if current != i:
+				print(path, "updated to ->", i)
+				recipe_gitinfo_update(path, i)
+			break
 
