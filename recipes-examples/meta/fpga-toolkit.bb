@@ -20,5 +20,6 @@ TOOLCHAIN_HOST_TASK = " \
     nativesdk-nextpnr-ice40 \
     nativesdk-nextpnr-ecp5 \
     nativesdk-migen \
+    nativesdk-tinyfpga-programmer \
     "
 
