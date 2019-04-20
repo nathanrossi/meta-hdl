@@ -39,5 +39,5 @@ This layer depends on:
 	layers: meta
 
 	URI: git://git.openembedded.org/meta-openembedded
-	layers: meta-oe
+	layers: meta-oe, meta-python
 
