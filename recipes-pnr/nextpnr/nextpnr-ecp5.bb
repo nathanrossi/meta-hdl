@@ -1,7 +1,7 @@
 require nextpnr.inc
 require nextpnr-bbasm-native.inc
 
-DEPENDS += "libtrellis-native prjtrellis-db-native"
+DEPENDS += "prjtrellis-native prjtrellis-db-native"
 
 EXTRA_OECMAKE += "-DARCH=ecp5"
 EXTRA_OECMAKE += "-DTRELLIS_ROOT=${STAGING_DIR_NATIVE}${libdir_native}/prjtrellis"

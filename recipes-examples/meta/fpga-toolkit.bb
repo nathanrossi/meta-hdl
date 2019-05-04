@@ -14,7 +14,7 @@ TOOLCHAIN_HOST_TASK = " \
     nativesdk-python3-misc \
     nativesdk-icarus-verilog \
     nativesdk-icestorm \
-    nativesdk-libtrellis \
+    nativesdk-prjtrellis \
     nativesdk-yosys \
     nativesdk-arachne-pnr \
     nativesdk-nextpnr-ice40 \

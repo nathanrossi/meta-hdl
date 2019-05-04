@@ -4,7 +4,7 @@ LICENSE = "MIT"
 TARGETS = " \
     icarus-verilog \
     icestorm \
-    libtrellis \
+    prjtrellis \
     yosys \
     arachne-pnr \
     nextpnr-ice40 \

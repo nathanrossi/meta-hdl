@@ -1,0 +1,152 @@
+From 3d3cd949d46443943871fa6369ee7ec03647be87 Mon Sep 17 00:00:00 2001
+From: Nathan Rossi <nathan@nathanrossi.com>
+Date: Thu, 6 Jun 2019 17:08:29 +1000
+Subject: [PATCH] libtrellis: Add support for portable execution with trellis
+ database
+
+In order to execute the ecpmulti, ecppack and ecpunpack programs they
+must be able to access the trellis database files. These files are
+installed alongside the tools in the data directory (normally
+/usr/share). To enable portable execution of these programs such that
+they can access the database relative to their executables path the
+programs must be built with the relative path embedded and also be able
+to access the executables path at run time.
+
+Since libtrellis already depends on Boost it makes sense to use the
+Boost dll module. This module provides the 'program_location' function
+which can be used with the 'boost::filesystem::path' to build the
+absolute path to the database at run time. The only downside with the
+use of the Boost dll module is that a unused component of the included
+source relies on certain dynamic linker functions which requires linking
+to libdl on some platforms. This however is easily handled by the
+CMAKE_DL_LIBS variable which expands to the correct linker arg on
+targets that require linking with the dynamic linker.
+
+The cmake configuration is also changed to generate a relative path from
+datadir to bindir, this path is then provided during the build as
+TRELLIS_RPATH_DATADIR.
+
+Note: ecppll does not currently use the trellis database
+
+Signed-off-by: Nathan Rossi <nathan@nathanrossi.com>
+---
+ libtrellis/CMakeLists.txt      | 17 +++++++++--------
+ libtrellis/tools/ecpmulti.cpp  |  6 +++++-
+ libtrellis/tools/ecppack.cpp   |  5 ++++-
+ libtrellis/tools/ecpunpack.cpp |  5 ++++-
+ 4 files changed, 22 insertions(+), 11 deletions(-)
+
+diff --git a/libtrellis/CMakeLists.txt b/libtrellis/CMakeLists.txt
+index 267bd58f95..9b5be20ba1 100644
+--- a/libtrellis/CMakeLists.txt
++++ b/libtrellis/CMakeLists.txt
+@@ -111,6 +111,7 @@ find_package(Boost REQUIRED COMPONENTS program_options)
+ include(GNUInstallDirs)
+ 
+ file(RELATIVE_PATH TRELLIS_RPATH_LIBDIR /${CMAKE_INSTALL_BINDIR} /${CMAKE_INSTALL_LIBDIR})
++file(RELATIVE_PATH TRELLIS_RPATH_DATADIR /${CMAKE_INSTALL_BINDIR} /${CMAKE_INSTALL_DATADIR})
+ 
+ function(setup_rpath name)
+     if(APPLE)
+@@ -126,23 +127,23 @@ function(setup_rpath name)
+ endfunction()
+ 
+ add_executable(ecppack ${INCLUDE_FILES} tools/ecppack.cpp)
+-target_compile_definitions(ecppack PRIVATE TRELLIS_PREFIX="${CMAKE_INSTALL_PREFIX}")
+-target_link_libraries(ecppack trellis ${Boost_LIBRARIES} ${link_param})
++target_compile_definitions(ecppack PRIVATE TRELLIS_RPATH_DATADIR="${TRELLIS_RPATH_DATADIR}")
++target_link_libraries(ecppack trellis ${Boost_LIBRARIES} ${CMAKE_DL_LIBS} ${link_param})
+ setup_rpath(ecppack)
+ 
+ add_executable(ecpunpack ${INCLUDE_FILES} tools/ecpunpack.cpp)
+-target_compile_definitions(ecpunpack PRIVATE TRELLIS_PREFIX="${CMAKE_INSTALL_PREFIX}")
+-target_link_libraries(ecpunpack trellis ${Boost_LIBRARIES} ${link_param})
++target_compile_definitions(ecpunpack PRIVATE TRELLIS_RPATH_DATADIR="${TRELLIS_RPATH_DATADIR}")
++target_link_libraries(ecpunpack trellis ${Boost_LIBRARIES} ${CMAKE_DL_LIBS} ${link_param})
+ setup_rpath(ecpunpack)
+ 
+ add_executable(ecppll ${INCLUDE_FILES} tools/ecppll.cpp)
+-target_compile_definitions(ecppll PRIVATE TRELLIS_PREFIX="${CMAKE_INSTALL_PREFIX}")
+-target_link_libraries(ecppll trellis ${Boost_LIBRARIES} ${link_param})
++target_compile_definitions(ecppll PRIVATE TRELLIS_RPATH_DATADIR="${TRELLIS_RPATH_DATADIR}")
++target_link_libraries(ecppll trellis ${Boost_LIBRARIES} ${CMAKE_DL_LIBS} ${link_param})
+ setup_rpath(ecppll)
+ 
+ add_executable(ecpmulti ${INCLUDE_FILES} tools/ecpmulti.cpp)
+-target_compile_definitions(ecpmulti PRIVATE TRELLIS_PREFIX="${CMAKE_INSTALL_PREFIX}")
+-target_link_libraries(ecpmulti trellis ${Boost_LIBRARIES} ${link_param})
++target_compile_definitions(ecpmulti PRIVATE TRELLIS_RPATH_DATADIR="${TRELLIS_RPATH_DATADIR}")
++target_link_libraries(ecpmulti trellis ${Boost_LIBRARIES} ${CMAKE_DL_LIBS} ${link_param})
+ setup_rpath(ecpmulti)
+ 
+ if (BUILD_SHARED)
+diff --git a/libtrellis/tools/ecpmulti.cpp b/libtrellis/tools/ecpmulti.cpp
+index 67d79651f9..0ffcd7c0c4 100644
+--- a/libtrellis/tools/ecpmulti.cpp
++++ b/libtrellis/tools/ecpmulti.cpp
+@@ -6,6 +6,7 @@
+ #include "Tile.hpp"
+ #include <iostream>
+ #include <boost/program_options.hpp>
++#include <boost/dll/runtime_symbol_info.hpp>
+ #include <stdexcept>
+ #include <streambuf>
+ #include <fstream>
+@@ -39,7 +40,10 @@ int main(int argc, char *argv[])
+     using namespace Trellis;
+     namespace po = boost::program_options;
+ 
+-    std::string database_folder = TRELLIS_PREFIX "/share/trellis/database";
++    boost::filesystem::path executable_path = boost::dll::program_location().parent_path();
++    boost::filesystem::path database_datadir_relative(TRELLIS_RPATH_DATADIR "/trellis/database");
++    std::string database_folder = (executable_path /= database_datadir_relative).string();
++
+     uint32_t flash_size_bytes = 0;
+     boost::optional<uint32_t> input_idcode;
+     boost::optional<uint32_t> output_idcode;
+diff --git a/libtrellis/tools/ecppack.cpp b/libtrellis/tools/ecppack.cpp
+index 31a3f2b24c..8023df9a62 100644
+--- a/libtrellis/tools/ecppack.cpp
++++ b/libtrellis/tools/ecppack.cpp
+@@ -4,6 +4,7 @@
+ #include "Database.hpp"
+ #include <iostream>
+ #include <boost/program_options.hpp>
++#include <boost/dll/runtime_symbol_info.hpp>
+ #include <stdexcept>
+ #include <streambuf>
+ #include <fstream>
+@@ -24,7 +25,9 @@ int main(int argc, char *argv[])
+     using namespace Trellis;
+     namespace po = boost::program_options;
+ 
+-    std::string database_folder = TRELLIS_PREFIX "/share/trellis/database";
++    boost::filesystem::path executable_path = boost::dll::program_location().parent_path();
++    boost::filesystem::path database_datadir_relative(TRELLIS_RPATH_DATADIR "/trellis/database");
++    std::string database_folder = (executable_path /= database_datadir_relative).string();
+ 
+     po::options_description options("Allowed options");
+     options.add_options()("help,h", "show help");
+diff --git a/libtrellis/tools/ecpunpack.cpp b/libtrellis/tools/ecpunpack.cpp
+index 68ad3a89c9..bfa7d76691 100644
+--- a/libtrellis/tools/ecpunpack.cpp
++++ b/libtrellis/tools/ecpunpack.cpp
+@@ -5,6 +5,7 @@
+ #include <iostream>
+ #include <boost/optional.hpp>
+ #include <boost/program_options.hpp>
++#include <boost/dll/runtime_symbol_info.hpp>
+ #include <stdexcept>
+ #include <streambuf>
+ #include <fstream>
+@@ -17,7 +18,9 @@ int main(int argc, char *argv[])
+     namespace po = boost::program_options;
+     boost::optional<uint32_t> idcode;
+ 
+-    std::string database_folder = TRELLIS_PREFIX "/share/trellis/database";
++    boost::filesystem::path executable_path = boost::dll::program_location().parent_path();
++    boost::filesystem::path database_datadir_relative(TRELLIS_RPATH_DATADIR "/trellis/database");
++    std::string database_folder = (executable_path /= database_datadir_relative).string();
+ 
+     po::options_description options("Allowed options");
+     options.add_options()("help,h", "show help");
