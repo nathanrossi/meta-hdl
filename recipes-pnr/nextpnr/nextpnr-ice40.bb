@@ -1,6 +1,7 @@
 require nextpnr.inc
+require nextpnr-bbasm-native.inc
 
-DEPENDS += "icestorm"
+DEPENDS += "icestorm-native"
 
 # default ice40
 EXTRA_OECMAKE += "-DARCH=ice40"

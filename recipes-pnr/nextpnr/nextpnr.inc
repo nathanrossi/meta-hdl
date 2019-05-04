@@ -6,7 +6,7 @@ SECTION = "devel/fpga"
 LIC_FILES_CHKSUM = "file://COPYING;;md5=d6e454a24247f9ba6d2c656f97de17e9"
 
 SRC_URI = "git://github.com/YosysHQ/nextpnr;protocol=https"
-SRCREV = "22da6c8a65d43f91db254851da6135f0e9e801a0"
+SRCREV = "5344bc3b65f4e06f983db781e9a82d30b3f1512b"
 
 S = "${WORKDIR}/git"
 
@@ -25,24 +25,4 @@ do_configure_prepend() {
 }
 
 BBCLASSEXTEND = "native nativesdk"
-
-# bbasm specific setup
-python () {
-    if not bb.data.inherits_class("native", d):
-        # needs a native build of bbasm tool
-        d.appendVar("DEPENDS", " {0}-native".format(d.getVar("BPN")))
-        d.appendVar("EXTRA_OECMAKE", " -DIMPORT_EXECUTABLES=${WORKDIR}/bbasm.cmake")
-        bb.build.addtask("do_configure_bbasm", "do_configure", None, d)
-}
-
-do_configure_bbasm() {
-    # create cmake setup for bbasm
-    echo "add_executable(bbasm IMPORTED)" > ${WORKDIR}/bbasm.cmake
-    echo "set_property(TARGET bbasm APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)" >> ${WORKDIR}/bbasm.cmake
-    echo "set_target_properties(bbasm PROPERTIES IMPORTED_LOCATION_RELEASE \"${RECIPE_SYSROOT_NATIVE}${bindir_native}/bbasm\")" >> ${WORKDIR}/bbasm.cmake
-}
-
-do_install_append_class-native() {
-    install -Dm 744 ${B}/bbasm ${D}${bindir}/bbasm
-}
 
