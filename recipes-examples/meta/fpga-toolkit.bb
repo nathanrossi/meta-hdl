@@ -21,5 +21,6 @@ TOOLCHAIN_HOST_TASK = " \
     nativesdk-nextpnr-ecp5 \
     nativesdk-migen \
     nativesdk-tinyfpga-programmer \
+    nativesdk-openocd \
     "
 
