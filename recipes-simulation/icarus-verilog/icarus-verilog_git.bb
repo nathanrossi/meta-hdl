@@ -6,7 +6,7 @@ SECTION = "devel/verilog"
 LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 SRC_URI = "git://github.com/steveicarus/iverilog.git;protocol=https"
-SRCREV = "e745304cc4256ad881e8dd41e0ec61623e965368"
+SRCREV = "a9388a895eb85a9d7f2924b89f839f94e1b6d7c4"
 
 S = "${WORKDIR}/git"
 
@@ -30,5 +30,12 @@ DEPENDS = " \
 	"
 
 FILES_${PN} += "${libdir}/ivl"
+
+do_configure_prepend () {
+	# prevent use of CFLAGS with BUILDCC
+	sed -i 's/BUILDCC.\s\+..CFLAGS/BUILDCC/' ${S}/Makefile.in
+	# make sure draw_tt uses BUILDCC
+	sed -i 's/CC.\s\+..CFLAGS.\(\s\+.*draw_tt.c\)/BUILDCC)\1/' ${S}/vvp/Makefile.in
+}
 
 BBCLASSEXTEND = "native nativesdk"
