@@ -3,9 +3,9 @@ HOMEPAGE = "https://github.com/tinyfpga/TinyFPGA-Bootloader"
 LICENSE = "GPLv3"
 
 SRC_URI = "git://github.com/tinyfpga/TinyFPGA-Bootloader;protocol=https"
-SRCREV = "06ce3980e821d8303b19c406ebb2f2bf764ff24d"
+SRCREV = "99f87a5947fada082cc11606a2b3370f50e1f970"
 
-LIC_FILES_CHKSUM = "file://../LICENSE;md5=d32239bcb673463ab874e80d47fae504"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=d32239bcb673463ab874e80d47fae504"
 
 inherit setuptools3
 

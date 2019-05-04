@@ -6,7 +6,7 @@ SECTION = "devel/fpga"
 LIC_FILES_CHKSUM = "file://COPYING;;md5=d6e454a24247f9ba6d2c656f97de17e9"
 
 SRC_URI = "git://github.com/YosysHQ/nextpnr;protocol=https"
-SRCREV = "265fa1be16f9f50b371b646fc2cf8802273d9121"
+SRCREV = "22da6c8a65d43f91db254851da6135f0e9e801a0"
 
 S = "${WORKDIR}/git"
 
@@ -14,7 +14,7 @@ PV = "0+git${SRCPV}"
 
 inherit cmake python3native
 
-DEPENDS += "python3 boost"
+DEPENDS += "python3 boost libeigen"
 
 # don't build the gui components
 EXTRA_OECMAKE += "-DBUILD_GUI=no"
