@@ -18,7 +18,7 @@ def recipe_gitinfo(path):
 	with open(path, "r") as f:
 		content = f.read()
 		srcuri, srcrev, srcbranch = None, None, None
-		m = re.search("^SRC_URI\\s*=\\s*\"(.*?)\"", content, re.MULTILINE)
+		m = re.search("^SRC_URI\\s*=\\s*\"(git://.*?)\"", content, re.MULTILINE)
 		if m:
 			uriparts = m.group(1).split(";")
 			if "protocol=https" in m.group(1):
