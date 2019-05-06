@@ -15,6 +15,7 @@ TOOLCHAIN_HOST_TASK = " \
     nativesdk-icarus-verilog \
     nativesdk-icestorm \
     nativesdk-prjtrellis \
+    nativesdk-prjtrellis-openocd \
     nativesdk-yosys \
     nativesdk-arachne-pnr \
     nativesdk-nextpnr-ice40 \
