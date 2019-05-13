@@ -1,2 +1,2 @@
-RDEPENDS_${PN} += "qemu-litex-native"
-DEPENDS += "qemu-litex-native"
+#RDEPENDS_${PN} += "qemu-litex-native"
+#DEPENDS += "qemu-litex-native"
