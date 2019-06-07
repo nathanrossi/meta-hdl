@@ -17,6 +17,9 @@ S = "${WORKDIR}/git"
 # depends on itself for processing chipdb content
 DEPENDS = "coreutils-native icestorm-native arachne-pnr-native"
 
+# ignore warnings introduced by GCC 9
+CXXFLAGS_append = " -Wno-pessimizing-move"
+
 # export the path for icestorm chipdb
 export ICEBOX = "${STAGING_DIR_NATIVE}${datadir_native}/icebox"
 
