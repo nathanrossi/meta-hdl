@@ -1,0 +1,27 @@
+From 5336d255e32abe23ec1b47ffc0ab88aabb6b7066 Mon Sep 17 00:00:00 2001
+From: Nathan Rossi <nathan@nathanrossi.com>
+Date: Wed, 4 Sep 2019 15:44:37 +1000
+Subject: [PATCH] libtrellis/CMakeLists.txt: Run git describe in source
+ directory
+
+Ensure the git describe command is run within the source directory so
+that the binary and source directories can be different.
+
+Signed-off-by: Nathan Rossi <nathan@nathanrossi.com>
+---
+ libtrellis/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/libtrellis/CMakeLists.txt b/libtrellis/CMakeLists.txt
+index b146bd6172..b139766c67 100644
+--- a/libtrellis/CMakeLists.txt
++++ b/libtrellis/CMakeLists.txt
+@@ -127,7 +127,7 @@ endfunction()
+ file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/generated")
+ set(LAST_GIT_VERSION "")
+ if (NOT DEFINED CURRENT_GIT_VERSION)
+-    execute_process(COMMAND git describe --tags OUTPUT_VARIABLE CURRENT_GIT_VERSION)
++    execute_process(COMMAND git describe --tags OUTPUT_VARIABLE CURRENT_GIT_VERSION WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+ endif()
+ string(STRIP "${CURRENT_GIT_VERSION}" CURRENT_GIT_VERSION)
+ if (EXISTS "${CMAKE_BINARY_DIR}/generated/last_git_version")

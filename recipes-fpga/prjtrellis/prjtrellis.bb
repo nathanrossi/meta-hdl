@@ -1,10 +1,5 @@
 require prjtrellis.inc
 
-SRC_URI += " \
-    file://0001-libtrellis-CMakeLists.txt-Use-GNUInstallDirs-to-dete.patch \
-    file://0002-libtrellis-Add-support-for-portable-execution-with-t.patch \
-    "
-
 inherit cmake python3native
 
 DEPENDS += "boost"
