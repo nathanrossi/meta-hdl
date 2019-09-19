@@ -6,7 +6,7 @@ SECTION = "bsp"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/ISC;md5=f3b90e78ea0cffb20bf5cca7947a896d"
 
 SRC_URI = "git://github.com/cliffordwolf/picorv32;protocol=https"
-SRCREV = "e0baf2e0bd49fdddef2e3440c1f6364478655154"
+SRCREV = "392ee1dd91fc637b48b6fc778fc838ec11633ec7"
 
 inherit deploy
 
@@ -15,17 +15,26 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 S = "${WORKDIR}/git/picosoc"
 
-DEPENDS = "yosys-native arachne-pnr-native icestorm-native icarus-verilog-native"
+DEPENDS = "yosys-native icestorm-native icarus-verilog-native"
 
 PROJ_NAME ?= ""
 SIM_TARGET ?= ""
 
+TARGET_CC_ARCH_append = " -nostdlib"
+
+# 'gcc -E' is not the same as running just the preprocessor (it processes .lds files differently)
+CPP = "${HOST_PREFIX}cpp ${TOOLCHAIN_OPTIONS} ${HOST_CC_ARCH}"
+
+# export vvp and iverilog variables with local paths
+export VVP = "vvp -M${STAGING_DIR_NATIVE}${libdir_native}/ivl"
+export IVERILOG = "iverilog -B${STAGING_DIR_NATIVE}${libdir_native}/ivl"
+
 do_compile () {
-    sed -i 's#\(\s*icetime\) -d#\1 -C ${STAGING_DIR_NATIVE}${datadir_native}/icebox/chipdb-8k.txt -d#' ${S}/Makefile
     sed -i 's#riscv32-[a-z-]\+elf-gcc#$(CC)#' ${S}/Makefile
+    sed -i 's#riscv32-[a-z-]\+elf-cpp#$(CPP)#' ${S}/Makefile
     sed -i 's#riscv32-[a-z-]\+elf-objcopy#$(OBJCOPY)#' ${S}/Makefile
-    sed -i 's#\(^\s\+vvp\)#\1 -M${STAGING_DIR_NATIVE}${libdir_native}/ivl#' ${S}/Makefile
-    sed -i 's#\(^\s\+iverilog\)#\1 -B${STAGING_DIR_NATIVE}${libdir_native}/ivl#' ${S}/Makefile
+    sed -i 's#\(^\s\+\)vvp#\1$(VVP)#' ${S}/Makefile
+    sed -i 's#\(^\s\+\)iverilog#\1$(IVERILOG)#' ${S}/Makefile
 
     oe_runmake -f ${S}/Makefile ${PROJ_NAME}.bin ${PROJ_NAME}_fw.bin ${PROJ_NAME}_fw.hex
 
