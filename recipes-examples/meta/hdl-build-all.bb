@@ -24,3 +24,6 @@ def targets_expand(d):
 
 DEPENDS += "${@targets_expand(d)}"
 
+# standaclone recipe targets
+DEPENDS += "prjtrellis-examples-versa5g"
+
