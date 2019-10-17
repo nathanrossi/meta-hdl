@@ -6,7 +6,7 @@ SECTION = "devel/verilog"
 LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 SRC_URI = "git://github.com/steveicarus/iverilog.git;protocol=https"
-SRCREV = "9e10645722410a70f558bd90a8e036c8102e0fd2"
+SRCREV = "bf655003e84fe1f3af2d244fecf501c471fff816"
 
 S = "${WORKDIR}/git"
 

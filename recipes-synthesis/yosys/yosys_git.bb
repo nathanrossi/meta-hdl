@@ -6,7 +6,7 @@ SECTION = "devel/verilog"
 LIC_FILES_CHKSUM = "file://README.md;beginline=2;endline=16;md5=4ffe8582f093e195423a3f30fc3fd6fc"
 
 SRC_URI = "git://github.com/YosysHQ/yosys;protocol=https"
-SRCREV = "13fa873f11c8332a10c1dda9e42c62b20e93c6b3"
+SRCREV = "0d037bf9d8d866239de15d72dc8c5acd7ab5e5cf"
 
 S = "${WORKDIR}/git"
 

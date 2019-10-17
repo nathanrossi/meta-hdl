@@ -1,4 +1,4 @@
-From 661296eff65876f75e00255d05f0ef11bb3b7ee1 Mon Sep 17 00:00:00 2001
+From 34476980133d0b774ca9baaf2f4bc97e760583ed Mon Sep 17 00:00:00 2001
 From: Nathan Rossi <nathan@nathanrossi.com>
 Date: Mon, 16 Sep 2019 19:18:52 +1000
 Subject: [PATCH] libtrellis/CMakeLists.txt: Rework Boost::python version
@@ -23,7 +23,7 @@ Signed-off-by: Nathan Rossi <nathan@nathanrossi.com>
  1 file changed, 18 insertions(+), 32 deletions(-)
 
 diff --git a/libtrellis/CMakeLists.txt b/libtrellis/CMakeLists.txt
-index b139766c67..bb8f66090d 100644
+index 23360d96c5..1a450638ef 100644
 --- a/libtrellis/CMakeLists.txt
 +++ b/libtrellis/CMakeLists.txt
 @@ -38,44 +38,30 @@ if (BUILD_PYTHON)
@@ -33,14 +33,14 @@ index b139766c67..bb8f66090d 100644
 -    set(version ${PYTHONLIBS_VERSION_STRING})
  
 -    STRING(REGEX REPLACE "[^0-9]" "" boost_py_version "${version}")
--    find_package(Boost COMPONENTS "python-py${boost_py_version}" ${boost_libs})
+-    find_package(Boost QUIET COMPONENTS "python-py${boost_py_version}" ${boost_libs})
 -    set(Boost_PYTHON_FOUND ${Boost_PYTHON-PY${boost_py_version}_FOUND})
 -
 -    while (NOT "${version}" STREQUAL "" AND NOT Boost_PYTHON_FOUND)
 -        STRING(REGEX REPLACE "([0-9.]+).[0-9]+" "\\1" version "${version}")
 -
 -        STRING(REGEX REPLACE "[^0-9]" "" boost_py_version "${version}")
--        find_package(Boost COMPONENTS "python-py${boost_py_version}" ${boost_libs})
+-        find_package(Boost QUIET COMPONENTS "python-py${boost_py_version}" ${boost_libs})
 -        set(Boost_PYTHON_FOUND ${Boost_PYTHON-PY${boost_py_version}_FOUND})
 -
 -        STRING(REGEX MATCHALL "([0-9.]+).[0-9]+" has_more_version "${version}")
@@ -53,7 +53,7 @@ index b139766c67..bb8f66090d 100644
 +
 +    foreach (py_ver ${versions})
 +        # check python-py*
-+        find_package(Boost COMPONENTS "python-py${py_ver}" ${boost_libs})
++        find_package(Boost QUIET COMPONENTS "python-py${py_ver}" ${boost_libs})
 +        set(Boost_PYTHON_FOUND ${Boost_PYTHON-PY${py_ver}_FOUND})
 +        if (Boost_PYTHON_FOUND)
              break()
@@ -62,7 +62,7 @@ index b139766c67..bb8f66090d 100644
 -
 -    if (NOT Boost_PYTHON_FOUND)
 -        foreach (PyVer 3 36 37 38)
--            find_package(Boost COMPONENTS python${PyVer} ${boost_libs})
+-            find_package(Boost QUIET COMPONENTS python${PyVer} ${boost_libs})
 -            if ("${Boost_LIBRARIES}" MATCHES ".*(python|PYTHON).*" )
 -                set(Boost_PYTHON_FOUND TRUE)
 -                break()
@@ -71,12 +71,12 @@ index b139766c67..bb8f66090d 100644
 -    endif ()
  
 -    if (NOT Boost_PYTHON_FOUND)
--        STRING(REGEX REPLACE "([0-9]+\\.[0-9]+).*" "\\1" gentoo_version ${PYTHONLIBS_VERSION_STRING})
--        find_package(Boost COMPONENTS python-${gentoo_version} ${boost_libs})
+-        STRING(REGEX REPLACE "([0-9]+\\.[0-9]+).*" "\\1" gentoo_version "${PYTHONLIBS_VERSION_STRING}")
+-        find_package(Boost QUIET COMPONENTS python-${gentoo_version} ${boost_libs})
 -        if ("${Boost_LIBRARIES}" MATCHES ".*(python|PYTHON).*" )
 -            set(Boost_PYTHON_FOUND TRUE)
 +        # check python*
-+        find_package(Boost COMPONENTS python${py_ver} ${boost_libs})
++        find_package(Boost QUIET COMPONENTS python${py_ver} ${boost_libs})
 +        set(Boost_PYTHON_FOUND ${Boost_PYTHON${py_ver}_FOUND})
 +        if (Boost_PYTHON_FOUND)
 +            break()

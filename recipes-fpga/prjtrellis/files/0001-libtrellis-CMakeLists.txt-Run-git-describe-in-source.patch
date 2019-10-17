@@ -1,4 +1,4 @@
-From 5336d255e32abe23ec1b47ffc0ab88aabb6b7066 Mon Sep 17 00:00:00 2001
+From 5dd128f6c2bb7ebd82022e3d733f25aed62fa347 Mon Sep 17 00:00:00 2001
 From: Nathan Rossi <nathan@nathanrossi.com>
 Date: Wed, 4 Sep 2019 15:44:37 +1000
 Subject: [PATCH] libtrellis/CMakeLists.txt: Run git describe in source
@@ -13,10 +13,10 @@ Signed-off-by: Nathan Rossi <nathan@nathanrossi.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/libtrellis/CMakeLists.txt b/libtrellis/CMakeLists.txt
-index b146bd6172..b139766c67 100644
+index 3f9f17fcd7..23360d96c5 100644
 --- a/libtrellis/CMakeLists.txt
 +++ b/libtrellis/CMakeLists.txt
-@@ -127,7 +127,7 @@ endfunction()
+@@ -125,7 +125,7 @@ endfunction()
  file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/generated")
  set(LAST_GIT_VERSION "")
  if (NOT DEFINED CURRENT_GIT_VERSION)
