@@ -6,7 +6,7 @@ SECTION = "devel/hardware"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=47d473badfb26282ffa50e1e4d3262ed"
 
 SRC_URI = "git://github.com/nturley/netlistsvg;protocol=https"
-SRCREV = "7a7aea83b3b4947f8e65c1f6d734fec52781ff76"
+SRCREV = "850b0a85aa4ec454807981a207126023c092ab63"
 
 # npm uses 0.0.1 as default version
 PV = "0.0.1"
