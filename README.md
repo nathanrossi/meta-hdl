@@ -44,6 +44,12 @@ Additionally the Verilator simulation can be run with `bitbake
 linux-on-litex-vexricv -c sim`. This will start the simulation in a
 terminal (similar to devshell).
 
+## [Fomu](https://tomu.im/)
+
+The `foboot` recipe is provided in order to build the Fomu's boot loader. Set
+the `MACHINE = "fomu"` in local.conf and build `foboot`. The bitstream is
+populated into the deploy directory.
+
 # Dependencies
 
 This layer depends on:
