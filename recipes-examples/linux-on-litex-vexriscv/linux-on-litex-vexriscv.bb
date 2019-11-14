@@ -12,12 +12,14 @@ PV = "0+git${SRCPV}"
 
 S = "${WORKDIR}/git"
 
+inherit deploy
+inherit litexnative
+inherit fpga
+
 DEPENDS += "dtc-native"
+DEPENDS += "${@fpga_family_depends(d)}"
 DEPENDS += "migen-native"
 DEPENDS += "litex-native"
-DEPENDS += "yosys-native"
-DEPENDS += "nextpnr-ecp5-native"
-DEPENDS += "prjtrellis-native prjtrellis-db-native"
 
 # device modules
 DEPENDS += "litex-boards-native"
@@ -34,9 +36,6 @@ do_configure() {
     sed -i 's/buildroot\///' ${B}/images-${MACHINE}.json
     sed -i 's/emulator\///' ${B}/images-${MACHINE}.json
 }
-
-inherit deploy
-inherit litexnative
 
 do_compile() {
     ${S}/make.py --board versa_ecp5 --build

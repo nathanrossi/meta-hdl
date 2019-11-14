@@ -1,7 +1,5 @@
 require picosoc.inc
 
-DEPENDS += "arachne-pnr-native"
-
 PROJ_NAME = "hx8kdemo"
 SIM_TARGET = "hx8ksim"
 

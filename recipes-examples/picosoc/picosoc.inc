@@ -8,14 +8,16 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/ISC;md5=f3b90e78ea0cffb20bf5cca
 SRC_URI = "git://github.com/cliffordwolf/picorv32;protocol=https"
 SRCREV = "46aa89c13f51c2963019be5e9b6af40d64dceb62"
 
-inherit deploy
+inherit deploy fpga
 
 COMPATIBLE_MACHINE = "^picosoc$"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 S = "${WORKDIR}/git/picosoc"
 
-DEPENDS = "yosys-native icestorm-native icarus-verilog-native"
+DEPENDS += "${@fpga_family_depends(d)}"
+DEPENDS += "arachne-pnr-native"
+DEPENDS += "icarus-verilog-native"
 
 PROJ_NAME ?= ""
 SIM_TARGET ?= ""

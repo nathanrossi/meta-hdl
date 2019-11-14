@@ -1,7 +1,5 @@
 require picosoc.inc
 
-DEPENDS += "nextpnr-ice40-native"
-
 PROJ_NAME = "icebreaker"
 SIM_TARGET = "icebsim"
 
