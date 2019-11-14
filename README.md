@@ -50,6 +50,13 @@ The `foboot` recipe is provided in order to build the Fomu's boot loader. Set
 the `MACHINE = "fomu"` in local.conf and build `foboot`. The bitstream is
 populated into the deploy directory.
 
+The `micropython` and `fomu-workshop-litex-rgb` recipes can be used to build the
+micropython firmware and bitstream respectively.
+
+Note: `dfu-util-native` is provided by meta-oe, and can be built and then run
+using `oe-run-native`. `bitbake dfu-util-native -c addto_recipe_sysroot` and
+`oe-run-native dfu-util-native dfu-util ...`
+
 # Dependencies
 
 This layer depends on:
