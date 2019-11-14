@@ -22,6 +22,9 @@ DEPENDS += "icarus-verilog-native"
 PROJ_NAME ?= ""
 SIM_TARGET ?= ""
 
+# prevent the population of the build-id section into the output
+TARGET_CC_ARCH_APPEND = " -Wl,--build-id=none"
+# do not use any toolchain libraries (e.g. newlib)
 TARGET_CC_ARCH_append = " -nostdlib"
 
 # 'gcc -E' is not the same as running just the preprocessor (it processes .lds files differently)
