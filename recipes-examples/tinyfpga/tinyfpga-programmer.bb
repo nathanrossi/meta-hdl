@@ -3,7 +3,7 @@ HOMEPAGE = "https://github.com/tinyfpga/TinyFPGA-Bootloader"
 LICENSE = "GPLv3"
 
 SRC_URI = "git://github.com/tinyfpga/TinyFPGA-Bootloader;protocol=https"
-SRCREV = "22e7a49c1c0e2914a9124bf9861aa6d7a23b96ac"
+SRCREV = "165c7e925018ec289b329b1ee3a52b8cdfa825f2"
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=d32239bcb673463ab874e80d47fae504"
 
