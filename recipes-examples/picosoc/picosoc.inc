@@ -23,21 +23,16 @@ PROJ_NAME ?= ""
 SIM_TARGET ?= ""
 
 # prevent the population of the build-id section into the output
-TARGET_CC_ARCH_APPEND = " -Wl,--build-id=none"
-# do not use any toolchain libraries (e.g. newlib)
-TARGET_CC_ARCH_append = " -nostdlib"
-
-# 'gcc -E' is not the same as running just the preprocessor (it processes .lds files differently)
-CPP = "${HOST_PREFIX}cpp ${TOOLCHAIN_OPTIONS} ${HOST_CC_ARCH}"
+TARGET_CFLAGS += "-Wl,--build-id=none"
 
 # export vvp and iverilog variables with local paths
 export VVP = "vvp -M${STAGING_DIR_NATIVE}${libdir_native}/ivl"
 export IVERILOG = "iverilog -B${STAGING_DIR_NATIVE}${libdir_native}/ivl"
 
+# override the makefiles CROSS and CFLAGS values
+EXTRA_OEMAKE += "CROSS=${TARGET_PREFIX} CFLAGS="${TARGET_CC_ARCH} ${TOOCHAIN_OPTIONS} ${TARGET_CFLAGS}""
+
 do_compile () {
-    sed -i 's#riscv32-[a-z-]\+elf-gcc#$(CC)#' ${S}/Makefile
-    sed -i 's#riscv32-[a-z-]\+elf-cpp#$(CPP)#' ${S}/Makefile
-    sed -i 's#riscv32-[a-z-]\+elf-objcopy#$(OBJCOPY)#' ${S}/Makefile
     sed -i 's#\(^\s\+\)vvp#\1$(VVP)#' ${S}/Makefile
     sed -i 's#\(^\s\+\)iverilog#\1$(IVERILOG)#' ${S}/Makefile
 
