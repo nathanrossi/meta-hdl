@@ -6,7 +6,7 @@ SECTION = "devel/fpga"
 LIC_FILES_CHKSUM = "file://COPYING;md5=65d3616852dbf7b1a6d4b53b00626032"
 
 SRC_URI = "git://github.com/SymbiFlow/prjxray-db;protocol=https"
-SRCREV = "ca781e739d725938cb5a17b8586a5375ca263ca2"
+SRCREV = "a11a64c2fd2627dea6fe596ab24775519b0e5012"
 
 S = "${WORKDIR}/git"
 

@@ -6,7 +6,7 @@ SECTION = "bsp"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/ISC;md5=f3b90e78ea0cffb20bf5cca7947a896d"
 
 SRC_URI = "git://github.com/cliffordwolf/picorv32;protocol=https"
-SRCREV = "46aa89c13f51c2963019be5e9b6af40d64dceb62"
+SRCREV = "e308982e18fc952a8d446ddb7ea8b70433a998c2"
 
 inherit deploy fpga
 

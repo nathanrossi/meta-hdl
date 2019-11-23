@@ -6,7 +6,7 @@ SECTION = "devel/fpga"
 LIC_FILES_CHKSUM = "file://COPYING;md5=0a676b266f07580d67852e8e29fe81b1"
 
 SRC_URI = "git://github.com/SymbiFlow/prjtrellis;protocol=https"
-SRCREV = "dc10b8a9e8d0a9a1add35f0e88a1556566a609d6"
+SRCREV = "3fad6d79486775129e172301ede4e5d67f7a1b6d"
 PV = "0+git${SRCPV}"
 
 S = "${WORKDIR}/git"
