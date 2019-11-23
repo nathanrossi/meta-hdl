@@ -13,6 +13,7 @@ TOOLCHAIN_HOST_TASK = " \
     nativesdk-python3-modules \
     nativesdk-python3-misc \
     nativesdk-icarus-verilog \
+    nativesdk-verilator \
     nativesdk-icestorm \
     nativesdk-prjtrellis \
     nativesdk-prjtrellis-openocd \
@@ -21,7 +22,13 @@ TOOLCHAIN_HOST_TASK = " \
     nativesdk-nextpnr-ice40 \
     nativesdk-nextpnr-ecp5 \
     nativesdk-migen \
+    nativesdk-litex \
+    nativesdk-litex-boards \
+    nativesdk-litedram \
+    nativesdk-liteeth \
+    nativesdk-litevideo \
     nativesdk-tinyfpga-programmer \
     nativesdk-openocd \
+    nativesdk-xc3sprog \
     "
 
