@@ -24,6 +24,7 @@ def targets_expand(d):
 
 DEPENDS += "${@targets_expand(d)}"
 
-# standaclone recipe targets
+# standalone recipe targets
 DEPENDS += "prjtrellis-examples-versa5g"
+DEPENDS += "fpga-toolkit"
 
