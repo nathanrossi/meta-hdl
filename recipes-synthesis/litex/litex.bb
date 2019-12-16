@@ -16,6 +16,7 @@ RDEPENDS_${PN} += "python3-pyserial"
 RDEPENDS_${PN} += "migen"
 
 # source contains some prebuilt binaries, leave them alone
+INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 INHIBIT_PACKAGE_STRIP = "1"
 INHIBIT_SYSROOT_STRIP = "1"
 
