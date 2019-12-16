@@ -27,5 +27,7 @@ DEPENDS += "${@targets_expand(d)}"
 
 # standalone recipe targets
 DEPENDS += "prjtrellis-examples-versa5g"
-DEPENDS += "fpga-toolkit"
+
+# need to depend on the populate_sdk task
+do_build[depends] += "fpga-toolkit:do_populate_sdk"
 
