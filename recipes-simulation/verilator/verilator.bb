@@ -5,7 +5,7 @@ SECTION = "devel/verilog"
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3000208d539ec061b899bce1d9ce9404"
 
-DEPENDS += "flex-native bison-native"
+DEPENDS += "flex-native bison-native flex"
 DEPENDS += "python3-native"
 
 SRC_URI = "git://github.com/verilator/verilator;protocol=https"
