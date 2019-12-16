@@ -6,6 +6,7 @@ TARGETS = " \
     icestorm \
     prjtrellis \
     yosys \
+    yices2 \
     arachne-pnr \
     nextpnr-ice40 \
     nextpnr-ecp5 \
