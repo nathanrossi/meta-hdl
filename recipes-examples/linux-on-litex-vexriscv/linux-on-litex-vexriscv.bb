@@ -69,7 +69,7 @@ do_sim[depends] += "verilator-native:do_populate_sysroot"
 do_sim[depends] += "libevent-native:do_populate_sysroot"
 do_sim[depends] += "json-c-native:do_populate_sysroot"
 do_sim[depends] += "virtual/kernel:do_deploy"
-do_sim[depends] += "core-image-minimal:do_image_cpio"
+do_sim[depends] += "core-image-minimal:do_image_complete"
 do_sim[nostamp] = "1"
 python do_sim() {
     oe.path.symlink(d.expand("${DEPLOY_DIR_IMAGE}/Image"), d.expand("${S}/buildroot/Image"), force = True)

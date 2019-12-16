@@ -46,5 +46,5 @@ python do_create_toolchain_wrappers() {
     wrap("g++", "${BUILD_CXX} ${BUILD_CXXFLAGS} ${BUILD_LDFLAGS}", target = False)
     wrap("ld", "${BUILD_LD}", target = False)
 }
-addtask create_toolchain_wrappers before do_compile after do_prepare_recipe_sysroot
+addtask create_toolchain_wrappers before do_configure after do_prepare_recipe_sysroot
 
