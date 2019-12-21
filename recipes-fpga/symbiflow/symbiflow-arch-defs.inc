@@ -6,7 +6,7 @@ SECTION = "devel/fpga"
 LIC_FILES_CHKSUM = "file://COPYING;md5=3894bff8746d28aca6650d596b65b37a"
 
 SRC_URI = "git://github.com/SymbiFlow/symbiflow-arch-defs;protocol=https"
-SRCREV = "1cbf7bb58932e88333a404f4e9427e6acd90926b"
+SRCREV = "6575fce443854c489f621e1f7e86da3f5e562494"
 
 S = "${WORKDIR}/git"
 
