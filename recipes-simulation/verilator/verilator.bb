@@ -18,6 +18,12 @@ S = "${WORKDIR}/git"
 inherit autotools autotools-brokensep
 
 do_configure() {
+    # prevent the configure script from searching bad paths by default
+    sed -i '/CFLAGS+=/d' ${S}/configure.ac
+    sed -i '/CPPFLAGS+=/d' ${S}/configure.ac
+    sed -i '/CXXFLAGS+=/d' ${S}/configure.ac
+    sed -i '/LDFLAGS+=/d' ${S}/configure.ac
+
     # override the default autoreconf behaviour as it breaks verilator's
     # autotools setup
     autoconf
