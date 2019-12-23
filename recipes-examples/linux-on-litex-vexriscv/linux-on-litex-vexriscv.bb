@@ -17,6 +17,7 @@ inherit litexnative
 inherit fpga
 
 DEPENDS += "dtc-native"
+DEPENDS += "yosys-native"
 DEPENDS += "${@fpga_family_depends(d)}"
 DEPENDS += "migen-native"
 DEPENDS += "litex-native"

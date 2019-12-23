@@ -16,6 +16,7 @@ inherit deploy
 inherit litexnative
 inherit fpga
 
+DEPENDS += "yosys-native"
 DEPENDS += "${@fpga_family_depends(d)}"
 DEPENDS += "dfu-util-native"
 

@@ -5,7 +5,7 @@ def fpga_family_depends(d, family = None, native = True):
     if not family:
         return ""
 
-    depends = ["yosys"]
+    depends = []
     if family == "ice40":
         depends.append("nextpnr-ice40")
         depends.append("icestorm")
