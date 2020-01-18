@@ -1,33 +1,17 @@
 DESCRIPTION = "Documenting the Xilinx 7-series bit-stream format."
 HOMEPAGE = "https://github.com/SymbiFlow/prjxray"
-LICENSE = "ISC"
 SECTION = "devel/fpga"
-
+LICENSE = "ISC"
 LIC_FILES_CHKSUM = "file://COPYING;md5=d45384788db1e5711ff67f3912c54749"
 
-SRC_URI = " \
-        git://github.com/SymbiFlow/prjxray;protocol=https;name=prjxray \
-        git://github.com/google/cctz;protocol=https;destsuffix=git/third_party/cctz;name=cctz \
-        git://github.com/abseil/abseil-cpp;protocol=https;destsuffix=git/third_party/abseil-cpp;name=abseil-cpp \
-        git://github.com/google/googletest;protocol=https;destsuffix=git/third_party/googletest;name=googletest \
-        git://github.com/jbeder/yaml-cpp;protocol=https;destsuffix=git/third_party/yaml-cpp;name=yaml-cpp \
-        git://github.com/gflags/gflags;protocol=https;destsuffix=git/third_party/gflags;name=gflags \
-        git://github.com/SymbiFlow/fasm;protocol=https;destsuffix=git/third_party/fasm;name=fasm \
-        "
-SRCREV_prjxray = "6a989b6934521e7722eead85707932925c6b190d"
-SRCREV_cctz = "a59b930afc821e5f5a0b868dfee56482075db185"
-SRCREV_abseil-cpp = "95ddf85f8075d5645a754bac5742b72ec9c81f2a"
-SRCREV_googletest = "d175c8bf823e709d570772b038757fadf63bc632"
-SRCREV_yaml-cpp = "86ae3a5aa7e2109d849b2df89176d6432a35265d"
-SRCREV_gflags = "77592648e3f3be87d6c7123eb81cbad75f9aef5a"
-SRCREV_fasm = "f78c27ecc34236df3cd4c845c13bdf279d30608c"
-SRCREV_FORMAT = "prjxray"
-
+PV = "0+git${SRCPV}"
+SRC_URI = "gitsm://github.com/SymbiFlow/prjxray;protocol=https"
+SRCREV = "55ef66709333728cd3d2f84d440987f0b2bd6b3c"
 S = "${WORKDIR}/git"
 
-PV = "0+git${SRCPV}"
-
 inherit cmake python3native
+
+RDEPENDS_${PN} += "python3-fasm python3-simplejson python3-intervaltree"
 
 do_configure_prepend() {
     # suppress warnings as errors, some dependencies don't handle newer compilers
@@ -35,11 +19,21 @@ do_configure_prepend() {
 }
 
 do_install_append() {
+    # install prjxray module
+    install -d ${D}${PYTHON_SITEPACKAGES_DIR}
+    cp -r ${S}/prjxray ${D}${PYTHON_SITEPACKAGES_DIR}
+
     # install the tools binaries
     install -d ${D}${bindir}/prjxray
-    for i in bitread bittool frame_address_decoder gen_part_base_yaml segmatch xc7patch; do
+    for i in bitread bittool frame_address_decoder gen_part_base_yaml segmatch xc7patch xc7frames2bit; do
         install -m 0755 ${B}/tools/$i ${D}${bindir}/prjxray/$(basename $i)
     done
+    # install the utils scripts
+    for i in fasm2frames.py; do
+        install -m 0755 ${S}/utils/$i ${D}${bindir}/prjxray/$(basename $i)
+    done
 }
+
+FILES_${PN} += "${PYTHON_SITEPACKAGES_DIR}/prjxray"
 
 BBCLASSEXTEND = "native nativesdk"
