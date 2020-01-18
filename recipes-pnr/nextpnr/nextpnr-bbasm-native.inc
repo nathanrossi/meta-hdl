@@ -2,7 +2,10 @@
 # bbasm specific setup
 python () {
     # needs a native build of bbasm tool
-    d.appendVar("DEPENDS", " nextpnr-bbasm-native")
+    if "xilinx" in d.getVar("BPN"):
+        d.appendVar("DEPENDS", " nextpnr-bbasm-xilinx-native")
+    else:
+        d.appendVar("DEPENDS", " nextpnr-bbasm-native")
     d.appendVar("EXTRA_OECMAKE", " -DIMPORT_EXECUTABLES=${WORKDIR}/bbasm.cmake")
     bb.build.addtask("do_configure_bbasm", "do_configure", None, d)
 }
