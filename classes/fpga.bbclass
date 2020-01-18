@@ -13,6 +13,10 @@ def fpga_family_depends(d, family = None, native = True):
         depends.append("nextpnr-ecp5")
         depends.append("prjtrellis")
         depends.append("prjtrellis-db")
+    elif family in ["artix7", "zynq7"]:
+        depends.append("nextpnr-xilinx")
+        depends.append("prjxray")
+        depends.append("prjxray-db")
     else:
         bb.fatal("Unknown FPGA family '{}'".format(family))
 
