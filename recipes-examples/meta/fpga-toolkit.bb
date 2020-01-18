@@ -33,5 +33,6 @@ TOOLCHAIN_HOST_TASK = " \
     nativesdk-tinyfpga-programmer \
     nativesdk-openocd \
     nativesdk-xc3sprog \
+    nativesdk-dfu-util \
     "
 
