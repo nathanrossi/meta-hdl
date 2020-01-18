@@ -2,10 +2,10 @@ SUMMARY = "A Python toolbox for building complex digital hardware"
 HOMEPAGE = "https://m-labs.hk/migen/"
 SECTION = "devel/hdl"
 LICENSE = "BSD-2-Clause"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=fe415a1adab562fdef3f458f01add8df"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=984d220f96f7cade953c15160221941b"
 
 SRC_URI = "git://github.com/m-labs/migen;protocol=https"
-SRCREV = "bee558c8cb04720fb695f63d3597f2aefa55e8e4"
+SRCREV = "7bc80d79d87d3e659459c5afdc5a36db10bf2115"
 
 PV = "0.8+git${SRCPV}"
 

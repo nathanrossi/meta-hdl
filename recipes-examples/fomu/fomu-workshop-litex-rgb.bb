@@ -6,8 +6,8 @@ LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=86d3f3a95c324c9479bd8986968f4327"
 
 SRC_URI = "gitsm://github.com/im-tomu/fomu-workshop;protocol=https"
-SRCREV = "74dbc8ec371d9872899755fcb0da50cb9ca4bcd9"
-PV = "0+git${SRCPV}"
+SRCREV = "53cffe1761e24e631d79143ff05f36c27bb86885"
+PV = "0.1+git${SRCPV}"
 
 S = "${WORKDIR}/git"
 B = "${S}/litex"

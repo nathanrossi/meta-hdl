@@ -7,7 +7,7 @@ LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/BSD-2-Clause;md5=cb641bc04cda31daea161b1bc15da69f"
 
 SRC_URI = "git://github.com/litex-hub/linux-on-litex-vexriscv;protocol=https"
-SRCREV = "32f9f988af5f114c5ecca507cf3d612fd3b92727"
+SRCREV = "51530d199d3b830b8f4a89830dde09a2f3c8ce12"
 PV = "0+git${SRCPV}"
 
 S = "${WORKDIR}/git"
