@@ -3,6 +3,7 @@ LICENSE = "MIT"
 
 TARGETS = " \
     icarus-verilog \
+    verilator \
     icestorm \
     prjtrellis \
     prjxray \
@@ -15,7 +16,13 @@ TARGETS = " \
     nextpnr-ecp5 \
     nextpnr-xilinx \
     migen \
+    litex \
+    litex-boards \
+    litedram \
+    liteeth \
+    litevideo \
     tinyfpga-programmer \
+    xc3sprog \
     "
 
 def targets_expand(d):
