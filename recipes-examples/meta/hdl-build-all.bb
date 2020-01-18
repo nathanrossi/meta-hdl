@@ -5,6 +5,7 @@ TARGETS = " \
     icarus-verilog \
     icestorm \
     prjtrellis \
+    prjxray \
     yosys \
     yices2 \
     z3 \
@@ -12,6 +13,7 @@ TARGETS = " \
     arachne-pnr \
     nextpnr-ice40 \
     nextpnr-ecp5 \
+    nextpnr-xilinx \
     migen \
     tinyfpga-programmer \
     "
@@ -29,6 +31,7 @@ DEPENDS += "${@targets_expand(d)}"
 
 # standalone recipe targets
 DEPENDS += "prjtrellis-examples-versa5g"
+DEPENDS += "nextpnr-xilinx-examples-arty-a35"
 
 # need to depend on the populate_sdk task
 do_build[depends] += "fpga-toolkit:do_populate_sdk"
