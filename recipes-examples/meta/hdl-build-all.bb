@@ -7,6 +7,8 @@ TARGETS = " \
     prjtrellis \
     yosys \
     yices2 \
+    z3 \
+    boolector \
     arachne-pnr \
     nextpnr-ice40 \
     nextpnr-ecp5 \
