@@ -1,7 +1,7 @@
-TOOLCHAIN_OUTPUTNAME ?= "fpga-toolkit-${SDK_ARCH}"
-SDK_TITLE = "FPGA toolkit"
-
 require recipes-core/meta/buildtools-tarball.bb
+
+TOOLCHAIN_OUTPUTNAME = "fpga-toolkit-${SDK_ARCH}"
+SDK_TITLE = "FPGA toolkit"
 
 DESCRIPTION = "Target for building a portable toolkit/SDK for FPGA tools"
 SUMMARY = "Portable toolkit/SDK for FPGA tools"
