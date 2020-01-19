@@ -3,14 +3,16 @@ HOMEPAGE = "https://micropython.org/"
 LICENSE = "MIT"
 SECTION = "bsp/firmware"
 
-LIC_FILES_CHKSUM = "file://LICENSE;md5=8a3983a7b144ef8a632c8549f34f87b1"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=a8a14efdd86622bc2a34296228779da7"
+
+DEPENDS += "dfu-util-native"
 
 inherit deploy
 
-SRC_URI = "git://github.com/im-tomu/micropython.git;protocol=https;branch=fomu"
-SRCREV = "8962f238dcb51aee26db28980fe96c282151a7dd"
+SRC_URI = "git://github.com/xobs/micropython.git;protocol=https;branch=fomu"
+SRCREV = "421dcd20ed71b91cb1f573fdb19d8832b597aa1c"
 
-PV = "1.4.1+fomu+${SRCPV}"
+PV = "1.10+fomu+${SRCPV}"
 
 S = "${WORKDIR}/git"
 B = "${WORKDIR}/build"
@@ -22,6 +24,10 @@ EXTRA_OEMAKE += "OBJCOPY="${OBJCOPY}""
 
 do_compile () {
     oe_runmake BUILD=${B} -C ${S}/ports/fomu
+
+    # manually build dfu with PVT vid/pid
+    cp ${B}/firmware.bin ${B}/firmware.dfu
+    dfu-suffix --vid 1209 --pid 5bf0 --add ${B}/firmware.dfu
 }
 
 do_install () {
@@ -33,9 +39,7 @@ do_install () {
 do_deploy() {
     install -Dm 0644 ${B}/firmware.bin ${DEPLOYDIR}/micropython-${MACHINE}.bin
     install -Dm 0644 ${B}/firmware.elf ${DEPLOYDIR}/micropython-${MACHINE}.elf
-
-    # symlink firmware image to 'boot.bin', for qemu/netloading
-    ln -sf micropython-${MACHINE}.bin ${DEPLOYDIR}/boot.bin
+    install -Dm 0644 ${B}/firmware.dfu ${DEPLOYDIR}/micropython-${MACHINE}.dfu
 }
 addtask deploy before do_build after do_install
 
