@@ -5,7 +5,7 @@ LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=ed9510879ab9728f8e0e3d8c4f3e5bc8"
 
 SRC_URI = "gitsm://github.com/enjoy-digital/litex;protocol=https"
-SRCREV = "7b92a17c6e1cbbff7ff203075ad65038284c82b1"
+SRCREV = "d39dc8cf5d3eb640b9f98543c0d2a9ebb65f4c40"
 PV = "0.2-dev+git${SRCPV}"
 
 S = "${WORKDIR}/git"
