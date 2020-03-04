@@ -7,6 +7,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=3000208d539ec061b899bce1d9ce9404"
 
 DEPENDS += "flex-native bison-native flex"
 DEPENDS += "python3-native"
+DEPENDS += "perl-native"
 
 SRC_URI = "git://github.com/verilator/verilator;protocol=https"
 SRCREV = "29923b78fd1ee0b1357a045ecee502ec05fde5b6"
