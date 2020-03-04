@@ -43,3 +43,9 @@ DEPENDS += "nextpnr-xilinx-examples-arty-a35"
 # need to depend on the populate_sdk task
 do_build[depends] += "fpga-toolkit:do_populate_sdk"
 
+do_configure[noexec] = "1"
+do_compile[noexec] = "1"
+do_install[noexec] = "1"
+
+inherit nopackages
+
