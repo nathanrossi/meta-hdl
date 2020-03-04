@@ -5,7 +5,7 @@ LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=b6d6f3af72cb210e0a30683d3e6f5eda"
 
 SRC_URI = "git://github.com/enjoy-digital/litevideo;protocol=https"
-SRCREV = "146d4a73a242f6449682b58de2428cd351297c8d"
+SRCREV = "49d812694951a924617d8e429d72c0d4da96372a"
 PV = "0.2-dev+git${SRCPV}"
 
 S = "${WORKDIR}/git"

@@ -2,10 +2,10 @@ SUMMARY = "LiteX is a FPGA design/SoC builder that can be used to build cores, c
 HOMEPAGE = "https://github.com/enjoy-digital/litex"
 SECTION = "devel/hdl"
 LICENSE = "BSD-2-Clause"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=ed9510879ab9728f8e0e3d8c4f3e5bc8"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=012b04b707bcdd5547cbec1345d56eac"
 
 SRC_URI = "gitsm://github.com/enjoy-digital/litex;protocol=https"
-SRCREV = "d39dc8cf5d3eb640b9f98543c0d2a9ebb65f4c40"
+SRCREV = "e124aed9a2ac20f1f649ba67a5087eea73751e9f"
 PV = "0.2-dev+git${SRCPV}"
 
 S = "${WORKDIR}/git"

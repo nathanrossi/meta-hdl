@@ -6,11 +6,9 @@ SECTION = "devel/fpga"
 LIC_FILES_CHKSUM = "file://COPYING;;md5=d6e454a24247f9ba6d2c656f97de17e9"
 
 SRC_URI = "git://github.com/YosysHQ/nextpnr;protocol=https"
-SRCREV = "4754ab38945fb6c2dfadc4802796d868971d48fa"
+SRCREV = "a957e9039642c1f5fe4270895d7a23452fab281b"
 
-SRC_URI += " \
-        file://0001-CMakeLists.txt-Rework-Boost-python-version-checking.patch \
-        "
+#SRC_URI += "file://0001-CMakeLists.txt-Rework-Boost-python-version-checking.patch"
 
 S = "${WORKDIR}/git"
 

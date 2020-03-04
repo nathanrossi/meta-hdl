@@ -3,10 +3,10 @@ HOMEPAGE = "https://github.com/im-tomu/foboot"
 SECTION = "devel/hdl"
 
 LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=7c12b84bfb817ce6b3d76d2f7a0601b5"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
 
 SRC_URI = "gitsm://github.com/im-tomu/foboot;protocol=https"
-SRCREV = "4f24c432a84b1f2ddadfc2001b087afb6176b0dc"
+SRCREV = "ae2c39a1ac16244debf1e88f22d126e8d4fdb7f5"
 PV = "0+git${SRCPV}"
 
 S = "${WORKDIR}/git"
