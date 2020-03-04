@@ -15,6 +15,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 S = "${WORKDIR}/git/picosoc"
 
+DEPENDS += "yosys-native"
 DEPENDS += "${@fpga_family_depends(d)}"
 DEPENDS += "arachne-pnr-native"
 DEPENDS += "icarus-verilog-native"
