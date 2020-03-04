@@ -1,3 +1,4 @@
+require nextpnr.inc
 require nextpnr-xilinx.inc
 
 OECMAKE_TARGET_COMPILE = "bbasm"
