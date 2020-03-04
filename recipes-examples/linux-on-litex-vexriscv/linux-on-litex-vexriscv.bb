@@ -27,9 +27,13 @@ DEPENDS += "litex-boards-native"
 DEPENDS += "litedram-native"
 DEPENDS += "liteeth-native"
 DEPENDS += "litevideo-native"
+DEPENDS += "litescope-native"
 
 # do not depend on libc or compiler libs, only the compiler is needed
 DEPENDS_remove = "virtual/${TARGET_PREFIX}compilerlibs virtual/libc"
+
+# prevent the population of the build-id section into the output
+CC += "-Wl,--build-id=none"
 
 do_configure() {
     # rewrite paths in images.json for use from deploy dir
@@ -76,7 +80,13 @@ python do_sim() {
     oe.path.symlink(d.expand("${DEPLOY_DIR_IMAGE}/Image"), d.expand("${S}/buildroot/Image"), force = True)
     oe.path.symlink(d.expand("${DEPLOY_DIR_IMAGE}/core-image-minimal-${MACHINE}.cpio"), d.expand("${S}/buildroot/rootfs.cpio"), force = True)
 
-    oe_terminal(d.expand("${S}/sim.py"), "linux-on-litex-vexriscv verilator simulation", d)
+    # create a child data for the terminal instance
+    t = d.createCopy()
+    # force CC to be BUILD_CC when running sim
+    t.appendVar("OE_TERMINAL_EXPORTS", " CC")
+    t.setVar("CC", "${BUILD_CC}")
+
+    oe_terminal(d.expand("sh -c \"${S}/sim.py || read r\""), "linux-on-litex-vexriscv verilator simulation", t)
 }
 addtask sim after do_configure
 

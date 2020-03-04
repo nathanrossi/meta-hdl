@@ -38,6 +38,7 @@ python do_create_toolchain_wrappers() {
         wrap("ld", "${LD} -nostdlib")
 
     wrap("ar", "${AR}")
+    wrap("gcc-ar", "${AR}")
     wrap("objcopy", "${OBJCOPY}")
     wrap("objdump", "${OBJDUMP}")
 
