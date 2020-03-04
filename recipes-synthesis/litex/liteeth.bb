@@ -12,4 +12,6 @@ S = "${WORKDIR}/git"
 
 inherit setuptools3
 
+RDEPENDS_${PN} += "liteiclink"
+
 BBCLASSEXTEND = "native nativesdk"
