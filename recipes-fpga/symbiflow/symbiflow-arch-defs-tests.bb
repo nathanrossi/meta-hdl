@@ -10,6 +10,7 @@ do_compile()  {
     cmake_runcmake_build --target all
 }
 
+inherit nopackages
 # don't install any output from testing
 do_install[noexec] = "1"
 

@@ -1,0 +1,22 @@
+From 1f9d43502c42510515447ef8539953e2b4d03ba8 Mon Sep 17 00:00:00 2001
+From: Nathan Rossi <nathan@nathanrossi.com>
+Date: Sat, 21 Mar 2020 20:37:40 +1000
+Subject: [PATCH] CMakeLists.txt: vtr_xml_utils does not provide an executable
+
+Signed-off-by: Nathan Rossi <nathan@nathanrossi.com>
+---
+ CMakeLists.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index d1519feef7..c45a0924fa 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -151,6 +151,7 @@ add_thirdparty_package(
+ 
+ add_thirdparty_package(
+   NAME vtr_xml_utils
++  NO_EXE
+   BUILD_INSTALL_COMMAND "cd ${symbiflow-arch-defs_SOURCE_DIR}/third_party/vtr-xml-utils && ${PYTHON3} setup.py develop"
+   PROVIDES vtr_xml_utils
+   DEPENDS ${PYTHON3} ${PYTHON3_TARGET}

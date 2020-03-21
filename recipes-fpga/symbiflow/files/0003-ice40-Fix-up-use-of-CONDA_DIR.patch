@@ -1,0 +1,36 @@
+From 593bfc6fb8edd3a0d82d5ae7771726e50e5b8f0d Mon Sep 17 00:00:00 2001
+From: Nathan Rossi <nathan@nathanrossi.com>
+Date: Sat, 21 Mar 2020 18:51:32 +1000
+Subject: [PATCH] ice40: Fix up use of CONDA_DIR
+
+Signed-off-by: Nathan Rossi <nathan@nathanrossi.com>
+---
+ ice40/devices/top-routing-virt/CMakeLists.txt | 1 -
+ ice40/icestorm.cmake                          | 2 +-
+ 2 files changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/ice40/devices/top-routing-virt/CMakeLists.txt b/ice40/devices/top-routing-virt/CMakeLists.txt
+index 1679463b25..4b411191d4 100644
+--- a/ice40/devices/top-routing-virt/CMakeLists.txt
++++ b/ice40/devices/top-routing-virt/CMakeLists.txt
+@@ -2,7 +2,6 @@ add_subdirectory(tiles)
+ 
+ add_file_target(FILE arch.xml SCANNER_TYPE xml)
+ 
+-get_target_property_required(CONDA_DIR env CONDA_DIR)
+ get_target_property_required(PYTHON3 env PYTHON3)
+ get_target_property_required(PYTHON3_TARGET env PYTHON3_TARGET)
+ get_target_property_required(ICESTORM_TARGET env ICESTORM_TARGET)
+diff --git a/ice40/icestorm.cmake b/ice40/icestorm.cmake
+index 1dc36b94d3..cd7c1f75d1 100644
+--- a/ice40/icestorm.cmake
++++ b/ice40/icestorm.cmake
+@@ -5,7 +5,7 @@ function(icestorm_setup)
+   set(ICESTORM_SRC ${symbiflow-arch-defs_SOURCE_DIR}/third_party/icestorm CACHE PATH "Path to icestorm repository")
+   set(PYUTILS_PATH ${symbiflow-arch-defs_SOURCE_DIR}/utils:${symbiflow-arch-defs_SOURCE_DIR}/ice40/utils/fasm_icebox)
+ 
+-  get_target_property_required(PYTHON_PREFIX env CONDA_DIR)
++  get_target_property(PYTHON_PREFIX env CONDA_DIR)
+   set(ICESTORM_PREFIX "PREFIX=${PYTHON_PREFIX}")
+ 
+   add_conda_package(

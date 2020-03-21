@@ -1,0 +1,21 @@
+From caf9b883fa2b9fe6473d0ed88860ced73df1d4df Mon Sep 17 00:00:00 2001
+From: Nathan Rossi <nathan@nathanrossi.com>
+Date: Sat, 21 Mar 2020 22:02:49 +1000
+Subject: [PATCH] xc/xc7: Fix up use of CONDA_DIR
+
+Signed-off-by: Nathan Rossi <nathan@nathanrossi.com>
+---
+ xc/xc7/tests/install_test/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/xc/xc7/tests/install_test/CMakeLists.txt b/xc/xc7/tests/install_test/CMakeLists.txt
+index 5f6c014375..d595fe50ae 100644
+--- a/xc/xc7/tests/install_test/CMakeLists.txt
++++ b/xc/xc7/tests/install_test/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ set(INSTALLATION_DIR_BIN "${CMAKE_INSTALL_PREFIX}/bin")
+-get_target_property_required(CONDA_DIR env CONDA_DIR)
++get_target_property(CONDA_DIR env CONDA_DIR)
+ 
+ add_test(NAME binary_toolchain_test
+ 	COMMAND ${CMAKE_COMMAND} -E env

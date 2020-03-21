@@ -1,0 +1,68 @@
+From 110cb86466c341f57c734e32762eb6ea5ae1f818 Mon Sep 17 00:00:00 2001
+From: Nathan Rossi <nathan@nathanrossi.com>
+Date: Sat, 21 Mar 2020 18:46:45 +1000
+Subject: [PATCH] common/cmake/env.cmake: Replace non-conda empty targets
+
+Signed-off-by: Nathan Rossi <nathan@nathanrossi.com>
+---
+ common/cmake/env.cmake | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
+
+diff --git a/common/cmake/env.cmake b/common/cmake/env.cmake
+index 5b824fd360..fd4671e46a 100644
+--- a/common/cmake/env.cmake
++++ b/common/cmake/env.cmake
+@@ -135,7 +135,7 @@ function(SETUP_ENV)
+       endif()
+       set_target_properties(env PROPERTIES
+         ${binary_upper} ${${binary_upper}}
+-        ${binary_upper}_TARGET ""
++        ${binary_upper}_TARGET env
+         )
+     endforeach()
+   endif()
+@@ -242,7 +242,7 @@ function(ADD_CONDA_PACKAGE)
+       endif()
+       set_target_properties(env PROPERTIES
+         ${binary_upper} ${${binary_upper}}
+-        ${binary_upper}_TARGET "")
++        ${binary_upper}_TARGET env)
+     endforeach()
+   endif()
+ endfunction()
+@@ -319,6 +319,7 @@ function(ADD_CONDA_PIP)
+       )
+     add_dependencies(clean_pip _clean_pip_${NAME})
+   else()
++    add_custom_target(${NAME})
+     if(NOT ADD_CONDA_PIP_NO_EXE)
+       if(DEFINED ENV{${binary_upper}})
+         set(${binary_upper} $ENV{${binary_upper}})
+@@ -330,7 +331,7 @@ function(ADD_CONDA_PIP)
+       endif()
+       set_target_properties(env PROPERTIES ${binary_upper} ${${binary_upper}})
+     endif()
+-    set_target_properties(env PROPERTIES ${binary_upper}_TARGET "")
++    set_target_properties(env PROPERTIES ${binary_upper}_TARGET ${NAME})
+   endif()
+ endfunction()
+ 
+@@ -416,6 +417,9 @@ function(ADD_THIRDPARTY_PACKAGE)
+         ${binary_upper}_TARGET ${NAME})
+     endforeach()
+   else()
++    add_custom_target(${NAME})
++    string(TOUPPER ${NAME} name_upper)
++    set_target_properties(env PROPERTIES ${name_upper}_TARGET ${NAME})
+     if(NOT ${ADD_THIRDPARTY_PACKAGE_NO_EXE})
+       # if command not provide, just look the provides
+       foreach(OUTPUT ${ADD_THIRDPARTY_PACKAGE_PROVIDES})
+@@ -430,7 +434,7 @@ function(ADD_THIRDPARTY_PACKAGE)
+         endif()
+         set_target_properties(env PROPERTIES
+           ${binary_upper} ${${binary_upper}}
+-          ${binary_upper}_TARGET "")
++          ${binary_upper}_TARGET ${NAME})
+       endforeach()
+     endif()
+   endif()

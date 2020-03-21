@@ -1,0 +1,112 @@
+From a36f6aa1a638dfe16d8772194c38105f33fee6e5 Mon Sep 17 00:00:00 2001
+From: Nathan Rossi <nathan@nathanrossi.com>
+Date: Sat, 21 Mar 2020 22:00:44 +1000
+Subject: [PATCH] xc/xc7/CMakeLists.txt: Add prjxray as add_thirdparty_package
+
+Signed-off-by: Nathan Rossi <nathan@nathanrossi.com>
+---
+ CMakeLists.txt                    | 2 --
+ xc/common/cmake/arch_define.cmake | 8 ++++----
+ xc/common/cmake/install.cmake     | 8 ++++----
+ xc/common/cmake/vivado.cmake      | 2 +-
+ xc/xc7/CMakeLists.txt             | 5 +++++
+ 5 files changed, 14 insertions(+), 11 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index c45a0924fa..7ced30d138 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -160,8 +160,6 @@ add_thirdparty_package(
+ include(common/cmake/image_gen.cmake)
+ include(common/cmake/gen.cmake)
+ 
+-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/third_party/prjxray)
+-
+ # Target for all check tests.
+ add_custom_target(all_check_tests)
+ 
+diff --git a/xc/common/cmake/arch_define.cmake b/xc/common/cmake/arch_define.cmake
+index 914d0f7e00..0a3c10b9fc 100644
+--- a/xc/common/cmake/arch_define.cmake
++++ b/xc/common/cmake/arch_define.cmake
+@@ -131,12 +131,12 @@ function(ADD_XC_ARCH_DEFINE)
+         --emit_pudc_b_pullup \
+         \${FASM_TO_BIT_EXTRA_ARGS} \
+     \${OUT_FASM} \${OUT_BITSTREAM}"
+-    BIT_TO_BIN xc7frames2bit
++    BIT_TO_BIN prjxray
+     BIT_TO_BIN_CMD "xc7frames2bit \
+         --frm_file \${OUT_BITSTREAM} \
+         --output_file \${OUT_BIN} \
+         \${BIT_TO_BIN_EXTRA_ARGS}"
+-    BIT_TO_V bitread
++    BIT_TO_V prjxray
+     BIT_TO_V_CMD "${CMAKE_COMMAND} -E env \
+     PYTHONPATH=${symbiflow-arch-defs_BINARY_DIR}/env/conda/lib/python3.7/site-packages:${PRJRAY_DIR}:${PRJRAY_DIR}/third_party/fasm:${symbiflow-arch-defs_SOURCE_DIR}/xc/${FAMILY}:${symbiflow-arch-defs_SOURCE_DIR}/utils \
+         \${PYTHON3} -mfasm2bels \
+@@ -145,7 +145,7 @@ function(ADD_XC_ARCH_DEFINE)
+         --rr_graph \${OUT_RRBIN_REAL_LOCATION} \
+         --vpr_capnp_schema_dir ${VPR_CAPNP_SCHEMA_DIR} \
+         --route \${OUT_ROUTE} \
+-        --bitread $<TARGET_FILE:bitread> \
++        --bitread \${BITEAD} \
+         --bit_file \${OUT_BIN} \
+         --fasm_file \${OUT_BIN}.fasm \
+         --iostandard ${DEFAULT_IOSTANDARD} \
+@@ -168,7 +168,7 @@ function(ADD_XC_ARCH_DEFINE)
+       PRJRAY_NAME ${PRJRAY_NAME}
+       ROUTE_CHAN_WIDTH 500
+       VPR_ARCH_ARGS ${VPR_ARCH_ARGS}
+-      BIT_TO_BIN xc7frames2bit
++      BIT_TO_BIN prjxray
+       CONV_SCRIPT ${YOSYS_CONV_SCRIPT}
+       SYNTH_SCRIPT ${YOSYS_SYNTH_SCRIPT})
+ 
+diff --git a/xc/common/cmake/install.cmake b/xc/common/cmake/install.cmake
+index 494f6155bd..e144ab9e4d 100644
+--- a/xc/common/cmake/install.cmake
++++ b/xc/common/cmake/install.cmake
+@@ -47,10 +47,10 @@ function(DEFINE_XC_TOOLCHAIN_TARGET)
+           PERMISSIONS WORLD_EXECUTE WORLD_READ OWNER_WRITE OWNER_READ OWNER_EXECUTE GROUP_READ GROUP_EXECUTE)
+ 
+   # install binaries
+-  install(TARGETS ${DEFINE_XC_TOOLCHAIN_TARGET_BIT_TO_BIN}
+-          RUNTIME
+-          DESTINATION bin
+-          PERMISSIONS WORLD_EXECUTE WORLD_READ OWNER_WRITE OWNER_READ OWNER_EXECUTE GROUP_READ GROUP_EXECUTE)
++  #install(TARGETS ${DEFINE_XC_TOOLCHAIN_TARGET_BIT_TO_BIN}
++          #RUNTIME
++          #DESTINATION bin
++          #PERMISSIONS WORLD_EXECUTE WORLD_READ OWNER_WRITE OWNER_READ OWNER_EXECUTE GROUP_READ GROUP_EXECUTE)
+ 
+   # install python scripts
+   install(FILES ${FASM_TO_BIT}
+diff --git a/xc/common/cmake/vivado.cmake b/xc/common/cmake/vivado.cmake
+index c01d2c8ba2..87c62f6cb8 100644
+--- a/xc/common/cmake/vivado.cmake
++++ b/xc/common/cmake/vivado.cmake
+@@ -113,7 +113,7 @@ function(COMMON_VIVADO_TARGETS)
+         ${PYTHON3} ${PRJRAY_DIR}/utils/bit2fasm.py
+           --part ${PART}
+           --db-root ${PRJRAY_DB_DIR}/${PRJRAY_ARCH}
+-          --bitread $<TARGET_FILE:bitread>
++          --bitread ${BITREAD}
+           ${CMAKE_CURRENT_BINARY_DIR}/${WORK_DIR}/design_${NAME}.bit
+           > ${CMAKE_CURRENT_BINARY_DIR}/${WORK_DIR}/design_${NAME}.bit.fasm
+       WORKING_DIRECTORY ${WORK_DIR}
+diff --git a/xc/xc7/CMakeLists.txt b/xc/xc7/CMakeLists.txt
+index bc5b254bf8..e8e8976f8d 100644
+--- a/xc/xc7/CMakeLists.txt
++++ b/xc/xc7/CMakeLists.txt
+@@ -5,6 +5,11 @@ set(PRJXRAY_DB_DIR
+   ${symbiflow-arch-defs_SOURCE_DIR}/third_party/prjxray-db
+   CACHE PATH "Path to prjxray database files")
+ 
++add_thirdparty_package(
++  NAME prjxray
++  PROVIDES xc7frames2bit bitread bittool frame_address_decoder gen_part_base_yaml segmatch xc7patch
++)
++
+ get_target_property_required(SDF_TIMING_TARGET env SDF_TIMING_TARGET)
+ set(ARCH_IMPORT_TIMING ${symbiflow-arch-defs_SOURCE_DIR}/utils/update_arch_timings.py)
+ add_custom_target(
