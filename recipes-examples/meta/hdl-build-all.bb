@@ -50,6 +50,8 @@ def targets_expand(d):
 
 DEPENDS += "${@targets_expand(d)}"
 
+DEPENDS += "verilog-to-routing-native"
+
 # standalone recipe targets
 DEPENDS += "prjtrellis-examples-versa5g"
 DEPENDS += "nextpnr-xilinx-examples-arty-a35"
