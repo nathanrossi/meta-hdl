@@ -37,6 +37,10 @@ do_install () {
 	for i in ${MAKE_SUBDIRS}; do
 		oe_runmake -C ${B}/$i PREFIX="${prefix}" DESTDIR="${D}" install
 	done
+
+	mkdir -p ${D}${libdir}/icestorm/icefuzz
+	# manually install icefuzz into libdir
+	install ${S}/icefuzz/timings.py ${D}${libdir}/icestorm/icefuzz
 }
 
 # populate the chipdb into the sysroot (not enabled by default on -native)
