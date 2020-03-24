@@ -16,9 +16,7 @@ PV = "1.01+git${SRCPV}"
 DEPENDS = "readline"
 
 # set the ARCHFLAGS to avoid execution of arch_flags during build
-export ARCHFLAGS = "${ABC_ARCHFLAGS}"
-ABC_ARCHFLAGS_x86-64 = "-DLIN64 -DSIZEOF_VOID_P=8 -DSIZEOF_LONG=8 -DSIZEOF_INT=4"
-ABC_ARCHFLAGS = "-DLIN -DSIZEOF_VOID_P=4 -DSIZEOF_LONG=4 -DSIZEOF_INT=4 -fpermissive -w"
+export ARCHFLAGS = "-DABC_USE_STDINT_H=1"
 
 inherit cmake
 
