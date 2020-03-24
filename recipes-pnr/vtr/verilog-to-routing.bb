@@ -24,6 +24,9 @@ DEPENDS += "fontconfig libice libsm libx11 libxcb libxext libxft"
 # for libseasygl
 DEPENDS += "cairo"
 
+# set the ARCHFLAGS for internal abc to avoid execution of arch_flags during build
+export ARCHFLAGS = "-DABC_USE_STDINT_H=1"
+
 do_install_append () {
     # fix up code archives being in bindir
     install -d ${D}${libdir}
