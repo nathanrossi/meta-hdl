@@ -30,5 +30,8 @@ do_install_append () {
     mv ${D}${bindir}/*.a ${D}${libdir}/
 }
 
+# export capnp dirs to sysroot
+SYSROOT_DIRS_append = " ${prefix}/capnp"
+
 # nativesdk support not functional due to X deps
 BBCLASSEXTEND = "native"
