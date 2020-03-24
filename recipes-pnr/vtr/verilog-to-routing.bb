@@ -36,5 +36,4 @@ do_install_append () {
 # export capnp dirs to sysroot
 SYSROOT_DIRS_append = " ${prefix}/capnp"
 
-# nativesdk support not functional due to X deps
-BBCLASSEXTEND = "native"
+BBCLASSEXTEND = "native nativesdk"
