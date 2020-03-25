@@ -12,6 +12,7 @@ LIC_FILES_CHKSUM = "file://LICENSE.md;md5=633281c5b6ab9bbb4b7dcbef1aa323db"
 # symbiflow version
 SRC_URI = "git://github.com/SymbiFlow/vtr-verilog-to-routing;protocol=https;branch=master+wip"
 SRCREV = "8980e46218542888fac879961b13aa7b0fba8432"
+PV = "v8.0.0-rc1+git${SRCPV}"
 
 S = "${WORKDIR}/git"
 
@@ -37,3 +38,8 @@ do_install_append () {
 SYSROOT_DIRS_append = " ${prefix}/capnp"
 
 BBCLASSEXTEND = "native nativesdk"
+
+python () {
+    if not bb.data.inherits_class("native", d):
+        raise bb.parse.SkipRecipe("Cross-compiling broken")
+}
