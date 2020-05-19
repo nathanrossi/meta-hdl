@@ -23,6 +23,9 @@ DEPENDS += "migen-native"
 DEPENDS += "litex-native"
 
 # device modules
+DEPENDS += "litex-pythondata-cpu-vexriscv-native"
+DEPENDS += "litex-pythondata-software-compiler-rt-native"
+DEPENDS += "litex-pythondata-misc-tapcfg-native"
 DEPENDS += "litex-boards-native"
 DEPENDS += "litedram-native"
 DEPENDS += "liteeth-native"

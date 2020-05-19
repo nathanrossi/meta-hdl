@@ -41,6 +41,7 @@ python do_create_toolchain_wrappers() {
     wrap("gcc-ar", "${AR}")
     wrap("objcopy", "${OBJCOPY}")
     wrap("objdump", "${OBJDUMP}")
+    wrap("readelf", "${READELF}")
 
     # wrap native build compiler/etc
     wrap("gcc", "${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}", target = False)
