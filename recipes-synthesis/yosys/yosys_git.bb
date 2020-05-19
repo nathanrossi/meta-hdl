@@ -3,7 +3,7 @@ HOMEPAGE = "http://www.clifford.at/yosys/"
 LICENSE = "ISC"
 SECTION = "devel/verilog"
 
-LIC_FILES_CHKSUM = "file://README.md;beginline=2;endline=16;md5=4ffe8582f093e195423a3f30fc3fd6fc"
+LIC_FILES_CHKSUM = "file://COPYING;md5=d58b3b3d2af4ff73cc744b083d19261d"
 
 SRC_URI = "git://github.com/YosysHQ/yosys;protocol=https"
 SRCREV = "aee439360bba642dcbffe5b803aa9a994b11d183"
