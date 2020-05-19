@@ -5,7 +5,7 @@ LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=10bd765c3601dc2c0b4cbe1541ccf3a3"
 
 SRC_URI = "git://github.com/enjoy-digital/litesata;protocol=https"
-SRCREV = "1e3573b07d382eac50ef764fd839009bf90cb8ce"
+SRCREV = "2e5c5b12d52f695f4560ca7dd08b4170d7568715"
 PV = "0.2-dev+git${SRCPV}"
 
 S = "${WORKDIR}/git"

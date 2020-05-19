@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=d45384788db1e5711ff67f3912c54749"
 
 PV = "0+git${SRCPV}"
 SRC_URI = "gitsm://github.com/SymbiFlow/prjxray;protocol=https"
-SRCREV = "418063afdc82b7e2d41543d16c24600ff3c1e240"
+SRCREV = "acb6210a7606c5fd72e5ea729aedb37be23f505d"
 S = "${WORKDIR}/git"
 
 inherit cmake python3native

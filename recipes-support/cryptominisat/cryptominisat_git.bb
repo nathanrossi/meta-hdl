@@ -5,7 +5,7 @@ SECTION = "devel/verilog"
 
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=7cdd497f1ddb031d004fad321c45d8df"
 SRC_URI = "git://github.com/msoos/cryptominisat;protocol=https"
-SRCREV = "05620ec567f64b690df43851b7b9e4e9b358e5b9"
+SRCREV = "0544260ae1d4338c260930dce8a6cc0512d3e1fb"
 
 S = "${WORKDIR}/git"
 

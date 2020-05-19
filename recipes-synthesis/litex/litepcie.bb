@@ -5,7 +5,7 @@ LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=a3e08966f83e2f6fe04775cf6da6038d"
 
 SRC_URI = "git://github.com/enjoy-digital/litepcie;protocol=https"
-SRCREV = "10e520ed8476b04000122385e34f575629c4c6d6"
+SRCREV = "b0e8383d6179ee81a708204d4db9263d6fadc6c8"
 PV = "0.2-dev+git${SRCPV}"
 
 S = "${WORKDIR}/git"
