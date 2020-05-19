@@ -17,12 +17,25 @@ TARGETS = " \
     nextpnr-xilinx \
     migen \
     litex \
-    litex-boards \
-    litedram \
-    liteeth \
-    litevideo \
+    ${LITEX_MODULES} \
     tinyfpga-programmer \
     xc3sprog \
+    "
+
+LITEX_MODULES = " \
+    litedram \
+    liteeth \
+    liteiclink \
+    litepcie \
+    litesata \
+    litescope \
+    litevideo \
+    \
+    litex-boards \
+    \
+    litex-pythondata-cpu-vexriscv \
+    litex-pythondata-misc-tapcfg \
+    litex-pythondata-software-compiler-rt \
     "
 
 def targets_expand(d):
