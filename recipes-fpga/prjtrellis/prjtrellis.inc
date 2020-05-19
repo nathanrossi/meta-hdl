@@ -6,12 +6,8 @@ SECTION = "devel/fpga"
 LIC_FILES_CHKSUM = "file://COPYING;md5=551f2364fa8248634340a80a748e986f"
 
 SRC_URI = "git://github.com/SymbiFlow/prjtrellis;protocol=https"
-SRCREV = "c2cccd24dcad0632586b240d31b1f043f0d0032a"
+SRCREV = "d4760738c653338114d62204ace87a57c8f774e0"
 PV = "0+git${SRCPV}"
 
 S = "${WORKDIR}/git"
-
-SRC_URI += " \
-        file://0001-libtrellis-CMakeLists.txt-Run-git-describe-in-source.patch \
-        "
 
