@@ -29,6 +29,7 @@ LITEX_MODULES = " \
     litepcie \
     litesata \
     litescope \
+    litesdcard \
     litevideo \
     \
     litex-boards \
