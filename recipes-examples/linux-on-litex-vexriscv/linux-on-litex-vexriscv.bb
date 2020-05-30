@@ -7,7 +7,7 @@ LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/BSD-2-Clause;md5=cb641bc04cda31daea161b1bc15da69f"
 
 SRC_URI = "git://github.com/litex-hub/linux-on-litex-vexriscv;protocol=https"
-SRCREV = "54723d313591c1fa1b08ad0f6798a45a7c960c16"
+SRCREV = "af8b31e5d0bec8a60fadb19e1b127e95b3dbebe5"
 PV = "0+git${SRCPV}"
 
 S = "${WORKDIR}/git"
@@ -31,6 +31,7 @@ DEPENDS += "litedram-native"
 DEPENDS += "liteeth-native"
 DEPENDS += "litevideo-native"
 DEPENDS += "litescope-native"
+DEPENDS += "litesdcard-native"
 
 # do not depend on libc or compiler libs, only the compiler is needed
 DEPENDS_remove = "virtual/${TARGET_PREFIX}compilerlibs virtual/libc"

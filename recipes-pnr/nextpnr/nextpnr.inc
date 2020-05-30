@@ -6,7 +6,7 @@ SECTION = "devel/fpga"
 LIC_FILES_CHKSUM = "file://COPYING;;md5=d6e454a24247f9ba6d2c656f97de17e9"
 
 SRC_URI = "git://github.com/YosysHQ/nextpnr;protocol=https"
-SRCREV = "2d406f3e275beda8b70b4c7d4d5e43433dd3c43c"
+SRCREV = "f44498a5301f9f516488fb748c684926be514346"
 
 S = "${WORKDIR}/git"
 

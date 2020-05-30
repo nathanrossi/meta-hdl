@@ -5,7 +5,7 @@ LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=70ab32fd17078e7007b69f144468f821"
 
 SRC_URI = "git://github.com/enjoy-digital/liteeth;protocol=https"
-SRCREV = "53c9eb91a56fa824ac931fc5c76688ab7e6e3ad0"
+SRCREV = "0feed1720d0063ff67210728ecfe422891f809e0"
 PV = "0.2-dev+git${SRCPV}"
 
 S = "${WORKDIR}/git"
