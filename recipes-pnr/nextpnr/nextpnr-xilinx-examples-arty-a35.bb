@@ -12,8 +12,6 @@ DEPENDS += "${@fpga_family_depends(d, family = 'artix7')}"
 XRAY_DATABASE_DIR = "${STAGING_DIR_NATIVE}${datadir_native}/xray/database"
 CHIPDB_DIR = "${STAGING_DIR_NATIVE}${datadir_native}/chipdb"
 
-PATH_prepend = "${STAGING_DIR_NATIVE}${bindir_native}/prjxray:"
-
 B = "${WORKDIR}/build"
 ATTOSOC = "${S}/xilinx/examples/arty-a35"
 
@@ -35,7 +33,7 @@ do_compile() {
         --fasm ${B}/attosoc.fasm
 
     echo "fasm2frames"
-    fasm2frames.py --db-root "${XRAY_DATABASE_DIR}/artix7" \
+    fasm2frames --db-root "${XRAY_DATABASE_DIR}/artix7" \
         --part xc7a35tcsg324-1 \
         ${B}/attosoc.fasm > ${B}/attosoc.frames
     echo "xc7frames2bit"
