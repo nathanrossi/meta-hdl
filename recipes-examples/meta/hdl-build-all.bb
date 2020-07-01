@@ -14,7 +14,6 @@ TARGETS = " \
     arachne-pnr \
     nextpnr-ice40 \
     nextpnr-ecp5 \
-    nextpnr-xilinx \
     migen \
     litex \
     ${LITEX_MODULES} \
@@ -49,6 +48,8 @@ def targets_expand(d):
     return " ".join(deps)
 
 DEPENDS += "${@targets_expand(d)}"
+
+DEPENDS += "nextpnr-xilinx-native"
 
 # standalone recipe targets
 DEPENDS += "prjtrellis-examples-versa5g"

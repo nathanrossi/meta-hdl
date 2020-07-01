@@ -1,5 +1,4 @@
 require nextpnr.inc
-require nextpnr-bbasm-native.inc
 
 DEPENDS += "icestorm-native"
 

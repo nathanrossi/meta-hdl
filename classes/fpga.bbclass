@@ -5,7 +5,7 @@ def fpga_family_depends(d, family = None, native = True):
     if not family:
         return ""
 
-    depends = []
+    datadepends, depends = [], []
     if family == "ice40":
         depends.append("nextpnr-ice40")
         depends.append("icestorm")
@@ -14,6 +14,7 @@ def fpga_family_depends(d, family = None, native = True):
         depends.append("prjtrellis")
         depends.append("prjtrellis-db")
     elif family in ["artix7", "zynq7"]:
+        datadepends.append("nextpnr-xilinx-chipdb")
         depends.append("nextpnr-xilinx")
         depends.append("prjxray")
         depends.append("prjxray-db")
@@ -21,6 +22,6 @@ def fpga_family_depends(d, family = None, native = True):
         bb.fatal("Unknown FPGA family '{}'".format(family))
 
     if native:
-        return " ".join(d + "-native" for d in depends)
-    return " ".join(depends)
+        return " ".join([d + "-native" for d in depends] + datadepends)
+    return " ".join(depends + datadepends)
 

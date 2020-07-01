@@ -10,7 +10,7 @@ DEPENDS += "yosys-native"
 DEPENDS += "${@fpga_family_depends(d, family = 'artix7')}"
 
 XRAY_DATABASE_DIR = "${STAGING_DIR_NATIVE}${datadir_native}/xray/database"
-CHIPDB_DIR = "${STAGING_DIR_NATIVE}${datadir_native}/chipdb"
+CHIPDB_DIR = "${STAGING_DATADIR}/chipdb"
 
 B = "${WORKDIR}/build"
 ATTOSOC = "${S}/xilinx/examples/arty-a35"

@@ -1,3 +1,4 @@
+DESCRIPTION = "nextpnr, a portable FPGA place and route tool"
 HOMEPAGE = "https://github.com/daveshah1/nextpnr-xilinx"
 LICENSE = "ISC"
 SECTION = "devel/fpga"
