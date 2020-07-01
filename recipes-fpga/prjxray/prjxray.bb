@@ -18,6 +18,8 @@ RDEPENDS_${PN} += "python3-fasm python3-simplejson python3-intervaltree"
 do_configure() {
     # suppress warnings as errors, some dependencies don't handle newer compilers
     sed -i 's#^add_compile_options.*#add_compile_options(-Wall)#g' ${S}/CMakeLists.txt
+    # HACK: force installation of 'utils' to get fasm2frames working again
+    sed -i "s/packages=\[.*\]/packages=['prjxray','utils']/g" ${S}/setup.py
 
     cmake_do_configure
     distutils3_do_configure
