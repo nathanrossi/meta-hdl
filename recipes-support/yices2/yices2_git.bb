@@ -5,7 +5,7 @@ SECTION = "devel/verilog"
 
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=d32239bcb673463ab874e80d47fae504"
 SRC_URI = "git://github.com/SRI-CSL/yices2;protocol=https"
-SRCREV = "ff8a6195d76155ed343962c29db431dfc7e730f5"
+SRCREV = "d80ef575c5e1e274c4c874941dd10466a0cdca10"
 
 S = "${WORKDIR}/git"
 

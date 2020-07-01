@@ -6,7 +6,7 @@ SECTION = "devel/verilog"
 
 LIC_FILES_CHKSUM = "file://COPYING;md5=6b4c24fbbe55ff1229acdef3dec0298b"
 SRC_URI = "git://github.com/Boolector/boolector;protocol=https"
-SRCREV = "59c9ade58bdcef51e07b2239972d35647b40cadb"
+SRCREV = "74c9e8822d1d4e5f8c9e0df68e02309d1505e280"
 
 S = "${WORKDIR}/git"
 
