@@ -1,4 +1,6 @@
-require nextpnr.inc
+require nextpnr-common.inc
+
+DEPENDS += "boost"
 
 # only build the bba subdirectory
 EXTRA_OECMAKE += "-S ${S}/bba"
@@ -11,3 +13,4 @@ do_install() {
     install -Dm 744 ${B}/bbasm ${D}${bindir}/bbasm
 }
 
+BBCLASSEXTEND = "native nativesdk"
