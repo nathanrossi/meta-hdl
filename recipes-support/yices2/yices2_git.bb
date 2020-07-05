@@ -9,7 +9,7 @@ SRCREV = "d80ef575c5e1e274c4c874941dd10466a0cdca10"
 
 S = "${WORKDIR}/git"
 
-PV = "2.6.1+git${SRCPV}"
+PV = "2.6.2+git${SRCPV}"
 
 inherit autotools autotools-brokensep
 

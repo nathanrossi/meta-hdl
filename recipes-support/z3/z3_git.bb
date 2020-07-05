@@ -9,7 +9,7 @@ SRCREV = "ca97bfb4b80b03dec103afabccc4aa155c88673e"
 
 S = "${WORKDIR}/git"
 
-PV = "4.8.7+git${SRCPV}"
+PV = "4.8.8+git${SRCPV}"
 
 inherit cmake python3native
 

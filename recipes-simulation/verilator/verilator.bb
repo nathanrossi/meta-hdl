@@ -12,7 +12,7 @@ DEPENDS += "perl-native"
 SRC_URI = "git://github.com/verilator/verilator;protocol=https"
 SRCREV = "8291ef6537702d69d9d87467aae1233c3bbcd27c"
 
-PV = "4.022+git${SRCPV}"
+PV = "4.036+git${SRCPV}"
 
 S = "${WORKDIR}/git"
 
