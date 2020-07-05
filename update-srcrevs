@@ -14,6 +14,13 @@ def find_recipes(root):
 			if os.path.splitext(f)[1] in [".bb", ".inc"]:
 				yield os.path.join(path, f)
 
+def recipe_replace_variable(path, variable, value):
+	with open(path, "r") as f:
+		content = f.read()
+	newcontent = re.sub("^(" + variable + "\\s*=\\s*\")(.*?)(\")", "\\g<1>" + value + "\\g<3>", content, flags = re.MULTILINE)
+	with open(path, "w") as f:
+		f.write(newcontent)
+
 def recipe_gitinfo(path):
 	with open(path, "r") as f:
 		content = f.read()
@@ -35,12 +42,13 @@ def recipe_gitinfo(path):
 			srcrev = m.group(1)
 		return srcuri, srcrev, srcbranch
 
-def recipe_gitinfo_update(path, srcrev):
+def recipe_pvinfo(path):
 	with open(path, "r") as f:
 		content = f.read()
-	newcontent = re.sub("^(SRCREV\\s*=\\s*\")(.*?)(\")", "\\g<1>" + srcrev + "\\g<3>", content, flags = re.MULTILINE)
-	with open(path, "w") as f:
-		f.write(newcontent)
+		m = re.search("^PV\\s*=\\s*\"(\d+\.\d+(\.\d+)?)\+(.*?)\"", content, re.MULTILINE)
+		if m:
+			return m.group(1), tuple(int(i) for i in m.group(1).split(".")), m.group(3)
+		return None, None, None
 
 def remote_refs(remote):
 	r = subprocess.run(["git", "ls-remote", "--heads", "--tags", remote], stdout = subprocess.PIPE, stderr = subprocess.PIPE)
@@ -51,11 +59,31 @@ def remote_refs(remote):
 		rid, ref, *_ = i.split("\t")
 		yield rid, ref
 
+def remote_version_tags(refs):
+	for i, ref in refs:
+		if ref.startswith("refs/tags/"):
+			tag = ref[len("refs/tags/"):]
+			m = re.search("^(.*?-)?v?(\d+\.\d+(\.\d+)?)$", tag)
+			if m:
+				yield (i, ref, tag, m.group(2), tuple(int(i) for i in m.group(2).split(".")))
+
 layerroot = os.path.abspath(os.path.dirname(__file__))
 for path in find_recipes(layerroot):
 	remote, current, currentref = recipe_gitinfo(path)
+	pvversion, _, pvsuffix = recipe_pvinfo(path)
 	if remote is not None and current is not None and current != "${AUTOREV}":
-		for i, ref in remote_refs(remote):
+		refs = list(remote_refs(remote))
+
+		if pvversion is not None and pvsuffix is not None and pvsuffix == "git${SRCPV}":
+			# only attempt to update clean git versions without additional suffixes
+			version = next(iter(reversed(sorted(remote_version_tags(refs), key = lambda k : k[4]))), None)
+			if version is not None:
+				if pvversion is not None and pvversion != version[3]:
+					newvalue = version[3] + "+" + pvsuffix
+					print(path, "updated version to ->", newvalue, "(from {})".format(pvversion))
+					# recipe_replace_variable(path, "PV", newvalue)
+
+		for i, ref in refs:
 			if currentref is not None and ref != "refs/heads/{0}".format(currentref):
 				continue
 			if currentref is None and ref != "refs/heads/master":
@@ -63,6 +91,6 @@ for path in find_recipes(layerroot):
 
 			if current != i:
 				print(path, "updated to ->", i)
-				recipe_gitinfo_update(path, i)
+				recipe_replace_variable(path, "SRCREV", i)
 			break
 
