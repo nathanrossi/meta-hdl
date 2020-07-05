@@ -10,7 +10,7 @@ DEPENDS += "python3-native"
 DEPENDS += "perl-native"
 
 SRC_URI = "git://github.com/verilator/verilator;protocol=https"
-SRCREV = "236c2141e308304053aeaa08a8753de4bcadd94d"
+SRCREV = "8291ef6537702d69d9d87467aae1233c3bbcd27c"
 
 PV = "4.022+git${SRCPV}"
 

@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=10689772e9dbbd781bf98fd78416470a"
 
 PV = "0+git${SRCPV}"
 SRC_URI = "gitsm://github.com/SymbiFlow/prjxray;protocol=https"
-SRCREV = "9749d6d51f47906af949c2fbb75b07f9d4f2a307"
+SRCREV = "b0432d14d5806f379bd56fe2e967a553bf11287f"
 S = "${WORKDIR}/git"
 
 inherit python3native
