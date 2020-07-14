@@ -8,3 +8,5 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/Apache-2.0;md5=89aea4e17d99a7ca
 SRCREV = "020625a0d0359ccb6b0fdab3942aaa159a4a5b86"
 PV = "0.0+git${SRCPV}"
 
+# package contains 'data' which includes test scripts, ignore the dependencies in them
+INSANE_SKIP_${PN} += "file-rdeps"
