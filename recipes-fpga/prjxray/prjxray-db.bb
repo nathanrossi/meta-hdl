@@ -3,10 +3,10 @@ HOMEPAGE = "https://github.com/SymbiFlow/prjxray-db"
 LICENSE = "CC0-1.0"
 SECTION = "devel/fpga"
 
-LIC_FILES_CHKSUM = "file://COPYING;md5=65d3616852dbf7b1a6d4b53b00626032"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=65d3616852dbf7b1a6d4b53b00626032"
 
 SRC_URI = "git://github.com/SymbiFlow/prjxray-db;protocol=https"
-SRCREV = "e45604d941615d6eef722f61fe857b6688088b6b"
+SRCREV = "485a8378c3342e5ca9ba481bf928bd0fc07b5bdd"
 
 S = "${WORKDIR}/git"
 
