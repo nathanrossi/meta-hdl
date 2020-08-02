@@ -7,7 +7,7 @@ SECTION = "devel/hardware"
 LIC_FILES_CHKSUM = "file://copyright.txt;md5=bddcabf9df6d33e12310a00780d3a87c"
 
 SRC_URI = "git://github.com/berkeley-abc/abc;protocol=https"
-SRCREV = "ba063a1b557a548cbedd963f6bcdf176df14ee8e"
+SRCREV = "5c8ee4a2c142d133afe4cbfe567b300fe4d040a8"
 
 S = "${WORKDIR}/git"
 
