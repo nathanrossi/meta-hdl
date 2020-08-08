@@ -3,13 +3,13 @@ HOMEPAGE = " https://www.msoos.org"
 LICENSE = "MIT"
 SECTION = "devel/verilog"
 
-LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=7cdd497f1ddb031d004fad321c45d8df"
+LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=cc245d1844e36accfee431a45bb42d73"
 SRC_URI = "git://github.com/msoos/cryptominisat;protocol=https"
-SRCREV = "d1462cf7a31ddba83bb606a991d10a3023472b26"
+SRCREV = "a1a8706860a796e79eb59e8d0f67ef32561a3f57"
 
 S = "${WORKDIR}/git"
 
-PV = "5.7.1+git${SRCPV}"
+PV = "5.8.0+git${SRCPV}"
 
 inherit cmake python3native
 
