@@ -6,7 +6,7 @@ LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
 
 SRC_URI = "gitsm://github.com/im-tomu/foboot;protocol=https"
-SRCREV = "f34d5ffb5ec5a9ca0356516ef4c1d4883f07ac96"
+SRCREV = "882ce04da8b97084ef95f5a967a0e2b7312b19c2"
 PV = "0+git${SRCPV}"
 
 S = "${WORKDIR}/git"

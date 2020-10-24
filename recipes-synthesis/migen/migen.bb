@@ -5,7 +5,7 @@ LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=984d220f96f7cade953c15160221941b"
 
 SRC_URI = "git://github.com/m-labs/migen;protocol=https"
-SRCREV = "7bc4eb1387b39159a74c1dbd1b820728e0bfbbaa"
+SRCREV = "d42aa6fd8f38872bde14a2a6bd991ce9586fa047"
 
 PV = "0.9.2+git${SRCPV}"
 

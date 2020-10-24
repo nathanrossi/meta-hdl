@@ -2,10 +2,10 @@ SUMMARY = "Small footprint and configurable SATA core"
 HOMEPAGE = "https://github.com/enjoy-digital/litesata"
 SECTION = "devel/hdl"
 LICENSE = "BSD-2-Clause"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=10bd765c3601dc2c0b4cbe1541ccf3a3"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=c6a21e9a29f3977840b72dab37a4e0bb"
 
 SRC_URI = "git://github.com/enjoy-digital/litesata;protocol=https"
-SRCREV = "2e4591c89b13e3eb6e42c9a0df9b7847eb65f16d"
+SRCREV = "a9a4c5845a43bdfb81570bfd2b8869c7f4e18350"
 PV = "0.2-dev+git${SRCPV}"
 
 S = "${WORKDIR}/git"
