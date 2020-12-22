@@ -7,7 +7,7 @@ LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/BSD-2-Clause;md5=cb641bc04cda31daea161b1bc15da69f"
 
 SRC_URI = "git://github.com/litex-hub/linux-on-litex-vexriscv;protocol=https"
-SRCREV = "3156f1290fde3c64897904437c6c7527ab8b19bf"
+SRCREV = "2758b5df5d2f96eb3eaae4ae9f26832dbb7bf64c"
 PV = "0+git${SRCPV}"
 
 S = "${WORKDIR}/git"
@@ -24,6 +24,7 @@ DEPENDS += "litex-native"
 
 # device modules
 DEPENDS += "litex-pythondata-cpu-vexriscv-native"
+DEPENDS += "litex-pythondata-cpu-vexriscv-smp-native"
 DEPENDS += "litex-pythondata-software-compiler-rt-native"
 DEPENDS += "litex-pythondata-misc-tapcfg-native"
 DEPENDS += "litex-boards-native"
@@ -40,17 +41,13 @@ DEPENDS_remove = "virtual/${TARGET_PREFIX}compilerlibs virtual/libc"
 CC += "-Wl,--build-id=none"
 
 do_configure() {
-    # rewrite paths in images.json for use from deploy dir
-    cp ${S}/images.json ${B}/images-${MACHINE}.json
-    sed -i 's/buildroot\///' ${B}/images-${MACHINE}.json
-    sed -i 's/emulator\///' ${B}/images-${MACHINE}.json
+    # use images from images/
+    sed -i 's/buildroot\//images\//' ${S}/sim.py
+    sed -i 's/opensbi\//images\//' ${S}/sim.py
 }
 
 do_compile() {
     ${S}/make.py --board versa_ecp5 --build
-
-    # build emulator
-    make -C ${S}/emulator BUILD_DIR=${S}/build/versa_ecp5/
 }
 
 do_install[noexec] = "1"
@@ -58,10 +55,13 @@ do_install[noexec] = "1"
 do_deploy () {
     install -Dm 0644 ${B}/build/versa_ecp5/gateware/top.bit ${DEPLOYDIR}/top.bit
     install -Dm 0644 ${B}/build/versa_ecp5/gateware/top.svf ${DEPLOYDIR}/top.svf
-    install -Dm 0644 ${B}/emulator/emulator.bin ${DEPLOYDIR}/emulator.bin
-    install -Dm 0655 ${B}/buildroot/rv32.dtb ${DEPLOYDIR}/rv32.dtb
-    install -Dm 0644 ${B}/images-${MACHINE}.json ${DEPLOYDIR}/images.json
-    ln -sf core-image-minimal-${MACHINE}.cpio ${DEPLOYDIR}/rootfs.cpio
+    install -Dm 0655 ${B}/images/rv32.dtb ${DEPLOYDIR}/rv32.dtb
+
+    # rewrite paths in boot.json for use from deploy dir
+    cp ${S}/images/boot.json ${B}/boot-${MACHINE}.json
+    sed -i 's/opensbi.bin/fw_jump.bin/' ${B}/boot-${MACHINE}.json
+    sed -i "s/rootfs.cpio/core-image-minimal-${MACHINE}.cpio/" ${B}/boot-${MACHINE}.json
+    install -Dm 0644 ${B}/boot-${MACHINE}.json ${DEPLOYDIR}/boot.json
 }
 addtask deploy before do_build after do_install
 
@@ -79,10 +79,12 @@ do_sim[depends] += "libevent-native:do_populate_sysroot"
 do_sim[depends] += "json-c-native:do_populate_sysroot"
 do_sim[depends] += "virtual/kernel:do_deploy"
 do_sim[depends] += "core-image-minimal:do_image_complete"
+do_sim[depends] += "opensbi:do_populate_sysroot"
 do_sim[nostamp] = "1"
 python do_sim() {
-    oe.path.symlink(d.expand("${DEPLOY_DIR_IMAGE}/Image"), d.expand("${S}/buildroot/Image"), force = True)
-    oe.path.symlink(d.expand("${DEPLOY_DIR_IMAGE}/core-image-minimal-${MACHINE}.cpio"), d.expand("${S}/buildroot/rootfs.cpio"), force = True)
+    oe.path.symlink(d.expand("${DEPLOY_DIR_IMAGE}/Image"), d.expand("${S}/images/Image"), force = True)
+    oe.path.symlink(d.expand("${DEPLOY_DIR_IMAGE}/core-image-minimal-${MACHINE}.cpio"), d.expand("${S}/images/rootfs.cpio"), force = True)
+    oe.path.symlink(d.expand("${RECIPE_SYSROOT}/share/opensbi/ilp32/${RISCV_SBI_PLAT}/firmware/fw_jump.bin"), d.expand("${S}/images/opensbi.bin"), force = True)
 
     # create a child data for the terminal instance
     t = d.createCopy()
