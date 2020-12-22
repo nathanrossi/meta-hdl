@@ -16,6 +16,11 @@ RDEPENDS_${PN} += "python3-pyserial"
 RDEPENDS_${PN} += "python3-requests"
 RDEPENDS_${PN} += "migen"
 
+do_configure_prepend() {
+    # missing in upstream
+    echo "graft litex/soc/cores/cpu/vexriscv_smp" >> ${S}/MANIFEST.in
+}
+
 do_install_append() {
     # some scripts in litex exist but are unused
     installpath=${D}${PYTHON_SITEPACKAGES_DIR}/litex
