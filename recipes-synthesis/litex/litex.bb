@@ -13,6 +13,7 @@ S = "${WORKDIR}/git"
 inherit setuptools3
 
 RDEPENDS_${PN} += "python3-pyserial"
+RDEPENDS_${PN} += "python3-requests"
 RDEPENDS_${PN} += "migen"
 
 do_install_append() {
