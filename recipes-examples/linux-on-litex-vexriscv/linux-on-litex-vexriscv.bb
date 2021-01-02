@@ -73,19 +73,23 @@ inherit terminal
 
 export VERILATOR_ROOT = "${STAGING_DIR_NATIVE}/usr/share/verilator"
 
-do_sim[dirs] += "${B}"
-do_sim[depends] += "verilator-native:do_populate_sysroot"
-do_sim[depends] += "libevent-native:do_populate_sysroot"
-do_sim[depends] += "json-c-native:do_populate_sysroot"
-do_sim[depends] += "virtual/kernel:do_deploy"
-do_sim[depends] += "core-image-minimal:do_image_complete"
-do_sim[depends] += "opensbi:do_populate_sysroot"
-do_sim[nostamp] = "1"
-python do_sim() {
+do_sim_setup[dirs] += "${B}"
+do_sim_setup[depends] += "verilator-native:do_populate_sysroot"
+do_sim_setup[depends] += "libevent-native:do_populate_sysroot"
+do_sim_setup[depends] += "json-c-native:do_populate_sysroot"
+do_sim_setup[depends] += "virtual/kernel:do_deploy"
+do_sim_setup[depends] += "core-image-minimal:do_image_complete"
+do_sim_setup[depends] += "opensbi:do_populate_sysroot"
+python do_sim_setup() {
     oe.path.symlink(d.expand("${DEPLOY_DIR_IMAGE}/Image"), d.expand("${S}/images/Image"), force = True)
     oe.path.symlink(d.expand("${DEPLOY_DIR_IMAGE}/core-image-minimal-${MACHINE}.cpio"), d.expand("${S}/images/rootfs.cpio"), force = True)
     oe.path.symlink(d.expand("${RECIPE_SYSROOT}/share/opensbi/ilp32/${RISCV_SBI_PLAT}/firmware/fw_jump.bin"), d.expand("${S}/images/opensbi.bin"), force = True)
+}
+addtask sim_setup after do_configure
 
+do_sim[dirs] += "${B}"
+do_sim[nostamp] = "1"
+python do_sim() {
     # create a child data for the terminal instance
     t = d.createCopy()
     # force CC to be BUILD_CC when running sim
@@ -94,7 +98,40 @@ python do_sim() {
 
     oe_terminal(d.expand("sh -c \"${S}/sim.py || read r\""), "linux-on-litex-vexriscv verilator simulation", t)
 }
-addtask sim after do_configure
+addtask sim after do_sim_setup
+
+inherit python3-dir
+
+do_sim_check_boot[dirs] += "${B}"
+do_sim_check_boot[nostamp] = "1"
+do_sim_check_boot[depends] += "python3-pexpect-native:do_populate_sysroot"
+python do_sim_check_boot() {
+    import os
+    import sys
+    import signal
+    sys.path.append(d.expand("${RECIPE_SYSROOT_NATIVE}/${PYTHON_SITEPACKAGES_DIR}"))
+    import pexpect
+
+    # force CC to be BUILD_CC when running sim
+    env = os.environ.copy()
+    env["CC"] = d.getVar("BUILD_CC")
+
+    s = pexpect.spawn(d.expand("${S}/sim.py"), env = env)
+    try:
+        with open(d.expand("${WORKDIR}/boot.log"), "w") as f:
+            while True:
+                if s.expect("(.*?)\r\n", timeout = 60) == 0:
+                    line = s.match.group(1).decode()
+                    f.write(line + "\n")
+                    if "linux version" in line.casefold():
+                        break
+    except pexpect.exceptions.TIMEOUT:
+        bb.fatal("Failed to boot to kernel")
+    finally:
+        s.kill(signal.SIGINT)
+        s.wait()
+}
+addtask sim_check_boot after do_sim_setup
 
 do_load[dirs] += "${B}"
 do_load[depends] += "openocd-native:do_populate_sysroot"
