@@ -5,7 +5,7 @@ SECTION = "devel/verilog"
 
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=5f03ad1486a2e4ce71200ce0f9721557"
 SRC_URI = "git://github.com/Z3Prover/z3;protocol=https"
-SRCREV = "799de71a9f2c9523c1a1e99169b8faa40a288961"
+SRCREV = "5da71dc8478ef581d38de56a54e9a904bd670d19"
 
 S = "${WORKDIR}/git"
 
