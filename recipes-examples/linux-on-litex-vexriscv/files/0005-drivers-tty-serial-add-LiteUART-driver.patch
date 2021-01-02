@@ -1,4 +1,4 @@
-From 5354faceb837926579d84f3ed649d964a1039534 Mon Sep 17 00:00:00 2001
+From 60e88a11e3c3804d6e01ac1159ce7f9d5d9761c5 Mon Sep 17 00:00:00 2001
 From: Filip Kokosinski <fkokosinski@internships.antmicro.com>
 Date: Wed, 13 Nov 2019 18:32:19 +1000
 Subject: [PATCH] drivers/tty/serial: add LiteUART driver
@@ -17,7 +17,7 @@ Signed-off-by: Mateusz Holenko <mholenko@antmicro.com>
  create mode 100644 drivers/tty/serial/liteuart.c
 
 diff --git a/drivers/tty/serial/Kconfig b/drivers/tty/serial/Kconfig
-index 67a9eb3f94..79501a7dc1 100644
+index 52eaac21ff..94babe5769 100644
 --- a/drivers/tty/serial/Kconfig
 +++ b/drivers/tty/serial/Kconfig
 @@ -1572,6 +1572,36 @@ config SERIAL_MILBEAUT_USIO_CONSOLE
@@ -58,7 +58,7 @@ index 67a9eb3f94..79501a7dc1 100644
  
  config SERIAL_MCTRL_GPIO
 diff --git a/drivers/tty/serial/Makefile b/drivers/tty/serial/Makefile
-index 863f470565..fce3525280 100644
+index d056ee6cca..b098938bbb 100644
 --- a/drivers/tty/serial/Makefile
 +++ b/drivers/tty/serial/Makefile
 @@ -89,6 +89,7 @@ obj-$(CONFIG_SERIAL_OWL)	+= owl-uart.o
@@ -458,11 +458,11 @@ index 0000000000..5ae21df70d
 +MODULE_LICENSE("GPL");
 +MODULE_ALIAS("platform:" DRIVER_NAME);
 diff --git a/include/uapi/linux/serial_core.h b/include/uapi/linux/serial_core.h
-index e7fe550b60..ef1c82ae33 100644
+index 8ec3dd742e..449b8fe927 100644
 --- a/include/uapi/linux/serial_core.h
 +++ b/include/uapi/linux/serial_core.h
 @@ -293,4 +293,7 @@
- /* Freescale Linflex UART */
+ /* Freescale LINFlexD UART */
  #define PORT_LINFLEXUART	122
  
 +/* LiteUART */

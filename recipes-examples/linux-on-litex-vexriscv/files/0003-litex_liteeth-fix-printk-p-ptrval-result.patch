@@ -1,4 +1,4 @@
-From 8df9be1679b46da80fbc913c348e3103a03582fa Mon Sep 17 00:00:00 2001
+From b76db3e47a97656a5596e2bf8c018286fd4d689e Mon Sep 17 00:00:00 2001
 From: Antony Pavlov <antonynpavlov@gmail.com>
 Date: Thu, 6 Jun 2019 22:40:45 +0300
 Subject: [PATCH] litex_liteeth: fix printk %p (ptrval) result

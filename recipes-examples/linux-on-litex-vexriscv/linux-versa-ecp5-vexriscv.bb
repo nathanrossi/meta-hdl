@@ -1,7 +1,7 @@
 SECTION = "kernel"
 DESCRIPTION = "Mainline Linux kernel"
 LICENSE = "GPLv2"
-LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
+LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 
 inherit kernel
 
@@ -15,8 +15,8 @@ COMPATIBLE_MACHINE_versa-ecp5 = ".*"
 S = "${WORKDIR}/git"
 
 BRANCH = "master"
-SRCREV = "0e3f1ad80fc8cb0c517fd9a9afb22752b741fa76"
-PV = "5.4-rc7+${SRCPV}"
+SRCREV = "0ad2c0e5fc7bd5c5a60f88be1174271410254e32"
+PV = "5.6+${SRCPV}"
 SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git;protocol=https;branch=${BRANCH}"
 
 SRC_URI += " \

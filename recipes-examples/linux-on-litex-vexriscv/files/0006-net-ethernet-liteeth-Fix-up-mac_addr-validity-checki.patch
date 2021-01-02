@@ -1,4 +1,4 @@
-From 5aaf01df9258ec708993c0a2adb88068d3d96058 Mon Sep 17 00:00:00 2001
+From d89748d11098dc6227c251e7b1fc00caa34e40c6 Mon Sep 17 00:00:00 2001
 From: Nathan Rossi <nathan@nathanrossi.com>
 Date: Fri, 15 Nov 2019 18:28:44 +1000
 Subject: [PATCH] net: ethernet: liteeth: Fix up mac_addr validity checking and

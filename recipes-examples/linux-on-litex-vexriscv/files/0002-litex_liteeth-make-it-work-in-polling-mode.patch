@@ -1,4 +1,4 @@
-From bd87548092a79af26e03fca4694753d9ed4346b9 Mon Sep 17 00:00:00 2001
+From 88a9d3c32d8af76102a3112b7c0cacda9afdf55e Mon Sep 17 00:00:00 2001
 From: Antony Pavlov <antonynpavlov@gmail.com>
 Date: Thu, 6 Jun 2019 21:51:56 +0300
 Subject: [PATCH] litex_liteeth: make it work in polling mode
