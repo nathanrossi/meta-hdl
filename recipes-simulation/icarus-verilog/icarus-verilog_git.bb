@@ -16,6 +16,8 @@ inherit autotools
 
 EXTRA_OEMAKE_append = ' HOSTCC="${BUILD_CC}" HOSTCFLAGS="${BUILD_CFLAGS}"'
 
+export CXXCPP = "${CPP}"
+
 # issues with install races
 PARALLEL_MAKEINST = ""
 
