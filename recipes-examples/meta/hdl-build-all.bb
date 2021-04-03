@@ -34,6 +34,7 @@ LITEX_MODULES = " \
     litex-boards \
     \
     litex-pythondata-cpu-vexriscv \
+    litex-pythondata-cpu-vexriscv-smp \
     litex-pythondata-misc-tapcfg \
     litex-pythondata-software-compiler-rt \
     "

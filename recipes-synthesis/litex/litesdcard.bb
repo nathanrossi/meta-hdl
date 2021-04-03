@@ -5,7 +5,7 @@ LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=327975928420d679cbf3fb2ee14e33e6"
 
 SRC_URI = "git://github.com/enjoy-digital/litesdcard;protocol=https"
-SRCREV = "0cb5ab5bab0bba9c3f3c900837bd39e745465aa2"
+SRCREV = "fc91e0ec4653b5d8a5a67eec22b7122d1ea3c807"
 PV = "2020.12+git${SRCPV}"
 
 S = "${WORKDIR}/git"

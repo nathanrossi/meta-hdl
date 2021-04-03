@@ -31,7 +31,6 @@ DEPENDS += "litex-boards-native"
 DEPENDS += "litedram-native"
 DEPENDS += "liteeth-native"
 DEPENDS += "litevideo-native"
-DEPENDS += "litescope-native"
 DEPENDS += "litesdcard-native"
 
 # do not depend on libc or compiler libs, only the compiler is needed
@@ -47,6 +46,9 @@ do_configure() {
 }
 
 do_compile() {
+    mkdir -p ${S}/build
+    ln -sf lattice_versa_ecp5 ${S}/build/versa_ecp5
+
     ${S}/make.py --board versa_ecp5 --build
 }
 

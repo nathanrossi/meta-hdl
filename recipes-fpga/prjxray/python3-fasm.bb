@@ -6,7 +6,7 @@ SECTION = "devel/fpga"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=f073e725b3957def9888511f3cccf349"
 
 SRC_URI = "git://github.com/SymbiFlow/fasm;protocol=https"
-SRCREV = "bae2e6dd782026d9db3e4e00ef535d1b5858322d"
+SRCREV = "af39a4fb7adc367502ed91ac7f0b8f1c17f37ee8"
 
 S = "${WORKDIR}/git"
 

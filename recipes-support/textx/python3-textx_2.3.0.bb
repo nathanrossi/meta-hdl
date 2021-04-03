@@ -7,8 +7,9 @@ PYPI_PACKAGE = "textX"
 
 inherit pypi setuptools3
 
-SRC_URI[md5sum] = "e39861f50f03f168817b5c4c31e3e787"
-SRC_URI[sha256sum] = "159c710f98401f090eb39fa44cd20bc48d697cb96684d1f457428c7ab37bb61c"
+SRC_URI[sha256sum] = "265afc12d4ae421a7794c8cdc58c6eed44cc879f078cb54c32d5dc6bc74efbac"
+
+DEPENDS += "python3-wheel-native"
 
 RDEPENDS_${PN} += "python3-arpeggio python3-click"
 

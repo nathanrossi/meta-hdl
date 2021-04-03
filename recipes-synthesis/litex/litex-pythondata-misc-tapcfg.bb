@@ -1,9 +1,16 @@
-require litex-pythondata.inc
-
 SUMMARY = "LiteX - tapcfg"
-LICENSE = "LGPL-2.0-only"
-LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/LGPL-2.0-only;md5=9427b8ccf5cf3df47c29110424c9641a"
+HOMEPAGE = "https://github.com/litex-hub/pythondata-misc-tapcfg"
+SECTION = "devel/hdl"
 
-SRCREV = "642e845f6e1a2d82247a4b93e427cd862f20e6db"
-PV = "0.0+git${SRCPV}"
+LICENSE = "LGPL-2.1-only"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=fabba2a3bfeb22a6483d44e9ae824d3f"
 
+SRC_URI = "git://github.com/litex-hub/pythondata-misc-tapcfg;protocol=https"
+SRCREV = "0e6809132b7a42d26fc148b2b5e54ede8d6021ab"
+PV = "2020.08+git${SRCPV}"
+
+S = "${WORKDIR}/git"
+
+inherit setuptools3
+
+BBCLASSEXTEND = "native nativesdk"

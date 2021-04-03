@@ -5,7 +5,7 @@ LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=6244c5230de1fe6eb6cdd3c66ec64888"
 
 SRC_URI = "git://github.com/enjoy-digital/liteiclink;protocol=https"
-SRCREV = "1793e81640a747b198206e7eafbed43d8bcd4c85"
+SRCREV = "3d8ecdbcf9f0260292221ff63b0ad3f5e409a955"
 PV = "0.2-dev+git${SRCPV}"
 
 S = "${WORKDIR}/git"

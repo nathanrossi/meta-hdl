@@ -1,6 +1,6 @@
 require nextpnr-common.inc
 
-DEPENDS += "python3 boost libeigen"
+DEPENDS += "python3 boost libeigen abseil-cpp"
 
 # don't build the gui components
 EXTRA_OECMAKE += "-DBUILD_GUI=no"
@@ -20,6 +20,11 @@ python () {
         d.appendVar("DEPENDS", " nextpnr-{}-chipdb".format(suffix))
         # path to built chipdb (allarch packages are "target")
         d.appendVar("EXTRA_OECMAKE", " -D" + suffix.upper() + "_CHIPDB=${RECIPE_SYSROOT}${target_datadir}/chipdb/" + suffix)
+}
+
+do_configure_prepend() {
+    # force use of abseil-cpp from sysroot
+    sed -i 's#add_subdirectory(3rdparty/abseil-cpp EXCLUDE_FROM_ALL)#find_package(absl REQUIRED)#g' ${S}/CMakeLists.txt
 }
 
 BBCLASSEXTEND = "native nativesdk"

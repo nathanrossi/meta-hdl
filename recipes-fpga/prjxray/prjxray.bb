@@ -6,14 +6,19 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=10689772e9dbbd781bf98fd78416470a"
 
 PV = "0+git${SRCPV}"
 SRC_URI = "gitsm://github.com/SymbiFlow/prjxray;protocol=https"
-SRCREV = "77e8b24c883bd527b511413f1939c3a34a237c1c"
+SRCREV = "3bbb46bbf3df6f4d3a813028758c0261082db7ee"
 S = "${WORKDIR}/git"
 
 inherit python3native
 inherit cmake
 inherit setuptools3
 
-RDEPENDS_${PN} += "python3-fasm python3-simplejson python3-intervaltree"
+RDEPENDS_${PN} += "python3-fasm"
+RDEPENDS_${PN} += "python3-intervaltree"
+RDEPENDS_${PN} += "python3-numpy"
+RDEPENDS_${PN} += "python3-pyjson5"
+RDEPENDS_${PN} += "python3-pyyaml"
+RDEPENDS_${PN} += "python3-simplejson"
 
 do_configure() {
     # suppress warnings as errors, some dependencies don't handle newer compilers
