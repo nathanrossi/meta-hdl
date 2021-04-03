@@ -123,6 +123,7 @@ python do_sim_check_boot() {
                 if s.expect("(.*?)\r\n", timeout = 60) == 0:
                     line = s.match.group(1).decode()
                     f.write(line + "\n")
+                    f.flush()
                     if "linux version" in line.casefold():
                         break
     except pexpect.exceptions.TIMEOUT:
