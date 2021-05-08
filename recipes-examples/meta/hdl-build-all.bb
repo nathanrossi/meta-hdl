@@ -53,6 +53,11 @@ DEPENDS += "${@targets_expand(d)}"
 
 DEPENDS += "nextpnr-xilinx-native"
 
+# GHDL is currently native only
+DEPENDS += "ghdl-native"
+DEPENDS += "ghdl-yosys-plugin-native"
+do_build[depends] += "ghdl-yosys-plugin-native:do_check"
+
 # standalone recipe targets
 DEPENDS += "prjtrellis-examples-versa5g"
 DEPENDS += "nextpnr-xilinx-examples-arty-a35"
