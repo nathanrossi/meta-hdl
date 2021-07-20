@@ -5,7 +5,7 @@ LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=012b04b707bcdd5547cbec1345d56eac"
 
 SRC_URI = "git://github.com/enjoy-digital/litex;protocol=https"
-SRCREV = "080ecad522ad2dec43295517f5111822022554f4"
+SRCREV = "c64c6e40564daee3014a21659926a3a2b922a6ad"
 PV = "0.2-dev+git${SRCPV}"
 
 S = "${WORKDIR}/git"
@@ -28,7 +28,6 @@ do_configure_prepend() {
 do_install_append() {
     # some scripts in litex exist but are unused
     installpath=${D}${PYTHON_SITEPACKAGES_DIR}/litex
-    rm $installpath/soc/cores/cpu/blackparrot/setEnvironment.sh
 }
 
 BBCLASSEXTEND = "native nativesdk"
