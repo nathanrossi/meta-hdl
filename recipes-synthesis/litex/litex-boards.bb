@@ -5,7 +5,7 @@ LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/BSD-2-Clause;md5=cb641bc04cda31daea161b1bc15da69f"
 
 SRC_URI = "git://github.com/litex-hub/litex-boards;protocol=https"
-SRCREV = "03accabc257ca06dd608db06bde8d0100c1e68de"
+SRCREV = "fbcecee1f8b7754359d09cf23f06b594b51a14af"
 PV = "0+git${SRCPV}"
 
 S = "${WORKDIR}/git"

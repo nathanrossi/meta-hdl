@@ -6,7 +6,7 @@ SECTION = "devel/fpga"
 LIC_FILES_CHKSUM = "file://COPYING;md5=551f2364fa8248634340a80a748e986f"
 
 SRC_URI = "git://github.com/YosysHQ/prjtrellis;protocol=https"
-SRCREV = "f93243b000c52b755c70829768d2ae6bcf7bb91a"
+SRCREV = "dff1cbcb1bd30de7e96f8a059f2e19be1bb2e44d"
 PV = "0+git${SRCPV}"
 
 S = "${WORKDIR}/git"
