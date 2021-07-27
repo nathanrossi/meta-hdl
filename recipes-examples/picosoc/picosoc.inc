@@ -30,6 +30,9 @@ TARGET_CFLAGS += "-Wl,--build-id=none"
 export VVP = "vvp -M${STAGING_DIR_NATIVE}${libdir_native}/ivl"
 export IVERILOG = "iverilog -B${STAGING_DIR_NATIVE}${libdir_native}/ivl"
 
+# icarus does not support systemverilog default assignment, this is used in the yosys cells for ice40.
+IVERILOG += "-DNO_ICE40_DEFAULT_ASSIGNMENTS"
+
 # override the makefiles CROSS and CFLAGS values
 EXTRA_OEMAKE += "CROSS=${TARGET_PREFIX} CFLAGS="${TARGET_CC_ARCH} ${TOOCHAIN_OPTIONS} ${TARGET_CFLAGS}""
 
