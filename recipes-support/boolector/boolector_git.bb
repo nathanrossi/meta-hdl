@@ -4,7 +4,7 @@ HOMEPAGE = "https://boolector.github.io/"
 LICENSE = "MIT"
 SECTION = "devel/verilog"
 
-LIC_FILES_CHKSUM = "file://COPYING;md5=6b4c24fbbe55ff1229acdef3dec0298b"
+LIC_FILES_CHKSUM = "file://COPYING;md5=7c2823721d5a44205b97299506846bea"
 SRC_URI = "git://github.com/Boolector/boolector;protocol=https"
 SRCREV = "0783aa844db69953a3271bf4957b54b80a72122a"
 
