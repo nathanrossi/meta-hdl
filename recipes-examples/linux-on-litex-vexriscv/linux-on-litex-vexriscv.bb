@@ -39,10 +39,23 @@ DEPENDS_remove = "virtual/${TARGET_PREFIX}compilerlibs virtual/libc"
 # prevent the population of the build-id section into the output
 CC += "-Wl,--build-id=none"
 
+VEXRISCV_SMP_DATA = "${RECIPE_SYSROOT_NATIVE}/${PYTHON_SITEPACKAGES_DIR}/pythondata_cpu_vexriscv_smp/verilog"
+
 do_configure() {
     # use images from images/
     sed -i 's/buildroot\//images\//' ${S}/sim.py
     sed -i 's/opensbi\//images\//' ${S}/sim.py
+
+    # HACK: symlink the desired pre-built verilog for the vexriscv cluster
+    # litex - c06bd2c77d023aab739f056d31fecef0a53de283 addes "ITs4DTs4" for dtlb/itlb sizes
+    # versa
+    sed 's/VexRiscvLitexSmpCluster_Cc1_Iw32Is4096Iy1_Dw32Ds4096Dy1_Ood_Wm/VexRiscvLitexSmpCluster_Cc1_Iw32Is4096Iy1_Dw32Ds4096Dy1_ITs4DTs4_Ood_Wm/g' \
+        ${VEXRISCV_SMP_DATA}/VexRiscvLitexSmpCluster_Cc1_Iw32Is4096Iy1_Dw32Ds4096Dy1_Ood_Wm.v \
+        > ${VEXRISCV_SMP_DATA}/VexRiscvLitexSmpCluster_Cc1_Iw32Is4096Iy1_Dw32Ds4096Dy1_ITs4DTs4_Ood_Wm.v
+    # sim
+    sed 's/VexRiscvLitexSmpCluster_Cc1_Iw32Is4096Iy1_Dw32Ds4096Dy1_Ldw32_Ood/VexRiscvLitexSmpCluster_Cc1_Iw32Is4096Iy1_Dw32Ds4096Dy1_ITs4DTs4_Ldw32_Ood/g' \
+        ${VEXRISCV_SMP_DATA}/VexRiscvLitexSmpCluster_Cc1_Iw32Is4096Iy1_Dw32Ds4096Dy1_Ldw32_Ood.v \
+        > ${VEXRISCV_SMP_DATA}/VexRiscvLitexSmpCluster_Cc1_Iw32Is4096Iy1_Dw32Ds4096Dy1_ITs4DTs4_Ldw32_Ood.v
 }
 
 do_compile() {
