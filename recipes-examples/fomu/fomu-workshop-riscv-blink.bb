@@ -15,6 +15,9 @@ EXTRA_OEMAKE += "CXX="${CXX}""
 EXTRA_OEMAKE += "OBJCOPY="${OBJCOPY}""
 
 do_compile() {
+    # map all .rodata sections into ".rodata"
+    sed -i 's/\*(\.srodata)/*(.srodata .srodata.*)/' ${S}/riscv-blink/ld/linker.ld
+
     oe_runmake riscv-blink.bin
 
     # manually build dfu with PVT vid/pid
