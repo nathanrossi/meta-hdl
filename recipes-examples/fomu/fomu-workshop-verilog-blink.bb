@@ -1,7 +1,7 @@
 require fomu-workshop.inc
 
 SUMMARY = "Fomu Workshop verilog blink"
-B = "${S}/verilog/blink-expanded"
+B = "${S}/hdl/verilog/blink-expanded"
 
 inherit deploy
 inherit litexnative
@@ -15,10 +15,10 @@ do_configure[noexec] = "1"
 do_install[noexec] = "1"
 
 do_compile() {
-    oe_runmake FOMU_REV=pvt blink.bin
+    oe_runmake FOMU_REV=pvt
 
     # manually build dfu with PVT vid/pid
-    cp ${B}/blink.bin ${B}/blink.dfu
+    cp ${B}/blink.bit ${B}/blink.dfu
     dfu-suffix --vid 1209 --pid 5bf0 --add ${B}/blink.dfu
 }
 
