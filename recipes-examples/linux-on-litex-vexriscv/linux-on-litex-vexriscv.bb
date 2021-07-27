@@ -133,15 +133,15 @@ python do_sim_check_boot() {
 
     s = pexpect.spawn(d.expand("${S}/sim.py"), env = env)
     try:
-        with open(d.expand("${WORKDIR}/boot.log"), "w") as f:
-            while True:
-                if s.expect("(.*?)\r\n", timeout = 60) == 0:
-                    line = s.match.group(1).decode()
-                    f.write(line + "\n")
-                    f.flush()
-                    if "linux version" in line.casefold():
-                        break
-    except pexpect.exceptions.TIMEOUT:
+        while True:
+            if s.expect("(.*?)\r\n", timeout = 60) == 0:
+                line = s.match.group(1).decode()
+                # repr to prevent raw terminal codes
+                sys.stdout.write("{}\n".format(repr(line)[1:-1]))
+                sys.stdout.flush()
+                if "linux version" in line.casefold():
+                    break
+    except (pexpect.exceptions.TIMEOUT, pexpect.exceptions.EOF):
         bb.fatal("Failed to boot to kernel")
     finally:
         s.kill(signal.SIGINT)
