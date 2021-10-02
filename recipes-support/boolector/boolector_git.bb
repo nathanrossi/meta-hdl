@@ -22,13 +22,13 @@ DEPENDS = "\
         cryptominisat \
         "
 
-do_configure_prepend() {
+do_configure:prepend() {
     # boolector forces custom install path for btor2parser.h without a subdir
     # (see contrib/setup-btor2tools.sh in boolector)
     ln -sf btor2parser/btor2parser.h ${STAGING_INCDIR}/btor2parser.h
 }
 
-do_install_append() {
+do_install:append() {
     # Fix QA Issue: -dev package contains non-symlink .so:
     for lib in $(ls ${D}${libdir}/*.so); do
         if ! [ -L ${lib} ]; then

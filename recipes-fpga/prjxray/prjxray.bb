@@ -13,12 +13,12 @@ inherit python3native
 inherit cmake
 inherit setuptools3
 
-RDEPENDS_${PN} += "python3-fasm"
-RDEPENDS_${PN} += "python3-intervaltree"
-RDEPENDS_${PN} += "python3-numpy"
-RDEPENDS_${PN} += "python3-pyjson5"
-RDEPENDS_${PN} += "python3-pyyaml"
-RDEPENDS_${PN} += "python3-simplejson"
+RDEPENDS:${PN} += "python3-fasm"
+RDEPENDS:${PN} += "python3-intervaltree"
+RDEPENDS:${PN} += "python3-numpy"
+RDEPENDS:${PN} += "python3-pyjson5"
+RDEPENDS:${PN} += "python3-pyyaml"
+RDEPENDS:${PN} += "python3-simplejson"
 
 do_configure() {
     # suppress warnings as errors, some dependencies don't handle newer compilers

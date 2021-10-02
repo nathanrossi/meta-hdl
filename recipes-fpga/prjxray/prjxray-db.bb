@@ -29,9 +29,9 @@ do_install() {
     done
 }
 
-FILES_${PN} += "${datadir}/xray/database"
+FILES:${PN} += "${datadir}/xray/database"
 
 # populate the databse into the sysroot (not enabled by default on -native)
-SYSROOT_DIRS_NATIVE_append = " ${datadir}/xray/database"
+SYSROOT_DIRS_NATIVE:append = " ${datadir}/xray/database"
 
 BBCLASSEXTEND = "native nativesdk"

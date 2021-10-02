@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "265afc12d4ae421a7794c8cdc58c6eed44cc879f078cb54c32d5dc6bc7
 
 DEPENDS += "python3-wheel-native"
 
-RDEPENDS_${PN} += "python3-arpeggio python3-click"
+RDEPENDS:${PN} += "python3-arpeggio python3-click"
 
 BBCLASSEXTEND = "native nativesdk"

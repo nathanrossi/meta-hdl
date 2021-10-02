@@ -12,12 +12,12 @@ S = "${WORKDIR}/git"
 
 inherit setuptools3
 
-RDEPENDS_${PN} += "python3-pyserial"
-RDEPENDS_${PN} += "python3-requests"
-RDEPENDS_${PN} += "migen"
-RDEPENDS_${PN} += "litescope"
+RDEPENDS:${PN} += "python3-pyserial"
+RDEPENDS:${PN} += "python3-requests"
+RDEPENDS:${PN} += "migen"
+RDEPENDS:${PN} += "litescope"
 
-do_configure_prepend() {
+do_configure:prepend() {
     # missing in upstream
     echo "graft litex/soc/cores/cpu/vexriscv_smp" >> ${S}/MANIFEST.in
 
@@ -25,7 +25,7 @@ do_configure_prepend() {
     sed -i 's/-nodefaultlibs//g' ${S}/litex/soc/software/common.mak
 }
 
-do_install_append() {
+do_install:append() {
     # some scripts in litex exist but are unused
     installpath=${D}${PYTHON_SITEPACKAGES_DIR}/litex
 }

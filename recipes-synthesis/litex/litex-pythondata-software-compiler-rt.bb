@@ -14,6 +14,6 @@ S = "${WORKDIR}/git"
 inherit setuptools3
 
 # package contains 'data' which includes test scripts, ignore the dependencies in them
-INSANE_SKIP_${PN} += "file-rdeps"
+INSANE_SKIP:${PN} += "file-rdeps"
 
 BBCLASSEXTEND = "native nativesdk"

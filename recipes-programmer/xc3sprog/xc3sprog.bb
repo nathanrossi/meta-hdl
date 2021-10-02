@@ -12,7 +12,7 @@ PV = "0.0+svnr${SRCPV}"
 
 S = "${WORKDIR}/trunk"
 
-do_configure_prepend() {
+do_configure:prepend() {
     # the cmakefile file trashes the flags passed in, this is used for cross-compiling
     sed -i '/^set(CMAKE_CXX_FLAGS/d' ${S}/CMakeLists.txt
 }

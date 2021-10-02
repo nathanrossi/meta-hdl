@@ -16,4 +16,4 @@ do_install() {
     install ${B}/chipdb/* ${D}${datadir}/chipdb/ecp5
 }
 
-FILES_${PN} += "${datadir}/chipdb"
+FILES:${PN} += "${datadir}/chipdb"

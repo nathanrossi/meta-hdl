@@ -1,6 +1,6 @@
 inherit python3native
 
-PATH_prepend = "${WORKDIR}/toolchain-wrappers:"
+PATH:prepend = "${WORKDIR}/toolchain-wrappers:"
 
 # litex does not provide a mechanism to specify the toolchain tuple
 do_create_toolchain_wrappers[dirs] += "${WORKDIR}/toolchain-wrappers"

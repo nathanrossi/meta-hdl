@@ -12,11 +12,11 @@ S = "${WORKDIR}/git"
 
 inherit setuptools3
 
-RDEPENDS_${PN} += "litex"
-RDEPENDS_${PN} += "litedram"
-RDEPENDS_${PN} += "liteeth"
-RDEPENDS_${PN} += "litesata"
-RDEPENDS_${PN} += "litepcie"
-RDEPENDS_${PN} += "litehyperbus"
+RDEPENDS:${PN} += "litex"
+RDEPENDS:${PN} += "litedram"
+RDEPENDS:${PN} += "liteeth"
+RDEPENDS:${PN} += "litesata"
+RDEPENDS:${PN} += "litepcie"
+RDEPENDS:${PN} += "litehyperbus"
 
 BBCLASSEXTEND = "native nativesdk"

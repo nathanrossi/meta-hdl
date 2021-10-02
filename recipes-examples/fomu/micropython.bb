@@ -43,7 +43,7 @@ do_deploy() {
 }
 addtask deploy before do_build after do_install
 
-FILES_${PN} += "/boot"
+FILES:${PN} += "/boot"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 COMPATIBLE_MACHINE = "fomu"

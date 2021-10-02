@@ -14,7 +14,7 @@ S = "${WORKDIR}/git/programmer"
 # used for versioning
 DEPENDS += "${PYTHON_PN}-setuptools-scm-native"
 
-RDEPENDS_${PN} += " \
+RDEPENDS:${PN} += " \
         ${PYTHON_PN}-pyserial \
         ${PYTHON_PN}-jsonmerge \
         ${PYTHON_PN}-intelhex \

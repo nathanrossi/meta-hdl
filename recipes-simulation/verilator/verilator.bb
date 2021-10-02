@@ -31,7 +31,7 @@ do_configure() {
     oe_runconf
 }
 
-do_install_append() {
+do_install:append() {
     # create symlinks from VERILATOR_ROOT to usr/bin
     for i in verilator verilator_bin verilator_bin_dbg verilator_coverage verilator_coverage_bin_dbg verilator_gantt verilator_profcfunc; do
         ln -s \
@@ -40,6 +40,6 @@ do_install_append() {
     done
 }
 
-SYSROOT_DIRS_NATIVE_append = " ${datadir}/verilator"
+SYSROOT_DIRS_NATIVE:append = " ${datadir}/verilator"
 
 BBCLASSEXTEND = "native nativesdk"

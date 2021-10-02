@@ -18,5 +18,5 @@ do_install() {
     install ${B}/xc7a35t.bin ${D}${datadir}/chipdb/
 }
 
-FILES_${PN} += "${datadir}/chipdb"
+FILES:${PN} += "${datadir}/chipdb"
 

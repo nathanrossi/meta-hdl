@@ -14,6 +14,6 @@ inherit setuptools3
 
 DEPENDS += "python3-cython-native"
 
-RDEPENDS_${PN} += "python3-textx"
+RDEPENDS:${PN} += "python3-textx"
 
 BBCLASSEXTEND = "native nativesdk"

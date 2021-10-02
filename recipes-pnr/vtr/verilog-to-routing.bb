@@ -24,7 +24,7 @@ DEPENDS += "fontconfig libice libsm libx11 libxcb libxext libxft"
 # for libseasygl
 DEPENDS += "cairo"
 
-do_install_append () {
+do_install:append () {
     # fix up code archives being in bindir
     install -d ${D}${libdir}
     mv ${D}${bindir}/*.a ${D}${libdir}/

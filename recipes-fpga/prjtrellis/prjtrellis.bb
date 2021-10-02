@@ -9,18 +9,18 @@ EXTRA_OECMAKE += "-DBUILD_PYTHON=yes"
 
 PACKAGES += "${PN}-openocd"
 
-FILES_${PN} += " \
+FILES:${PN} += " \
         ${libdir}/trellis \
         ${datadir}/trellis/database \
         ${datadir}/trellis/misc/basecfgs \
         ${datadir}/trellis/timing \
         ${datadir}/trellis/util \
         "
-FILES_${PN}-dev = ""
-FILES_${PN}-openocd += "${datadir}/trellis/misc/openocd"
+FILES:${PN}-dev = ""
+FILES:${PN}-openocd += "${datadir}/trellis/misc/openocd"
 
-RDEPENDS_${PN} += "prjtrellis-db python3"
+RDEPENDS:${PN} += "prjtrellis-db python3"
 
-SYSROOT_DIRS_NATIVE_append = " ${datadir}/trellis"
+SYSROOT_DIRS_NATIVE:append = " ${datadir}/trellis"
 
 BBCLASSEXTEND = "native nativesdk"

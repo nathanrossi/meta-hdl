@@ -49,7 +49,7 @@ export TINYFPGAB = "/dev/null"
 export TINYPROG = "/dev/null"
 export OPENOCD = "/dev/null"
 
-do_configure_prepend() {
+do_configure:prepend() {
     # want to be able to import them
     ln -sf icebox_asc2hlc ${STAGING_DIR_NATIVE}${bindir_native}/icebox_asc2hlc.py
     ln -sf icebox_vlog ${STAGING_DIR_NATIVE}${bindir_native}/icebox_vlog.py
@@ -78,9 +78,9 @@ do_install() {
     done
 }
 
-FILES_${PN} += "${datadir}/symbiflow-arch"
+FILES:${PN} += "${datadir}/symbiflow-arch"
 
 # populate into the sysroot (not enabled by default on -native)
-SYSROOT_DIRS_NATIVE_append = " ${datadir}/symbiflow-arch"
+SYSROOT_DIRS_NATIVE:append = " ${datadir}/symbiflow-arch"
 
 BBCLASSEXTEND = "native nativesdk"

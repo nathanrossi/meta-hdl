@@ -16,4 +16,4 @@ do_install() {
     install ${B}/chipdb/* ${D}${datadir}/chipdb/ice40
 }
 
-FILES_${PN} += "${datadir}/chipdb"
+FILES:${PN} += "${datadir}/chipdb"

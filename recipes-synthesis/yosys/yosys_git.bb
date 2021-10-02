@@ -28,18 +28,18 @@ DEPENDS = " \
 
 PACKAGE_BEFORE_PN += "${PN}-smtbmc"
 
-RDEPENDS_${PN} += "berkeley-abc bash"
-RDEPENDS_${PN}-smtbmc += "python3-core python3-resource python3-threading"
+RDEPENDS:${PN} += "berkeley-abc bash"
+RDEPENDS:${PN}-smtbmc += "python3-core python3-resource python3-threading"
 
-FILES_${PN}-smtbmc += " \
+FILES:${PN}-smtbmc += " \
 		${bindir}/yosys-smtbmc \
 		${datadir}/yosys/python3/* \
 		"
 
 # OE modifies target tcl to populate includes into subdirectory but never sets that up in .pc
-CXXFLAGS_append = " -I=${includedir}/tcl8.6"
+CXXFLAGS:append = " -I=${includedir}/tcl8.6"
 
-do_configure_append () {
+do_configure:append () {
 	# config build for GCC
 	make config-gcc
 

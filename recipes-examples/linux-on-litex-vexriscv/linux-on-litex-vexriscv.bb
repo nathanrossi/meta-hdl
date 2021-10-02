@@ -34,7 +34,7 @@ DEPENDS += "litevideo-native"
 DEPENDS += "litesdcard-native"
 
 # do not depend on libc or compiler libs, only the compiler is needed
-DEPENDS_remove = "virtual/${TARGET_PREFIX}compilerlibs virtual/libc"
+DEPENDS:remove = "virtual/${TARGET_PREFIX}compilerlibs virtual/libc"
 
 # prevent the population of the build-id section into the output
 CC += "-Wl,--build-id=none"

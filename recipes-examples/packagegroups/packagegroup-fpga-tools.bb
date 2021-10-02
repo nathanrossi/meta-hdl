@@ -8,10 +8,10 @@ python () {
     for fpga in ["ice40", "ecp5"]:
         pn = "{}-{}".format(d.getVar("PN"), fpga)
         d.appendVar("PACKAGES", " {}".format(pn))
-        d.appendVar(d.expand("RDEPENDS_${PN}"), " {}".format(pn))
-        d.setVar("RDEPENDS_{}".format(pn),
+        d.appendVar(d.expand("RDEPENDS:${PN}"), " {}".format(pn))
+        d.setVar("RDEPENDS:{}".format(pn),
             fpga_family_depends(d, family = fpga, native = False))
-        d.setVar("ALLOW_EMPTY_{}".format(pn), "1")
+        d.setVar("ALLOW_EMPTY:{}".format(pn), "1")
 }
 
 PACKAGES += " \
@@ -19,16 +19,16 @@ PACKAGES += " \
     ${PN}-simulation \
     "
 
-RDEPENDS_${PN} = " \
+RDEPENDS:${PN} = " \
     ${PN}-synthesis \
     ${PN}-simulation \
     "
 
-RDEPENDS_${PN}-synthesis = " \
+RDEPENDS:${PN}-synthesis = " \
     yosys \
     "
 
-RDEPENDS_${PN}-simulation = " \
+RDEPENDS:${PN}-simulation = " \
     icarus-verilog \
     verilator \
     "

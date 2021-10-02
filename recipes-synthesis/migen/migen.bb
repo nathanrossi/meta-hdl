@@ -13,6 +13,6 @@ S = "${WORKDIR}/git"
 
 inherit setuptools3
 
-RDEPENDS_${PN} += "python3-colorama"
+RDEPENDS:${PN} += "python3-colorama"
 
 BBCLASSEXTEND = "native nativesdk"

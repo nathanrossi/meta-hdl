@@ -29,9 +29,9 @@ do_install() {
     done
 }
 
-FILES_${PN} += "${datadir}/trellis/database"
+FILES:${PN} += "${datadir}/trellis/database"
 
 # populate the databse into the sysroot (not enabled by default on -native)
-SYSROOT_DIRS_NATIVE_append = " ${datadir}/trellis/database"
+SYSROOT_DIRS_NATIVE:append = " ${datadir}/trellis/database"
 
 BBCLASSEXTEND = "native nativesdk"

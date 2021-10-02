@@ -40,9 +40,9 @@ do_install () {
 }
 
 # populate the chipdb into the sysroot (not enabled by default on -native)
-SYSROOT_DIRS_NATIVE_append = " ${datadir}/icebox"
+SYSROOT_DIRS_NATIVE:append = " ${datadir}/icebox"
 
 # package the icebox chipdb files
-FILES_${PN} += "${datadir}/icebox"
+FILES:${PN} += "${datadir}/icebox"
 
 BBCLASSEXTEND = "native nativesdk"

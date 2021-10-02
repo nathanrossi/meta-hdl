@@ -6,11 +6,11 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 inherit kernel
 
 # disable kernel-base depending on image, other mechanisms are used to ship the kernel
-RDEPENDS_${KERNEL_PACKAGE_NAME}-base = ""
+RDEPENDS:${KERNEL_PACKAGE_NAME}-base = ""
 
 DEFAULT_PREFERENCE = "-1"
 COMPATIBLE_MACHINE = "^$"
-COMPATIBLE_MACHINE_versa-ecp5 = ".*"
+COMPATIBLE_MACHINE:versa-ecp5 = ".*"
 
 S = "${WORKDIR}/git"
 

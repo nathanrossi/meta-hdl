@@ -18,13 +18,13 @@ S = "${WORKDIR}/git"
 DEPENDS = "coreutils-native icestorm-native arachne-pnr-native"
 
 # ignore warnings introduced by GCC 9
-CXXFLAGS_append = " -Wno-pessimizing-move"
+CXXFLAGS:append = " -Wno-pessimizing-move"
 
 # export the path for icestorm chipdb
 export ICEBOX = "${STAGING_DIR_NATIVE}${datadir_native}/icebox"
 
 # set executable for use when processing chipdb
-ARACHNEPNR_class-native = "${B}/bin/arachne-pnr"
+ARACHNEPNR:class-native = "${B}/bin/arachne-pnr"
 ARACHNEPNR = "arachne-pnr"
 
 do_compile () {
@@ -50,6 +50,6 @@ do_install () {
 }
 
 # populate the chipdb into the sysroot (not enabled by default on -native)
-SYSROOT_DIRS_NATIVE_append = " ${datadir}/arachne-pnr"
+SYSROOT_DIRS_NATIVE:append = " ${datadir}/arachne-pnr"
 
 BBCLASSEXTEND = "native nativesdk"

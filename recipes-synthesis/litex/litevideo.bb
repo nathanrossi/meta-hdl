@@ -12,6 +12,6 @@ S = "${WORKDIR}/git"
 
 inherit setuptools3
 
-RDEPENDS_${PN} += "litedram"
+RDEPENDS:${PN} += "litedram"
 
 BBCLASSEXTEND = "native nativesdk"

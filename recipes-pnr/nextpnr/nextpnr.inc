@@ -22,7 +22,7 @@ python () {
         d.appendVar("EXTRA_OECMAKE", " -D" + suffix.upper() + "_CHIPDB=${RECIPE_SYSROOT}${target_datadir}/chipdb/" + suffix)
 }
 
-do_configure_prepend() {
+do_configure:prepend() {
     # force use of abseil-cpp from sysroot
     sed -i 's#add_subdirectory(3rdparty/abseil-cpp EXCLUDE_FROM_ALL)#find_package(absl REQUIRED)#g' ${S}/CMakeLists.txt
 }

@@ -14,7 +14,7 @@ PV = "10.2+git${SRCPV}"
 
 inherit autotools
 
-EXTRA_OEMAKE_append = ' HOSTCC="${BUILD_CC}" HOSTCFLAGS="${BUILD_CFLAGS}"'
+EXTRA_OEMAKE:append = ' HOSTCC="${BUILD_CC}" HOSTCFLAGS="${BUILD_CFLAGS}"'
 
 export CXXCPP = "${CPP}"
 
@@ -34,9 +34,9 @@ DEPENDS = " \
 # expects host readline during configure
 DEPENDS += "readline-native"
 
-FILES_${PN} += "${libdir}/ivl"
+FILES:${PN} += "${libdir}/ivl"
 
-do_configure_prepend () {
+do_configure:prepend () {
 	# prevent use of CFLAGS with BUILDCC
 	sed -i 's/BUILDCC.\s\+..CFLAGS/BUILDCC/' ${S}/Makefile.in
 	# make sure draw_tt uses BUILDCC
