@@ -5,11 +5,11 @@ SECTION = "devel/verilog"
 
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=5f03ad1486a2e4ce71200ce0f9721557"
 SRC_URI = "git://github.com/Z3Prover/z3;protocol=https"
-SRCREV = "0ba518b0c0337c0a33c1f9de596be7df8f7e5f63"
+SRCREV = "bfa960c2cee9ec4343d00f2e504508d757a36a1e"
 
 S = "${WORKDIR}/git"
 
-PV = "4.8.10+git${SRCPV}"
+PV = "4.8.12+git${SRCPV}"
 
 inherit cmake python3native
 

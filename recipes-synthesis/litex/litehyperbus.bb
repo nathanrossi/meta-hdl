@@ -2,11 +2,11 @@ SUMMARY = "Small footprint and configurable HyperBus core"
 HOMEPAGE = "https://github.com/litex-hub/litehyperbus"
 SECTION = "devel/hdl"
 LICENSE = "BSD-2-Clause"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=d20af18e6906a2962e7369cca2d194c0"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=24f42c68cd88bddb4037957029d69817"
 
 SRC_URI = "git://github.com/litex-hub/litehyperbus;protocol=https"
-SRCREV = "b7d57e9c63b1f213f63c05bc05bdcfb97c4ff284"
-PV = "2020.12+git${SRCPV}"
+SRCREV = "9f118e83c819a20e1348d295cc9a251cc006f8f8"
+PV = "2021.08+git${SRCPV}"
 
 S = "${WORKDIR}/git"
 

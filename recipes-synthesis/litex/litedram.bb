@@ -5,7 +5,7 @@ LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=825d77c5dc305ac32d5329b5136e62a4"
 
 SRC_URI = "git://github.com/enjoy-digital/litedram;protocol=https"
-SRCREV = "4326fe7f36699ae219dbaccc38d9176b749f6d8e"
+SRCREV = "1d5192f572c2eb97bc85eb56667e25dc88d725f1"
 PV = "0.2-dev+git${SRCPV}"
 
 S = "${WORKDIR}/git"

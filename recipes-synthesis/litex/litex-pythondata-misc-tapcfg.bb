@@ -6,7 +6,7 @@ LICENSE = "LGPL-2.1-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fabba2a3bfeb22a6483d44e9ae824d3f"
 
 SRC_URI = "git://github.com/litex-hub/pythondata-misc-tapcfg;protocol=https"
-SRCREV = "0e6809132b7a42d26fc148b2b5e54ede8d6021ab"
+SRCREV = "a345f6b52752eb51e2424125d16292d0a40e5ebc"
 PV = "2020.08+git${SRCPV}"
 
 S = "${WORKDIR}/git"

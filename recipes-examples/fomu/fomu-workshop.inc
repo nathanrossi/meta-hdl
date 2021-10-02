@@ -6,7 +6,7 @@ LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=86d3f3a95c324c9479bd8986968f4327"
 
 SRC_URI = "gitsm://github.com/im-tomu/fomu-workshop;protocol=https"
-SRCREV = "7479aefca51e0e736c9f229c78326f62cb6ae33b"
+SRCREV = "83615a1eb6c7ce9eb1ffb17ae5414f32536cc59d"
 PV = "0.1+git${SRCPV}"
 
 S = "${WORKDIR}/git"
