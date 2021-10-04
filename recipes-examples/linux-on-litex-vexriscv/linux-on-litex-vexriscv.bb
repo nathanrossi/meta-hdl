@@ -21,20 +21,25 @@ DEPENDS += "yosys-native"
 DEPENDS += "${@fpga_family_depends(d)}"
 DEPENDS += "migen-native"
 DEPENDS += "litex-native"
+DEPENDS += "meson-native"
 
 # device modules
 DEPENDS += "litex-pythondata-cpu-vexriscv-native"
 DEPENDS += "litex-pythondata-cpu-vexriscv-smp-native"
 DEPENDS += "litex-pythondata-software-compiler-rt-native"
+DEPENDS += "litex-pythondata-software-picolibc-native"
 DEPENDS += "litex-pythondata-misc-tapcfg-native"
 DEPENDS += "litex-boards-native"
 DEPENDS += "litedram-native"
 DEPENDS += "liteeth-native"
 DEPENDS += "litevideo-native"
 DEPENDS += "litesdcard-native"
+DEPENDS += "litespi-native"
 
-# do not depend on libc or compiler libs, only the compiler is needed
-DEPENDS:remove = "virtual/${TARGET_PREFIX}compilerlibs virtual/libc"
+# pass -nostdlib but not nostdinc when using the target libc for headers (picolibc)
+LITEX_CC = "-nostdlib"
+LITEX_CXX = "-nostdlib"
+LITEX_LD = "-nostdlib"
 
 # prevent the population of the build-id section into the output
 CC += "-Wl,--build-id=none"

@@ -2,6 +2,15 @@ inherit python3native
 
 PATH:prepend = "${WORKDIR}/toolchain-wrappers:"
 
+LITEX_CC ??= ""
+LITEX_CXX ??= ""
+LITEX_LD ??= ""
+
+# pass -nostd* when using baremetal
+LITEX_CC:tclibc-baremetal = "-nostdlib -nostdinc"
+LITEX_CXX:tclibc-baremetal = "-nostdlib -nostdinc"
+LITEX_LD:tclibc-baremetal = "-nostdlib"
+
 # litex does not provide a mechanism to specify the toolchain tuple
 do_create_toolchain_wrappers[dirs] += "${WORKDIR}/toolchain-wrappers"
 do_create_toolchain_wrappers[vardeps] += "BUILD_CC BUILD_CFLAGS"
@@ -27,16 +36,9 @@ python do_create_toolchain_wrappers() {
             f.write("{0} $*\n".format(d.expand(" ".join(expanded))))
         os.chmod(os.path.join(wrapped_root, mapped), 0o755)
 
-    # pass -nostd* when using baremetal
-    if d.getVar("TCLIBC") == "newlib":
-        wrap("gcc", "${CC}")
-        wrap("g++", "${CXX}")
-        wrap("ld", "${LD}")
-    else:
-        wrap("gcc", "${CC} -nostdlib -nostdinc")
-        wrap("g++", "${CXX} -nostdlib -nostdinc")
-        wrap("ld", "${LD} -nostdlib")
-
+    wrap("gcc", "${CC} ${LITEX_CC}")
+    wrap("g++", "${CXX} ${LITEX_CXX}")
+    wrap("ld", "${LD} ${LITEX_LD}")
     wrap("ar", "${AR}")
     wrap("gcc-ar", "${AR}")
     wrap("objcopy", "${OBJCOPY}")
