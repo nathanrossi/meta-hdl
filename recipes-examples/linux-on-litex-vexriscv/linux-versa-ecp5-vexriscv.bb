@@ -9,50 +9,56 @@ inherit kernel
 RDEPENDS:${KERNEL_PACKAGE_NAME}-base = ""
 
 DEFAULT_PREFERENCE = "-1"
-COMPATIBLE_MACHINE = "^$"
-COMPATIBLE_MACHINE:versa-ecp5 = ".*"
+COMPATIBLE_MACHINE = "^versa-ecp5$"
 
 S = "${WORKDIR}/git"
 
 BRANCH = "master"
-SRCREV = "0ad2c0e5fc7bd5c5a60f88be1174271410254e32"
-PV = "5.6+${SRCPV}"
+SRCREV = "9e1ff307c779ce1f0f810c7ecce3d95bbae40896"
+PV = "5.15-rc4+${SRCPV}"
 SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git;protocol=https;branch=${BRANCH}"
 
-SRC_URI += " \
-        file://0001-linux-add-liteeth-driver.patch \
-        file://0002-litex_liteeth-make-it-work-in-polling-mode.patch \
-        file://0003-litex_liteeth-fix-printk-p-ptrval-result.patch \
-        file://0004-litex_liteeth-add-missed-netif_stop_queue.patch \
-        file://0005-drivers-tty-serial-add-LiteUART-driver.patch \
-        file://0006-net-ethernet-liteeth-Fix-up-mac_addr-validity-checki.patch \
-        "
-
 kernel_do_configure() {
+    # generate allnoconfig/setup build
+    oe_runmake_call -C ${S} CC="${KERNEL_CC}" O=${B} allnoconfig
+
     echo "" > ${B}/.config
 
     # Architecture
     echo "CONFIG_ARCH_RV32I=y" >> ${B}/.config
-    echo "CONFIG_RISCV_ISA_M=y" >> ${B}/.config
-    echo "CONFIG_RISCV_ISA_A=y" >> ${B}/.config
     echo "CONFIG_RISCV_ISA_C=n" >> ${B}/.config
     echo "CONFIG_SIFIVE_PLIC=y" >> ${B}/.config
-    echo "CONFIG_FPU=n" >> ${B}/.config
+    echo "CONFIG_FPU=y" >> ${B}/.config
     echo "CONFIG_SMP=n" >> ${B}/.config
 
-    echo "CONFIG_NET=y" >> ${B}/.config
-    echo "CONFIG_INET=y" >> ${B}/.config
-    echo "CONFIG_NETDEVICES=y" >> ${B}/.config
-    # liteeth (requires patch)
-    echo "CONFIG_NET_VENDOR_LITEX=y" >> ${B}/.config
-    echo "CONFIG_LITEX_LITEETH=y" >> ${B}/.config
+    # soc configs
+    echo "CONFIG_LITEX=y" >> ${B}/.config
+    echo "CONFIG_LITEX_SOC_CONTROLLER=y" >> ${B}/.config
 
-    echo "CONFIG_SERIAL_EARLYCON_RISCV_SBI=y" >> ${B}/.config
-    # liteuart (requires patch)
+    # liteuart console
     echo "CONFIG_SERIAL_LITEUART=y" >> ${B}/.config
     echo "CONFIG_SERIAL_LITEUART_CONSOLE=y" >> ${B}/.config
 
+    # liteeth network
+    echo "CONFIG_NET=y" >> ${B}/.config
+    echo "CONFIG_NET_CORE=y" >> ${B}/.config
+    echo "CONFIG_INET=y" >> ${B}/.config
+    echo "CONFIG_NETDEVICES=y" >> ${B}/.config
+    echo "CONFIG_NET_VENDOR_LITEX=y" >> ${B}/.config
+    echo "CONFIG_LITEX_LITEETH=y" >> ${B}/.config
+
     # kernel features
+    echo "CONFIG_BINFMT_ELF=y" >> ${B}/.config
+    echo "CONFIG_BINFMT_SCRIPT=y" >> ${B}/.config
+    echo "CONFIG_BINFMT_MISC=y" >> ${B}/.config
+    echo "CONFIG_SYSVIPC=y" >> ${B}/.config
+    echo "CONFIG_POSIX_MQUEUE=y" >> ${B}/.config
+    echo "CONFIG_INOTIFY_USER=y" >> ${B}/.config
+    echo "CONFIG_NO_HZ_IDLE=y" >> ${B}/.config
+    echo "CONFIG_HIGH_RES_TIMERS=y" >> ${B}/.config
+
+    echo "CONFIG_IKCONFIG=y" >> ${B}/.config
+    echo "CONFIG_IKCONFIG_PROC=y" >> ${B}/.config
     echo "CONFIG_PRINTK_TIME=y" >> ${B}/.config
     echo "CONFIG_SECTION_MISMATCH_WARN_ONLY=y" >> ${B}/.config
 
@@ -65,7 +71,7 @@ kernel_do_configure() {
     echo "CONFIG_UNIX=y" >> ${B}/.config
     echo "CONFIG_PACKET=y" >> ${B}/.config
 
-    # update the .config with the modifications, default no config
-    yes "" | oe_runmake_call -C ${S} CC="${KERNEL_CC}" O=${B} oldconfig
+    # use merge_config to generate a allnoconfig merge with desired configs
+    ${S}/scripts/kconfig/merge_config.sh -n ${B}/.config
 }
 
