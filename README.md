@@ -16,8 +16,6 @@ firmware are populated into the `deploy/images/picosoc` directory on completion.
 
 ## [Linux on LiteX-VexRiscv](https://github.com/litex-hub/linux-on-litex-vexriscv) (Versa ECP5)
 
-This example requires the [meta-riscv](https://github.com/riscv/meta-riscv) layer.
-
 To build this target, set `MACHINE = "versa-ecp5"` in your local.conf and build
 `core-image-minimal`. The built bitstream, firmware, linux kernel, root
 filesystem and device tree are populated into the `deploy/image/versa-ecp5`
