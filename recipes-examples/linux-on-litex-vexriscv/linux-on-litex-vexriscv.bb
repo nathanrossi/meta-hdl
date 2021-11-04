@@ -21,7 +21,7 @@ DEPENDS += "yosys-native"
 DEPENDS += "${@fpga_family_depends(d)}"
 DEPENDS += "migen-native"
 DEPENDS += "litex-native"
-DEPENDS += "meson-native"
+DEPENDS += "meson-native ninja-native"
 
 # device modules
 DEPENDS += "litex-pythondata-cpu-vexriscv-native"
