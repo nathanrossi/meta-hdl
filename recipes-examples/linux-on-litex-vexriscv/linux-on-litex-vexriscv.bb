@@ -73,8 +73,8 @@ do_compile() {
 do_install[noexec] = "1"
 
 do_deploy () {
-    install -Dm 0644 ${B}/build/versa_ecp5/gateware/top.bit ${DEPLOYDIR}/top.bit
-    install -Dm 0644 ${B}/build/versa_ecp5/gateware/top.svf ${DEPLOYDIR}/top.svf
+    install -Dm 0644 ${B}/build/versa_ecp5/gateware/versa_ecp5.bit ${DEPLOYDIR}/versa_ecp5.bit
+    install -Dm 0644 ${B}/build/versa_ecp5/gateware/versa_ecp5.svf ${DEPLOYDIR}/versa_ecp5.svf
     install -Dm 0655 ${B}/images/rv32.dtb ${DEPLOYDIR}/rv32.dtb
 
     # rewrite paths in boot.json for use from deploy dir
