@@ -4,7 +4,7 @@ SECTION = "devel/hdl"
 LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=b6d6f3af72cb210e0a30683d3e6f5eda"
 
-SRC_URI = "git://github.com/enjoy-digital/litevideo;protocol=https"
+SRC_URI = "git://github.com/enjoy-digital/litevideo;protocol=https;branch=master"
 SRCREV = "41f30143075ece3fff5c33a332ed067d1837cbb3"
 PV = "0.2-dev+git${SRCPV}"
 

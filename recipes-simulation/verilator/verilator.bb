@@ -9,7 +9,7 @@ DEPENDS += "flex-native bison-native flex"
 DEPENDS += "python3-native"
 DEPENDS += "perl-native"
 
-SRC_URI = "git://github.com/verilator/verilator;protocol=https"
+SRC_URI = "git://github.com/verilator/verilator;protocol=https;branch=master"
 SRCREV = "5f597dd9fc3ee894db085bc1b43d271722e52613"
 
 PV = "4.212+git${SRCPV}"

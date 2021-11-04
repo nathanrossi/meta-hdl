@@ -5,7 +5,7 @@ SECTION = "devel/fpga"
 
 LIC_FILES_CHKSUM = "file://COPYING;md5=3bb65c4bee625d497d43f50e6dacb4e2"
 
-SRC_URI = "git://github.com/YosysHQ/arachne-pnr;protocol=https"
+SRC_URI = "git://github.com/YosysHQ/arachne-pnr;protocol=https;branch=master"
 SRCREV = "c40fb2289952f4f120cc10a5a4c82a6fb88442dc"
 
 PV = "0+git${SRCPV}"

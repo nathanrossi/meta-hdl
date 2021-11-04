@@ -5,7 +5,7 @@ LICENSE = "ISC"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=10689772e9dbbd781bf98fd78416470a"
 
 PV = "0+git${SRCPV}"
-SRC_URI = "gitsm://github.com/SymbiFlow/prjxray;protocol=https"
+SRC_URI = "gitsm://github.com/SymbiFlow/prjxray;protocol=https;branch=master"
 SRCREV = "60168e9b7e89956ce8a197f3cfdf6d4bc80926d3"
 S = "${WORKDIR}/git"
 

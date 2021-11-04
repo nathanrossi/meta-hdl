@@ -4,7 +4,7 @@ LICENSE = "MIT"
 SECTION = "devel/verilog"
 
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=8be17480d0587bf9ac39c209f6cb8c76"
-SRC_URI = "git://github.com/Boolector/btor2tools;protocol=https"
+SRC_URI = "git://github.com/Boolector/btor2tools;protocol=https;branch=master"
 SRCREV = "7772bb546e98c829f3f34e184ec756e188cd845a"
 
 S = "${WORKDIR}/git"

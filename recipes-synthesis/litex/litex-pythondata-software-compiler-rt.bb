@@ -5,7 +5,7 @@ SECTION = "devel/hdl"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/Apache-2.0;md5=89aea4e17d99a7cacdbeed46a0096b10"
 
-SRC_URI = "git://github.com/litex-hub/pythondata-software-compiler_rt;protocol=https"
+SRC_URI = "git://github.com/litex-hub/pythondata-software-compiler_rt;protocol=https;branch=master"
 SRCREV = "fcb03245613ccf3079cc833a701f13d0beaae09d"
 PV = "2020.08+git${SRCPV}"
 

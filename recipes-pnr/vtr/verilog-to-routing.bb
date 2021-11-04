@@ -6,7 +6,7 @@ SECTION = "devel/fpga"
 LIC_FILES_CHKSUM = "file://LICENSE.md;md5=633281c5b6ab9bbb4b7dcbef1aa323db"
 
 # upstream
-#SRC_URI = "git://github.com/verilog-to-routing/vtr-verilog-to-routing;protocol=https"
+#SRC_URI = "git://github.com/verilog-to-routing/vtr-verilog-to-routing;protocol=https;branch=master"
 #SRCREV = "6234d127aa8d781f9a773b2bcbf7f64afa3227f5"
 
 # symbiflow version
