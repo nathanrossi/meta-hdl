@@ -3,7 +3,7 @@ HOMEPAGE = "https://github.com/litex-hub/pythondata-software-picolibc"
 SECTION = "devel/hdl"
 
 LICENSE = "GPLv2+"
-LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0-or-later;md5=0"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0-or-later;md5=fed54355545ffd980b814dab4a3b312c"
 
 SRC_URI = "gitsm://github.com/litex-hub/pythondata-software-picolibc;protocol=https;branch=master"
 SRCREV = "e27c8a7ef8a8e75b6474823aae338efb1a2ca1a9"
