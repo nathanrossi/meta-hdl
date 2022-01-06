@@ -2,10 +2,10 @@ SUMMARY = "Small footprint and configurable Ethernet core"
 HOMEPAGE = "http://www.enjoy-digital.fr/cores.html"
 SECTION = "devel/hdl"
 LICENSE = "BSD-2-Clause"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=70ab32fd17078e7007b69f144468f821"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=d5fe6a63c47e2580771cc56883d2ed64"
 
 SRC_URI = "git://github.com/enjoy-digital/liteeth;protocol=https;branch=master"
-SRCREV = "8ecc3ca6d9476dd1a8b32b2b6bf3584cd6dcfc02"
+SRCREV = "561677634a9c0f82fc677119fe14e69b5d8af96d"
 PV = "0.2-dev+git${SRCPV}"
 
 S = "${WORKDIR}/git"
