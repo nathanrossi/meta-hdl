@@ -8,6 +8,7 @@ TARGETS = " \
     prjtrellis \
     prjxray \
     yosys \
+    sby \
     yices2 \
     z3 \
     boolector \
