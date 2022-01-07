@@ -10,6 +10,8 @@ SRC_URI = "svn://svn.code.sf.net/p/xc3sprog/code;module=trunk;protocol=https"
 SRCREV = "795"
 PV = "0.0+svnr${SRCPV}"
 
+SRC_URI += "file://f8e3be26857a6bc3590462760bb220d2fad8fb3c.patch"
+
 S = "${WORKDIR}/trunk"
 
 do_configure:prepend() {
@@ -17,6 +19,6 @@ do_configure:prepend() {
     sed -i '/^set(CMAKE_CXX_FLAGS/d' ${S}/CMakeLists.txt
 }
 
-inherit cmake
+inherit cmake pkgconfig
 
 BBCLASSEXTEND = "native nativesdk"
