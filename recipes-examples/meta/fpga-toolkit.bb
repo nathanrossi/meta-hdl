@@ -18,6 +18,8 @@ TOOLCHAIN_HOST_TASK = " \
     nativesdk-prjtrellis \
     nativesdk-prjtrellis-openocd \
     nativesdk-yosys \
+    nativesdk-yosys-smtbmc \
+    nativesdk-sby \
     nativesdk-yices2 \
     nativesdk-z3 \
     nativesdk-boolector \
