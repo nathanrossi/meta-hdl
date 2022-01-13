@@ -61,4 +61,7 @@ do_install() {
 	oe_runmake PREFIX="${prefix}" PRETTY=0 DESTDIR="${D}" STRIP="echo" install
 }
 
+# the yosys-config script is used to build plugins/etc.
+SYSROOT_DIRS += "${bindir}"
+
 BBCLASSEXTEND = "native nativesdk"

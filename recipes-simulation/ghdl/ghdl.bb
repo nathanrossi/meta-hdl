@@ -12,28 +12,21 @@ PV = "1.0.0+git${SRCPV}"
 
 DEPENDS = "zlib"
 
+# use the pre-built mcode objects from the native build
+DEPENDS += "ghdl-native"
+
 CONFIGUREOPTS = "--prefix=${prefix} --srcdir=${S} --enable-libghdl --enable-synth --default-pic"
 
 B = "${WORKDIR}/build"
 
 CFLAGS:append = " -fno-strict-aliasing -fPIC"
 
-GNATBIND = "gnatbind"
-GNATLINK = "gnatlink --GCC=\"${CC} ${CFLAGS}\""
-GNATMAKE = "gnatmake ${CFLAGS} ${LDFLAGS} --GCC=${CC} --GNATBIND=\"${GNATBIND}\" --GNATLINK=\"gnatlink-wrapped\""
+inherit gnat
 
 EXTRA_OEMAKE += 'CC="${CC} ${CFLAGS}"'
-EXTRA_OEMAKE += 'GNATMAKE="gnatmake-wrapped"'
+EXTRA_OEMAKE += 'GNATMAKE='${GNATMAKE}''
 
 do_configure() {
-    # Create wrapper scripts for gnatmake/gnatlink in order to pass various
-    # toolchain options. This is required because gnatmake does not correctly
-    # pass --GNATLINK options (e.g. --GCC) to gnatlink.
-    echo "#!/bin/sh\n${HOSTTOOLS_DIR}/${GNATMAKE} \$*" > ${STAGING_BINDIR_NATIVE}/gnatmake-wrapped
-    chmod +x ${STAGING_BINDIR_NATIVE}/gnatmake-wrapped
-    echo "#!/bin/sh\n${HOSTTOOLS_DIR}/${GNATLINK} \$*" > ${STAGING_BINDIR_NATIVE}/gnatlink-wrapped
-    chmod +x ${STAGING_BINDIR_NATIVE}/gnatlink-wrapped
-
     ${S}/configure ${CONFIGUREOPTS}
 }
 
@@ -43,6 +36,18 @@ do_configure:append:class-native() {
 }
 
 do_compile() {
+    if ${@"false" if bb.data.inherits_class("native", d) else "true"}; then
+        # copy pre-built mcode objects/source from native build
+        mkdir -p ${B}/lib/ghdl/
+        cp -r ${RECIPE_SYSROOT_NATIVE}${libdir_native}/ghdl/src ${B}/lib/ghdl/
+        cp -r ${RECIPE_SYSROOT_NATIVE}${libdir_native}/ghdl/std ${B}/lib/ghdl/
+        cp -r ${RECIPE_SYSROOT_NATIVE}${libdir_native}/ghdl/ieee ${B}/lib/ghdl/
+        # prevent rebuilds based on target ghdl_mocde
+        sed -i '/ANALYZE_DEP=/d' ${S}/libraries/Makefile.inc
+        # prevent rebuilding of standard.vhdl files
+        sed -i '/--disp-standard/d' ${S}/Makefile.in
+    fi
+
     oe_runmake
 }
 
@@ -50,9 +55,19 @@ do_install() {
     oe_runmake install DESTDIR=${D}
 }
 
-python() {
-    if not bb.data.inherits_class("native", d):
-        raise bb.parse.SkipRecipe("Cross-compilation support for Ada missing")
+do_install:append:class-nativesdk () {
+    mkdir -p ${D}${SDKPATHNATIVE}/environment-setup.d
+    # setup GHDL_PREFIX for library path
+    echo "export GHDL_PREFIX=\"\$OECORE_NATIVE_SYSROOT${libdir_nativesdk}/ghdl\"" > ${WORKDIR}/ghdl.sh
+    install -m 644 ${WORKDIR}/ghdl.sh ${D}${SDKPATHNATIVE}/environment-setup.d/ghdl.sh
 }
 
+FILES:${PN} += "${libdir}/lib*.so"
+FILES:${PN}:append:class-nativesdk = " ${SDKPATHNATIVE}/environment-setup.d/ghdl.sh"
+FILES:${PN}-dev:remove = "${libdir}/lib*.so"
+FILES:${PN}-dev += "${libdir}/libghdl.link"
+
 BBCLASSEXTEND = "native nativesdk"
+
+# mcode backend is only supported on x86
+COMPATIBLE_HOST = "(i.86|x86_64).*-linux"
