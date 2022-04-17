@@ -22,6 +22,13 @@ EXTRA_OEMAKE += "CC="${CC}""
 EXTRA_OEMAKE += "CXX="${CXX}""
 EXTRA_OEMAKE += "OBJCOPY="${OBJCOPY}""
 
+do_configure () {
+    # HACK: remove the march provided by the Makefile and use CC, this prevents
+    # having an incorrect march (e.g. because the Makefile does not define
+    # 'zicsr')
+    sed -i 's/-march=rv32i //g' ${S}/ports/fomu/Makefile
+}
+
 do_compile () {
     oe_runmake BUILD=${B} -C ${S}/ports/fomu
 
