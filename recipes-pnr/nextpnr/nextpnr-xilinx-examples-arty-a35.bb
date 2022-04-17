@@ -8,6 +8,7 @@ inherit python3native
 
 DEPENDS += "yosys-native"
 DEPENDS += "${@fpga_family_depends(d, family = 'artix7')}"
+DEPENDS += "python3-xc-fasm-native"
 
 XRAY_DATABASE_DIR = "${STAGING_DIR_NATIVE}${datadir_native}/xray/database"
 CHIPDB_DIR = "${STAGING_DATADIR}/chipdb"
@@ -19,8 +20,6 @@ do_configure[noexec] = "1"
 do_install[noexec] = "1"
 
 do_compile() {
-    # copied from attosoc.sh in xilinx/examples/arty-a35/attosoc.sh
-
     # cd into source for readmem of firmware.hex
     (cd ${ATTOSOC};
         yosys -p "synth_xilinx -flatten -nowidelut -abc9 -arch xc7 -top top; write_json ${B}/attosoc.json" \
@@ -32,15 +31,13 @@ do_compile() {
         --write ${B}/attosoc_routed.json \
         --fasm ${B}/attosoc.fasm
 
-    echo "fasm2frames"
-    fasm2frames --db-root "${XRAY_DATABASE_DIR}/artix7" \
+    echo "xcfasm"
+    xcfasm \
+        --db-root "${XRAY_DATABASE_DIR}/artix7" \
         --part xc7a35tcsg324-1 \
-        ${B}/attosoc.fasm > ${B}/attosoc.frames
-    echo "xc7frames2bit"
-    xc7frames2bit \
         --part_file "${XRAY_DATABASE_DIR}/artix7/xc7a35tcsg324-1/part.yaml" \
-        --part_name xc7a35tcsg324-1 \
-        --frm_file ${B}/attosoc.frames \
-        --output_file ${B}/attosoc.bit
+        --fn_in ${B}/attosoc.fasm \
+        --frm_out ${B}/attosoc.frames \
+        --bit_out ${B}/attosoc.bit
 }
 
