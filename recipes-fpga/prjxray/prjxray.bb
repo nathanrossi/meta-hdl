@@ -25,17 +25,17 @@ do_configure() {
     sed -i 's#^add_compile_options.*#add_compile_options(-Wall)#g' ${S}/CMakeLists.txt
 
     cmake_do_configure
-    distutils3_do_configure
+    setuptools3_do_configure
 }
 
 do_compile() {
     cmake_do_compile
-    distutils3_do_compile
+    setuptools3_do_compile
 }
 
 do_install() {
     cmake_do_install
-    distutils3_do_install
+    setuptools3_do_install
 }
 
 BBCLASSEXTEND = "native nativesdk"
