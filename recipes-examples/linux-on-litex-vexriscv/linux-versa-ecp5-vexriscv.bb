@@ -14,8 +14,8 @@ COMPATIBLE_MACHINE = "^versa-ecp5$"
 S = "${WORKDIR}/git"
 
 BRANCH = "master"
-SRCREV = "9e1ff307c779ce1f0f810c7ecce3d95bbae40896"
-PV = "5.15-rc4+${SRCPV}"
+SRCREV = "f443e374ae131c168a065ea1748feac6b2e76613"
+PV = "5.17+${SRCPV}"
 SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git;protocol=https;branch=${BRANCH}"
 
 kernel_do_configure() {

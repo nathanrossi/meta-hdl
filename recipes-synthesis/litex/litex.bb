@@ -23,11 +23,9 @@ do_configure:prepend() {
 
     # HACK: fix handling of meson cpu_family for riscv32
     sed -i "s/\\(cpu_family\\s*=\\s*\\)'.*'/\\1'\$(subst riscv,riscv32,\$(CPUFAMILY))'/g" ${S}/litex/soc/software/libc/Makefile
-}
 
-do_install:append() {
-    # some scripts in litex exist but are unused
-    installpath=${D}${PYTHON_SITEPACKAGES_DIR}/litex
+    # HACK: handle gcc 11+ with zicsr separation
+    sed -i 's/\(-march=[^ ]*\)_?/\1_zicsr_zifencei/g' ${S}/litex/soc/cores/cpu/vexriscv_smp/core.py
 }
 
 BBCLASSEXTEND = "native nativesdk"

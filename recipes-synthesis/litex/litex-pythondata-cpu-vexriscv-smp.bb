@@ -18,7 +18,7 @@ VEXRISCV_SMP_DATA = "${PYTHON_SITEPACKAGES_DIR}/pythondata_cpu_vexriscv_smp/veri
 do_install:append() {
     # HACK: copy the desired pre-built verilog for the vexriscv cluster
     # litex - c06bd2c77d023aab739f056d31fecef0a53de283 adds "ITs4DTs4" for dtlb/itlb sizes
-    for i in Ood_Wm Ldw256_Ood Ldw32_Ood; do
+    for i in Ood_Wm Ldw128_Ood Ldw256_Ood Ldw32_Ood; do
         sed "s/VexRiscvLitexSmpCluster_Cc1_Iw32Is4096Iy1_Dw32Ds4096Dy1_$i/VexRiscvLitexSmpCluster_Cc1_Iw32Is4096Iy1_Dw32Ds4096Dy1_ITs4DTs4_$i/g" \
             ${D}${VEXRISCV_SMP_DATA}/VexRiscvLitexSmpCluster_Cc1_Iw32Is4096Iy1_Dw32Ds4096Dy1_$i.v \
             > ${D}${VEXRISCV_SMP_DATA}/VexRiscvLitexSmpCluster_Cc1_Iw32Is4096Iy1_Dw32Ds4096Dy1_ITs4DTs4_$i.v
