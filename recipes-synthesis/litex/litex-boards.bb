@@ -2,10 +2,10 @@ SUMMARY = "LiteX boards files"
 HOMEPAGE = "https://github.com/litex-hub/litex-boards"
 SECTION = "devel/hdl"
 LICENSE = "BSD-2-Clause"
-LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/BSD-2-Clause;md5=cb641bc04cda31daea161b1bc15da69f"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=44c881049d568ad42c4c81ed51fa6515"
 
 SRC_URI = "git://github.com/litex-hub/litex-boards;protocol=https;branch=master"
-SRCREV = "2c6ce12154884e60a7e13c110b7b5af1aa04a2b4"
+SRCREV = "5aab6f01b6d2044cb698e936bff11491f0d52584"
 PV = "0+git${SRCPV}"
 
 S = "${WORKDIR}/git"

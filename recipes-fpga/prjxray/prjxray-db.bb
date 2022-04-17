@@ -1,11 +1,11 @@
 DESCRIPTION = "Project X-Ray database"
-HOMEPAGE = "https://github.com/SymbiFlow/prjxray-db"
+HOMEPAGE = "https://github.com/f4pga/prjxray-db"
 LICENSE = "CC0-1.0"
 SECTION = "devel/fpga"
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=65d3616852dbf7b1a6d4b53b00626032"
 
-SRC_URI = "git://github.com/SymbiFlow/prjxray-db;protocol=https;branch=master"
+SRC_URI = "git://github.com/f4pga/prjxray-db;protocol=https;branch=master"
 SRCREV = "0a0addedd73e7e4139d52a6d8db4258763e0f1f3"
 
 S = "${WORKDIR}/git"

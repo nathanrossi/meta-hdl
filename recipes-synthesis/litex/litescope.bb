@@ -5,7 +5,7 @@ LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=c779474112984b3fbcfaba3dc8f3f3b4"
 
 SRC_URI = "git://github.com/enjoy-digital/litescope;protocol=https;branch=master"
-SRCREV = "42a357714bc18013e4db782fceda10240b9e35f0"
+SRCREV = "d1c480d0e8c1e6188cccab4a0621c714376d591c"
 PV = "0.2-dev+git${SRCPV}"
 
 S = "${WORKDIR}/git"

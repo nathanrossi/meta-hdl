@@ -1,13 +1,13 @@
 SUMMARY = "Experiments with Linux on LiteX-VexRiscv"
-HOMEPAGE = "https://github.com/enjoy-digital/linux-on-litex-vexriscv"
+HOMEPAGE = "https://github.com/litex-hub/linux-on-litex-vexriscv"
 SECTION = "devel/hdl"
 
 # there is no license on the repo
 LICENSE = "BSD-2-Clause"
-LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/BSD-2-Clause;md5=cb641bc04cda31daea161b1bc15da69f"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=1dbd6d84e1c93eda0bd79ca770c20a31"
 
 SRC_URI = "git://github.com/litex-hub/linux-on-litex-vexriscv;protocol=https;branch=master"
-SRCREV = "87296010bf3e7739f36f9de67dbf9e2564890e06"
+SRCREV = "708b0cbf315ff2990a00beba314f236af3b9431a"
 PV = "0+git${SRCPV}"
 
 S = "${WORKDIR}/git"

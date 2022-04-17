@@ -1,12 +1,12 @@
 DESCRIPTION = "Project IceStorm aims at reverse engineering, documenting and tools for Lattice iCE40 FPGAs"
-HOMEPAGE = "http://www.clifford.at/icestorm/"
+HOMEPAGE = "https://github.com/YosysHQ/icestorm"
 LICENSE = "ISC"
 SECTION = "devel/fpga"
 
 LIC_FILES_CHKSUM = "file://README;beginline=8;endline=18;md5=8104f3444ed967701dafaeab14d572b9"
 
-SRC_URI = "git://github.com/cliffordwolf/icestorm;protocol=https;branch=master"
-SRCREV = "3b7b1991318860997ef589112b3debb24eb4912d"
+SRC_URI = "git://github.com/YosysHQ/icestorm;protocol=https;branch=master"
+SRCREV = "9f66f9ce16941c6417813cb87653c735a78b53ae"
 
 SRC_URI += "file://0001-icebox-Makefile-Escape-PREFIX-in-sed-expression.patch"
 

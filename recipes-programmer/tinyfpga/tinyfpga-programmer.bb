@@ -1,6 +1,6 @@
 SUMMARY = "An open source USB bootloader for FPGAs"
 HOMEPAGE = "https://github.com/tinyfpga/TinyFPGA-Bootloader"
-LICENSE = "GPLv3"
+LICENSE = "Apache-2.0"
 
 SRC_URI = "git://github.com/tinyfpga/TinyFPGA-Bootloader;protocol=https;branch=master"
 SRCREV = "97f6353540bf7c0d27f5612f202b48f41da75299"

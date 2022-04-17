@@ -1,6 +1,6 @@
 DESCRIPTION = "Yices 2 is a solver for Satisfiability Modulo Theories (SMT) problems."
 HOMEPAGE = "https://yices.csl.sri.com/"
-LICENSE = "GPLv3"
+LICENSE = "GPL-3.0-or-later"
 SECTION = "devel/verilog"
 
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=d32239bcb673463ab874e80d47fae504"

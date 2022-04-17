@@ -1,12 +1,12 @@
 DESCRIPTION = "Documenting the Xilinx 7-series bit-stream format."
-HOMEPAGE = "https://github.com/SymbiFlow/prjxray"
+HOMEPAGE = "https://github.com/f4pga/prjxray"
 SECTION = "devel/fpga"
 LICENSE = "ISC"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=10689772e9dbbd781bf98fd78416470a"
 
 PV = "0+git${SRCPV}"
-SRC_URI = "gitsm://github.com/SymbiFlow/prjxray;protocol=https;branch=master"
-SRCREV = "5349556bc2c230801d6df0cf11bccb9cfd171639"
+SRC_URI = "gitsm://github.com/f4pga/prjxray;protocol=https;branch=master"
+SRCREV = "0d34e7283fc560aecfb329370e9a3317a4618322"
 S = "${WORKDIR}/git"
 
 inherit python3native

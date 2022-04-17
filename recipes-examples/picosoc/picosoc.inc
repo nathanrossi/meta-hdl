@@ -1,11 +1,11 @@
 DESCRIPTION = "PicoSoC - A simple example SoC using PicoRV32"
-HOMEPAGE = "https://github.com/cliffordwolf/picorv32/tree/master/picosoc"
+HOMEPAGE = "https://github.com/YosysHQ/picorv32/tree/master/picosoc"
 LICENSE = "ISC"
 SECTION = "bsp"
 
-LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/ISC;md5=f3b90e78ea0cffb20bf5cca7947a896d"
+LIC_FILES_CHKSUM = "file://../COPYING;md5=9feb72939be4c181179f60e0604ae1a5"
 
-SRC_URI = "git://github.com/cliffordwolf/picorv32;protocol=https;branch=master"
+SRC_URI = "git://github.com/YosysHQ/picorv32;protocol=https;branch=master"
 SRCREV = "f00a88c36eaab478b64ee27d8162e421049bcc66"
 
 inherit deploy fpga

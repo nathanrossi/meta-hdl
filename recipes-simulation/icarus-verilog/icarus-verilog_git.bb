@@ -1,12 +1,12 @@
 DESCRIPTION = "Icarus Verilog is a Verilog simulaton and synthesis tool"
 HOMEPAGE = "http://iverilog.icarus.com/"
-LICENSE = "GPLv2"
+LICENSE = "GPL-2.0-or-later"
 SECTION = "devel/verilog"
 
 LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 SRC_URI = "git://github.com/steveicarus/iverilog.git;protocol=https;branch=master"
-SRCREV = "b86d7c8284f3f4040409ac9486b4050693bbe23d"
+SRCREV = "72b0498af473f06d6cfaafa30659e7ff87d1d5a9"
 
 S = "${WORKDIR}/git"
 

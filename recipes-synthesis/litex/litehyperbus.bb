@@ -5,7 +5,7 @@ LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=e40877df301ec6de075d51f4b7571d62"
 
 SRC_URI = "git://github.com/litex-hub/litehyperbus;protocol=https;branch=master"
-SRCREV = "a950fa768d255869a36d8c91d7bd4dbd3c47a9b2"
+SRCREV = "1cde460f24e06e30be7ac1cd361bb2d263528253"
 PV = "2021.12+git${SRCPV}"
 
 S = "${WORKDIR}/git"

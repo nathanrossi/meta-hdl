@@ -2,10 +2,10 @@ SUMMARY = "Small footprint and configurable SPI core "
 HOMEPAGE = "https://github.com/litex-hub/litespi"
 SECTION = "devel/hdl"
 LICENSE = "BSD-2-Clause"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=b80bf324f960f268abbe81194cc61789"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=99cb24c95072af16a66df894e8b495b9"
 
 SRC_URI = "git://github.com/litex-hub/litespi;protocol=https;branch=master"
-SRCREV = "4a8e149af40c15b5dd11fceda4e85b7b6cef907a"
+SRCREV = "7d32810ee05eb96e5cf4152483a3e1e501f9113c"
 PV = "2021.12+git${SRCPV}"
 
 S = "${WORKDIR}/git"

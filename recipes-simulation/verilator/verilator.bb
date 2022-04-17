@@ -1,6 +1,6 @@
 DESCRIPTION = "Verilator open-source SystemVerilog simulator and lint system"
 HOMEPAGE = "https://www.veripool.org/wiki/verilator"
-LICENSE = "GPLv3"
+LICENSE = "LGPL-3.0-only"
 SECTION = "devel/verilog"
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3000208d539ec061b899bce1d9ce9404"
@@ -10,9 +10,9 @@ DEPENDS += "python3-native"
 DEPENDS += "perl-native"
 
 SRC_URI = "git://github.com/verilator/verilator;protocol=https;branch=master"
-SRCREV = "41a563bdc8e219c0fffdfcf1e989a3d30344b73f"
+SRCREV = "7bfc1a00a723cd91d8d52c146b5e7b45844a2ed6"
 
-PV = "4.216+git${SRCPV}"
+PV = "4.220+git${SRCPV}"
 
 S = "${WORKDIR}/git"
 

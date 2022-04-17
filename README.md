@@ -8,7 +8,7 @@ Only projects released under open source licenses are contained in this layer.
 
 # Examples
 
-## [PicoSoC](https://github.com/cliffordwolf/picorv32/tree/master/picosoc)
+## [PicoSoC](https://github.com/YosysHQ/picorv32/tree/master/picosoc)
 
 To build this target, set `MACHINE = "picosoc"` in your local.conf and build the
 `picosoc-hx8k` recipe with `bitbake picosoc-hx8k`. The built bitstream and

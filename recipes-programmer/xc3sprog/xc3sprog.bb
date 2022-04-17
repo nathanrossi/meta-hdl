@@ -1,7 +1,7 @@
 SUMMARY = "xc3sprog is a suite of utilities for programming Xilinx FPGAs, CPLDs, and EEPROMs"
 HOMEPAGE = "http://xc3sprog.sourceforge.net/"
 SECTION = "devel/fpga"
-LICENSE = "GPLv2+"
+LICENSE = "GPL-2.0-or-later"
 LIC_FILES_CHKSUM = "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
 
 DEPENDS += "libftdi libusb-compat"
