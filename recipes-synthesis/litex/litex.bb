@@ -25,7 +25,7 @@ do_configure:prepend() {
     sed -i "s/\\(cpu_family\\s*=\\s*\\)'.*'/\\1'\$(subst riscv,riscv32,\$(CPUFAMILY))'/g" ${S}/litex/soc/software/libc/Makefile
 
     # HACK: handle gcc 11+ with zicsr separation
-    sed -i 's/\(-march=[^ ]*\)_?/\1_zicsr_zifencei/g' ${S}/litex/soc/cores/cpu/vexriscv_smp/core.py
+    sed -i 's/\(-march={[^ ]*}\)/\1_zicsr_zifencei/g' ${S}/litex/soc/cores/cpu/vexriscv_smp/core.py
 }
 
 BBCLASSEXTEND = "native nativesdk"
