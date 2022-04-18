@@ -20,6 +20,7 @@ do_create_toolchain_wrappers[vardeps] += "CC CFLAGS"
 do_create_toolchain_wrappers[vardeps] += "CXX CXXFLAGS"
 do_create_toolchain_wrappers[vardeps] += "LD LDFLAGS"
 do_create_toolchain_wrappers[vardeps] += "AR OBJCOPY OBJDUMP"
+do_create_toolchain_wrappers[vardeps] += "LITEX_CC LITEX_CXX LITEX_LD"
 python do_create_toolchain_wrappers() {
     wrapped_root = d.expand("${WORKDIR}/toolchain-wrappers")
     search_path = ":".join(d for d in d.getVar("PATH").split(":") if d != wrapped_root)

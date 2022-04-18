@@ -13,8 +13,13 @@ PV = "0+git${SRCPV}"
 S = "${WORKDIR}/git"
 
 inherit deploy
+inherit python3native
 inherit litexnative
 inherit fpga
+
+# inhibit default deps, to exclude libc
+INHIBIT_DEFAULT_DEPS = "1"
+DEPENDS += "virtual/${HOST_PREFIX}gcc"
 
 DEPENDS += "dtc-native"
 DEPENDS += "yosys-native"
@@ -36,10 +41,9 @@ DEPENDS += "litevideo-native"
 DEPENDS += "litesdcard-native"
 DEPENDS += "litespi-native"
 
-# pass -nostdlib but not nostdinc when using the target libc for headers (picolibc)
-LITEX_CC = "-nostdlib"
-LITEX_CXX = "-nostdlib"
-LITEX_LD = "-nostdlib"
+# disable any security flags set by security_flags.inc (e.g. poky distro)
+SECURITY_CFLAGS = "${SECURITY_NOPIE_CFLAGS}"
+SECURITY_LDFLAGS = ""
 
 # prevent the population of the build-id section into the output
 CC += "-Wl,--build-id=none"
