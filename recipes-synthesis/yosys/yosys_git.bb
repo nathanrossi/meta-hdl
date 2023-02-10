@@ -6,11 +6,11 @@ SECTION = "devel/verilog"
 LIC_FILES_CHKSUM = "file://COPYING;md5=d1b1d1933fedc05c99106d80dd51dd02"
 
 SRC_URI = "git://github.com/YosysHQ/yosys;protocol=https;branch=master"
-SRCREV = "36b5caf8217d4ca57b2c53cd76da5f1ace74a20f"
+SRCREV = "7e588664e7efa36ff473f0497feacaad57f5e90c"
 
 S = "${WORKDIR}/git"
 
-PV = "0.16+git${SRCPV}"
+PV = "0.26+git${SRCPV}"
 
 inherit pkgconfig
 
