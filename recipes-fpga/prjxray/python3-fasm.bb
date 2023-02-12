@@ -6,7 +6,7 @@ SECTION = "devel/fpga"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
 
 SRC_URI = "git://github.com/chipsalliance/fasm;protocol=https;branch=master"
-SRCREV = "ca7df28b8e23061f139362392ee5414ac7a72328"
+SRCREV = "ffafe821bae68637fe46e36bcfd2a01b97cdf6f2"
 
 S = "${WORKDIR}/git"
 

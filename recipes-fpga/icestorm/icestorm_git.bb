@@ -6,7 +6,7 @@ SECTION = "devel/fpga"
 LIC_FILES_CHKSUM = "file://README;beginline=8;endline=18;md5=8104f3444ed967701dafaeab14d572b9"
 
 SRC_URI = "git://github.com/YosysHQ/icestorm;protocol=https;branch=master"
-SRCREV = "9f66f9ce16941c6417813cb87653c735a78b53ae"
+SRCREV = "8649e3e0bd0e09429898d2569ef65cc9fd3eafd7"
 
 SRC_URI += "file://0001-icebox-Makefile-Escape-PREFIX-in-sed-expression.patch"
 

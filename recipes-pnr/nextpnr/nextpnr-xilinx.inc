@@ -6,7 +6,7 @@ SECTION = "devel/fpga"
 LIC_FILES_CHKSUM = "file://COPYING;;md5=d6e454a24247f9ba6d2c656f97de17e9"
 
 SRC_URI = "gitsm://github.com/gatecat/nextpnr-xilinx;protocol=https;branch=xilinx-upstream"
-SRCREV = "565588a69ea95a52f7c7592f4ed81d9bef6cfb60"
+SRCREV = "634f1b5e86e233428c97f3153031415af4284c33"
 PV = "0+git${SRCPV}"
 
 S = "${WORKDIR}/git"

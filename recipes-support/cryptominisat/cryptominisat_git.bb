@@ -5,11 +5,11 @@ SECTION = "devel/verilog"
 
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=cc245d1844e36accfee431a45bb42d73"
 SRC_URI = "git://github.com/msoos/cryptominisat;protocol=https;branch=master"
-SRCREV = "bf1ae34d53512eea4dfc35b9376d8fdb48c47612"
+SRCREV = "48c8cc054e6b2b652723d80fb9a63f3ae88d3348"
 
 S = "${WORKDIR}/git"
 
-PV = "5.8.0+git${SRCPV}"
+PV = "5.11.4+git${SRCPV}"
 
 inherit cmake python3native
 
