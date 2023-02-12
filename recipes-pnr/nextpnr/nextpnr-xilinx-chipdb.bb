@@ -10,6 +10,7 @@ do_compile() {
     # "xc7a35t" device in prjxray, create a symlink so these tools can find
     # file the correct files.
     ln -sf xc7a35tcsg324-1 ${S}/xilinx/external/prjxray-db/artix7/xc7a35t
+    ln -sf xc7a50tfgg484-1 ${S}/xilinx/external/prjxray-db/artix7/xc7a50t
 
     mkdir -p ${B}
     echo "Generating xc7a35t.bba"
