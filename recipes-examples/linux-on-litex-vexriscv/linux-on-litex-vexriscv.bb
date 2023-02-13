@@ -91,6 +91,8 @@ do_sim_setup[depends] += "json-c-native:do_populate_sysroot"
 do_sim_setup[depends] += "virtual/kernel:do_deploy"
 do_sim_setup[depends] += "core-image-minimal:do_image_complete"
 do_sim_setup[depends] += "opensbi:do_populate_sysroot"
+# NOTE: whilst not used, libsdl2 is included and linked despite video being disabled
+do_sim_setup[depends] += "libsdl2-native:do_populate_sysroot"
 python do_sim_setup() {
     oe.path.symlink(d.expand("${DEPLOY_DIR_IMAGE}/Image"), d.expand("${S}/images/Image"), force = True)
     oe.path.symlink(d.expand("${DEPLOY_DIR_IMAGE}/core-image-minimal-${MACHINE}.cpio"), d.expand("${S}/images/rootfs.cpio"), force = True)
