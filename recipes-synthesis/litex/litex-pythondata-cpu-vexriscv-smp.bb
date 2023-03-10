@@ -6,7 +6,7 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
 SRC_URI = "git://github.com/litex-hub/pythondata-cpu-vexriscv_smp;protocol=https;branch=master"
-SRCREV = "e8ce95bbff2742226e838a37a88e4153bd04178a"
+SRCREV = "98d6db6d44e0b543715ac3af4fb6fa415284fb24"
 PV = "2022.12+git${SRCPV}"
 
 S = "${WORKDIR}/git"
