@@ -1,0 +1,6 @@
+require litepcie.inc
+
+LIC_FILES_CHKSUM = "file://LICENSE;md5=26002bebf4fb75e22401233046399ea1"
+
+SRCREV = "bdd89f4239f0c465e9e37b0dae34e755359b1937"
+PV = "2022.12+git${SRCPV}"

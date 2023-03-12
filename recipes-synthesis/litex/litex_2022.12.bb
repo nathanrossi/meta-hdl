@@ -1,11 +1,9 @@
 require litex.inc
 
-DEFAULT_PREFERENCE = "-1"
-
 LIC_FILES_CHKSUM = "file://LICENSE;md5=0ce55a94e98cbec2110586bb5264bd9a"
 
-SRCREV = "44db314ddd1c5627529b0cff67e79881f9b54247"
-PV = "2022.12+master+git${SRCPV}"
+SRCREV = "3dee741bac7a58e664cc34d7af2fe4024977d96c"
+PV = "2022.12+git${SRCPV}"
 
 do_configure:prepend() {
     # remove use of "-nodefaultlibs", binutils-ld does not accept this arg

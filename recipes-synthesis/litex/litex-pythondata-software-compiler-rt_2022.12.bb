@@ -1,7 +1,6 @@
 SUMMARY = "LiteX - compiler_rt software"
 HOMEPAGE = "https://github.com/litex-hub/pythondata-software-compiler_rt"
 SECTION = "devel/hdl"
-
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=0f9cda00f501b4995fb04b5a5d896060"
 
