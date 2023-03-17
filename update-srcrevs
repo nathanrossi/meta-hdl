@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import os
-import sys
 import re
 import subprocess
 
@@ -14,6 +13,12 @@ def find_recipes(root):
 			if os.path.splitext(f)[1] in [".bb", ".inc"]:
 				yield os.path.join(path, f)
 
+def recipe_file_version(path):
+	filename = os.path.basename(path).split(".")[0]
+	if "_" not in filename:
+		return None
+	return filename.split("_")[1]
+
 def recipe_replace_variable(path, variable, value):
 	with open(path, "r") as f:
 		content = f.read()
@@ -22,6 +27,9 @@ def recipe_replace_variable(path, variable, value):
 		f.write(newcontent)
 
 def recipe_gitinfo(path):
+	if not os.path.exists(path):
+		return None, None, None
+
 	with open(path, "r") as f:
 		content = f.read()
 		srcuri, srcrev, srcbranch = None, None, None
@@ -36,6 +44,17 @@ def recipe_gitinfo(path):
 					srcbranch = None
 				elif "branch=" in p:
 					srcbranch = p.split("=")[1]
+
+		if srcuri is None:
+			# check includes for src uri
+			for i in re.finditer(r"^require\s+?([^\s]+?)$", content, re.MULTILINE):
+				relpath = i.group(1)
+				abspath = os.path.join(os.path.dirname(path), relpath)
+				isrcuri, _, isrcbranch = recipe_gitinfo(abspath)
+				if isrcuri is not None:
+					srcuri = isrcuri
+					srcbranch = isrcbranch
+					break
 
 		m = re.search("^SRCREV\\s*=\\s*\"(.*?)\"", content, re.MULTILINE)
 		if m:
@@ -69,8 +88,11 @@ def remote_version_tags(refs):
 
 layerroot = os.path.abspath(os.path.dirname(__file__))
 for path in find_recipes(layerroot):
+	recipepath = os.path.relpath(path, layerroot)
+	fileversion = recipe_file_version(path)
 	remote, current, currentref = recipe_gitinfo(path)
 	pvversion, _, pvsuffix = recipe_pvinfo(path)
+
 	if remote is not None and current is not None and current != "${AUTOREV}":
 		refs = list(remote_refs(remote))
 
@@ -80,8 +102,12 @@ for path in find_recipes(layerroot):
 			if version is not None:
 				if pvversion is not None and pvversion != version[3]:
 					newvalue = version[3] + "+" + pvsuffix
-					print(path, "updated version to ->", newvalue, "(from {})".format(pvversion))
+					print(recipepath, "updated version to ->", newvalue, "(from {})".format(pvversion))
 					# recipe_replace_variable(path, "PV", newvalue)
+
+		# do not update to the current refer for versioned recipes
+		if fileversion is not None and fileversion not in ["git", "litex"]:
+			continue
 
 		for i, ref in refs:
 			if currentref is not None and ref != "refs/heads/{0}".format(currentref):
@@ -90,7 +116,7 @@ for path in find_recipes(layerroot):
 				continue
 
 			if current != i:
-				print(path, "updated to ->", i)
+				print(recipepath, "updated to ->", i)
 				recipe_replace_variable(path, "SRCREV", i)
 			break
 
