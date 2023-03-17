@@ -1,6 +1,6 @@
 require prjtrellis.inc
 
-inherit cmake python3native
+inherit cmake python3native python3targetconfig
 
 DEPENDS += "boost"
 
