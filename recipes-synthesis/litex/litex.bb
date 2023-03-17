@@ -4,7 +4,7 @@ DEFAULT_PREFERENCE = "-1"
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=0ce55a94e98cbec2110586bb5264bd9a"
 
-SRCREV = "44db314ddd1c5627529b0cff67e79881f9b54247"
+SRCREV = "cbf4db076e2fb74b5674669c850328209a32c676"
 PV = "2022.12+master+git${SRCPV}"
 
 do_configure:prepend() {

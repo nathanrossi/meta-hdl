@@ -6,11 +6,11 @@ SECTION = "devel/verilog"
 LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 SRC_URI = "git://github.com/steveicarus/iverilog.git;protocol=https;branch=master"
-SRCREV = "378c812fe24945adc509da206644708e50d3ecb5"
+SRCREV = "01441687235135d1c12eeef920f75d97995da333"
 
 S = "${WORKDIR}/git"
 
-PV = "11.0+git${SRCPV}"
+PV = "12.0+git${SRCPV}"
 
 inherit autotools
 

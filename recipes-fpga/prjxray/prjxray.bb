@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=10689772e9dbbd781bf98fd78416470a"
 
 PV = "0+git${SRCPV}"
 SRC_URI = "gitsm://github.com/f4pga/prjxray;protocol=https;branch=master"
-SRCREV = "56e22e539f9add7e7241e49d17171f47751f3f4b"
+SRCREV = "8146f1f2adc5aa2de8fe41886e18a73b57082086"
 S = "${WORKDIR}/git"
 
 inherit python3native
@@ -23,10 +23,6 @@ RDEPENDS:${PN} += "python3-simplejson"
 do_configure() {
     # suppress warnings as errors, some dependencies don't handle newer compilers
     sed -i 's#^add_compile_options.*#add_compile_options(-Wall)#g' ${S}/CMakeLists.txt
-
-    # Force all code to be compiled as CXX 14 (https://github.com/f4pga/prjxray/issues/1950)
-    sed -i '/^set(CMAKE_CXX_STANDARD 14).*/d' ${S}/CMakeLists.txt
-    sed -i '/^option(PRJXRAY_BUILD_TESTING.*/a set(CMAKE_CXX_STANDARD 14)' ${S}/CMakeLists.txt
 
     cmake_do_configure
     setuptools3_do_configure
