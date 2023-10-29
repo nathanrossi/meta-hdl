@@ -7,7 +7,7 @@ LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=1dbd6d84e1c93eda0bd79ca770c20a31"
 
 SRC_URI = "git://github.com/litex-hub/linux-on-litex-vexriscv;protocol=https;branch=master"
-SRCREV = "3868ee3566a0bf233105f50e0d6eb1a70583c959"
+SRCREV = "3d99c8ec1ba5b5525e4826196e5878cc15e68802"
 PV = "0+git${SRCPV}"
 
 S = "${WORKDIR}/git"
@@ -95,7 +95,7 @@ do_sim_setup[depends] += "opensbi:do_populate_sysroot"
 do_sim_setup[depends] += "libsdl2-native:do_populate_sysroot"
 python do_sim_setup() {
     oe.path.symlink(d.expand("${DEPLOY_DIR_IMAGE}/Image"), d.expand("${S}/images/Image"), force = True)
-    oe.path.symlink(d.expand("${DEPLOY_DIR_IMAGE}/core-image-minimal-${MACHINE}.cpio"), d.expand("${S}/images/rootfs.cpio"), force = True)
+    oe.path.symlink(d.expand("${DEPLOY_DIR_IMAGE}/core-image-minimal-${MACHINE}.rootfs.cpio"), d.expand("${S}/images/rootfs.cpio"), force = True)
     oe.path.symlink(d.expand("${RECIPE_SYSROOT}/share/opensbi/ilp32/${RISCV_SBI_PLAT}/firmware/fw_jump.bin"), d.expand("${S}/images/opensbi.bin"), force = True)
 }
 addtask sim_setup after do_configure

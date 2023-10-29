@@ -6,7 +6,7 @@ SECTION = "devel/verification"
 LIC_FILES_CHKSUM = "file://COPYING;md5=e6376e491ece4189d8d21042729747ce"
 
 SRC_URI = "git://github.com/YosysHQ/sby;protocol=https;branch=master"
-SRCREV = "74f33880bd42fadd6deeda533aaceb44bafae1f9"
+SRCREV = "9e35ec9948ebd1a1dd2b35959a05078c67e840b7"
 
 S = "${WORKDIR}/git"
 

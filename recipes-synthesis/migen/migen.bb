@@ -5,13 +5,13 @@ LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=984d220f96f7cade953c15160221941b"
 
 SRC_URI = "git://github.com/m-labs/migen;protocol=https;branch=master"
-SRCREV = "ccaee68e14d3636e1d8fb2e0864dd89b1b1f7384"
+SRCREV = "aadc19df93b7aa9ca761aaebbb98a11e0cf2d7c7"
 
 PV = "0.9.2+git${SRCPV}"
 
 S = "${WORKDIR}/git"
 
-inherit setuptools3
+inherit python_setuptools_build_meta
 
 RDEPENDS:${PN} += "python3-colorama"
 

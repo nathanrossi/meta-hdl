@@ -4,8 +4,8 @@ DEFAULT_PREFERENCE = "-1"
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=0ce55a94e98cbec2110586bb5264bd9a"
 
-SRCREV = "cbf4db076e2fb74b5674669c850328209a32c676"
-PV = "2022.12+master+git${SRCPV}"
+SRCREV = "b5a9106f56ab56053558b9b6f59c7b60ee4a7d39"
+PV = "2023.08+master+git${SRCPV}"
 
 do_configure:prepend() {
     # remove use of "-nodefaultlibs", binutils-ld does not accept this arg
