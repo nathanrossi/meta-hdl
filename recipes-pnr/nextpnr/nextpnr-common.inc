@@ -11,5 +11,5 @@ PV = "0.5+git${SRCPV}"
 
 S = "${WORKDIR}/git"
 
-inherit cmake python3native python3targetconfig
+inherit cmake python3native
 

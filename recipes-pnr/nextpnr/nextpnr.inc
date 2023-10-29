@@ -2,6 +2,9 @@ require nextpnr-common.inc
 
 DEPENDS += "python3 boost libeigen abseil-cpp"
 
+# Needed to ensure the correct sysconfig is used by cmake
+inherit python3targetconfig
+
 # don't build the gui components
 EXTRA_OECMAKE += "-DBUILD_GUI=no"
 
