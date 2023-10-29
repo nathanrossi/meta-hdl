@@ -1,5 +1,8 @@
 require recipes-core/meta/buildtools-tarball.bb
 
+# Force inclusion of buildinfo into the output SDK
+inherit image-buildinfo
+
 TOOLCHAIN_OUTPUTNAME = "fpga-toolkit-${SDK_ARCH}"
 SDK_TITLE = "FPGA toolkit"
 
