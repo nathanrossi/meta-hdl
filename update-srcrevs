@@ -90,23 +90,29 @@ layerroot = os.path.abspath(os.path.dirname(__file__))
 for path in find_recipes(layerroot):
 	recipepath = os.path.relpath(path, layerroot)
 	fileversion = recipe_file_version(path)
+	releasesuffix = fileversion is not None and fileversion not in ["git", "litex"]
 	remote, current, currentref = recipe_gitinfo(path)
 	pvversion, _, pvsuffix = recipe_pvinfo(path)
 
 	if remote is not None and current is not None and current != "${AUTOREV}":
 		refs = list(remote_refs(remote))
 
-		if pvversion is not None and pvsuffix is not None and pvsuffix == "git${SRCPV}":
-			# only attempt to update clean git versions without additional suffixes
+		if pvversion is not None and pvsuffix is not None:
 			version = next(iter(reversed(sorted(remote_version_tags(refs), key = lambda k : k[4]))), None)
-			if version is not None:
-				if pvversion is not None and pvversion != version[3]:
+			if version is not None and pvversion is not None:
+				# Only attempt to update clean git versions without additional suffixes for non-versioned recipes
+				if pvversion != version[3] and pvsuffix == "git${SRCPV}" and fileversion is None:
 					newvalue = version[3] + "+" + pvsuffix
 					print(recipepath, "updated version to ->", newvalue, "(from {})".format(pvversion))
 					# recipe_replace_variable(path, "PV", newvalue)
 
+				# update the SRCREV for fixed version git SRCREVs
+				if pvversion == version[3] and releasesuffix and current != version[0]:
+					print(recipepath, "Updating recipe SRCREV due to mismatch with version tag hash {} != {} (remote)".format(current, version[0]))
+					recipe_replace_variable(path, "SRCREV", version[0])
+
 		# do not update to the current refer for versioned recipes
-		if fileversion is not None and fileversion not in ["git", "litex"]:
+		if releasesuffix:
 			continue
 
 		for i, ref in refs:
