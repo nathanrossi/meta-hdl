@@ -22,7 +22,7 @@ def recipe_file_version(path):
 def recipe_replace_variable(path, variable, value):
 	with open(path, "r") as f:
 		content = f.read()
-	newcontent = re.sub("^(" + variable + "\\s*=\\s*\")(.*?)(\")", "\\g<1>" + value + "\\g<3>", content, flags = re.MULTILINE)
+	newcontent = re.sub(r"^(" + variable + r"\s*=\s*\")(.*?)(\")", "\\g<1>" + value + "\\g<3>", content, flags = re.MULTILINE)
 	with open(path, "w") as f:
 		f.write(newcontent)
 
@@ -33,7 +33,7 @@ def recipe_gitinfo(path):
 	with open(path, "r") as f:
 		content = f.read()
 		srcuri, srcrev, srcbranch = None, None, None
-		m = re.search("^SRC_URI\\s*=\\s*\"(git://|gitsm://)(.*?)\"", content, re.MULTILINE)
+		m = re.search(r'^SRC_URI\s*=\s*"(git://|gitsm://)(.*?)"', content, re.MULTILINE)
 		if m:
 			uriparts = m.group(2).split(";")
 			srcuri = m.group(1) + uriparts[0]
@@ -56,7 +56,7 @@ def recipe_gitinfo(path):
 					srcbranch = isrcbranch
 					break
 
-		m = re.search("^SRCREV\\s*=\\s*\"(.*?)\"", content, re.MULTILINE)
+		m = re.search(r'^SRCREV\s*=\s*"(.*?)"', content, re.MULTILINE)
 		if m:
 			srcrev = m.group(1)
 		return srcuri, srcrev, srcbranch
@@ -64,7 +64,7 @@ def recipe_gitinfo(path):
 def recipe_pvinfo(path):
 	with open(path, "r") as f:
 		content = f.read()
-		m = re.search("^PV\\s*=\\s*\"(\d+\.\d+(\.\d+)?)\+(.*?)\"", content, re.MULTILINE)
+		m = re.search(r'^PV\s*=\s*"(\d+\.\d+(\.\d+)?)\+(.*?)"', content, re.MULTILINE)
 		if m:
 			return m.group(1), tuple(int(i) for i in m.group(1).split(".")), m.group(3)
 		return None, None, None
@@ -82,7 +82,7 @@ def remote_version_tags(refs):
 	for i, ref in refs:
 		if ref.startswith("refs/tags/"):
 			tag = ref[len("refs/tags/"):]
-			m = re.search("^(.*?-)?v?(\d+\.\d+(\.\d+)?)$", tag)
+			m = re.search(r"^(.*?-)?v?(\d+\.\d+(\.\d+)?)$", tag)
 			if m:
 				yield (i, ref, tag, m.group(2), tuple(int(i) for i in m.group(2).split(".")))
 
@@ -93,6 +93,7 @@ for path in find_recipes(layerroot):
 	releasesuffix = fileversion is not None and fileversion not in ["git", "litex"]
 	remote, current, currentref = recipe_gitinfo(path)
 	pvversion, _, pvsuffix = recipe_pvinfo(path)
+	print("Checking recipe {} (version {})".format(os.path.basename(recipepath), pvversion))
 
 	if remote is not None and current is not None and current != "${AUTOREV}":
 		refs = list(remote_refs(remote))
@@ -105,6 +106,7 @@ for path in find_recipes(layerroot):
 					newvalue = version[3] + "+" + pvsuffix
 					print(recipepath, "updated version to ->", newvalue, "(from {})".format(pvversion))
 					# recipe_replace_variable(path, "PV", newvalue)
+					raise Exception("TODO: Handle PV update")
 
 				# update the SRCREV for fixed version git SRCREVs
 				if pvversion == version[3] and releasesuffix and current != version[0]:
