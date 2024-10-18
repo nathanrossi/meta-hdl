@@ -47,8 +47,8 @@ python do_create_toolchain_wrappers() {
     wrap("readelf", "${READELF}")
 
     # wrap native build compiler/etc
-    wrap("gcc", "${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}", target = False)
-    wrap("g++", "${BUILD_CXX} ${BUILD_CXXFLAGS} ${BUILD_LDFLAGS}", target = False)
+    wrap("gcc", "${BUILD_CC} ${BUILD_CFLAGS}", target = False)
+    wrap("g++", "${BUILD_CXX} ${BUILD_CXXFLAGS}", target = False)
     wrap("ld", "${BUILD_LD}", target = False)
 }
 addtask create_toolchain_wrappers before do_configure after do_prepare_recipe_sysroot

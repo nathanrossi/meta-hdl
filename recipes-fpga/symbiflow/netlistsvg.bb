@@ -6,10 +6,9 @@ SECTION = "devel/hardware"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=47d473badfb26282ffa50e1e4d3262ed"
 
 SRC_URI = "git://github.com/nturley/netlistsvg;protocol=https;branch=master"
-SRCREV = "752549e86999d74572c3d3e914b5c0292c4e8ebd"
+SRCREV = "d3518f1b5c996a876b72a1a984bb39d3572c47dc"
 
-# npm uses 0.0.1 as default version
-PV = "0.0.1"
+PV = "1.0.2"
 
 inherit npm
 

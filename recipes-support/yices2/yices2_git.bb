@@ -5,11 +5,11 @@ SECTION = "devel/verilog"
 
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=d32239bcb673463ab874e80d47fae504"
 SRC_URI = "git://github.com/SRI-CSL/yices2;protocol=https;branch=master"
-SRCREV = "30dd2c1ddb316b2aef5a0217318a284bbbf2a11d"
+SRCREV = "f13608acfea891282092e5e5673452f0c777cea8"
 
 S = "${WORKDIR}/git"
 
-PV = "2.6.4+git${SRCPV}"
+PV = "2.6.5+git${SRCPV}"
 
 inherit autotools autotools-brokensep
 

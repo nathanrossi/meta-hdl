@@ -6,11 +6,11 @@ SECTION = "devel/verilog"
 
 LIC_FILES_CHKSUM = "file://COPYING;md5=7c2823721d5a44205b97299506846bea"
 SRC_URI = "git://github.com/Boolector/boolector;protocol=https;branch=master"
-SRCREV = "be1f827e911666934e8b84479673a7c5d9dda2eb"
+SRCREV = "43dae91c1070e5e2633e036ebd75ffb13fe261e1"
 
 S = "${WORKDIR}/git"
 
-BOOLECTOR_VERSION = "3.1.0"
+BOOLECTOR_VERSION = "3.2.4"
 PV = "${BOOLECTOR_VERSION}+git${SRCPV}"
 
 inherit cmake python3native

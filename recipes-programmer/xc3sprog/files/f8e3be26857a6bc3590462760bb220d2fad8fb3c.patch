@@ -7,6 +7,7 @@ Was not needed, and caused build errors with latest GCC.
 
 Fixes matrix-io/xc3sprog#29.
 
+Upstream-Status: Pending
 ---
  bitfile.cpp  | 6 ++----
  srecfile.cpp | 2 --

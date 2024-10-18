@@ -7,7 +7,7 @@ LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=1dbd6d84e1c93eda0bd79ca770c20a31"
 
 SRC_URI = "git://github.com/litex-hub/linux-on-litex-vexriscv;protocol=https;branch=master"
-SRCREV = "3d99c8ec1ba5b5525e4826196e5878cc15e68802"
+SRCREV = "69545456c5ccfbc88973107d64c1b7097c9f4c9b"
 PV = "0+git${SRCPV}"
 
 S = "${WORKDIR}/git"
@@ -48,6 +48,9 @@ SECURITY_LDFLAGS = ""
 # prevent the population of the build-id section into the output
 CC += "-Wl,--build-id=none"
 
+DEVICE_CONFIG = ""
+DEVICE_CONFIG += "--hardware-breakpoints=0"
+
 do_configure() {
     # use images from images/
     sed -i 's/buildroot\//images\//' ${S}/sim.py
@@ -58,7 +61,7 @@ do_compile() {
     mkdir -p ${S}/build
     ln -sf lattice_versa_ecp5 ${S}/build/versa_ecp5
 
-    ${S}/make.py --board versa_ecp5 --build
+    ${S}/make.py --board versa_ecp5 --build ${DEVICE_CONFIG}
 }
 
 do_install[noexec] = "1"
@@ -81,8 +84,6 @@ COMPATIBLE_MACHINE = "versa-ecp5"
 
 # include terminal to run the simulator on the user terminal
 inherit terminal
-
-export VERILATOR_ROOT = "${STAGING_DIR_NATIVE}/usr/share/verilator"
 
 do_sim_setup[dirs] += "${B}"
 do_sim_setup[depends] += "verilator-native:do_populate_sysroot"
@@ -109,7 +110,7 @@ python do_sim() {
     t.appendVar("OE_TERMINAL_EXPORTS", " CC")
     t.setVar("CC", "${BUILD_CC}")
 
-    oe_terminal(d.expand("sh -c \"${S}/sim.py || read r\""), "linux-on-litex-vexriscv verilator simulation", t)
+    oe_terminal(d.expand("sh -c \"${S}/sim.py ${DEVICE_CONFIG} || read r\""), "linux-on-litex-vexriscv verilator simulation", t)
 }
 addtask sim after do_sim_setup
 

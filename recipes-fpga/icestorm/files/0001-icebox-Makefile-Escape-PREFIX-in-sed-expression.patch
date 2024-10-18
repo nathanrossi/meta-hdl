@@ -8,6 +8,7 @@ various purposes (e.g. version strings). Escape the character within the
 expression.
 
 Signed-off-by: Nathan Rossi <nathan@nathanrossi.com>
+Upstream-Status: Pending
 ---
  icebox/Makefile | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)

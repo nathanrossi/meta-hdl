@@ -7,7 +7,7 @@ SECTION = "devel/hardware"
 LIC_FILES_CHKSUM = "file://copyright.txt;md5=bddcabf9df6d33e12310a00780d3a87c"
 
 SRC_URI = "git://github.com/berkeley-abc/abc;protocol=https;branch=master"
-SRCREV = "5de12aa6b3a91850596326954eaca0c997cc499e"
+SRCREV = "95393064368b7c05da4d6f0264fc3419c175c7cb"
 
 S = "${WORKDIR}/git"
 
@@ -17,6 +17,9 @@ DEPENDS = "readline"
 
 # set the ARCHFLAGS to avoid execution of arch_flags during build
 export ARCHFLAGS = "-DABC_USE_STDINT_H=1"
+
+# Disable tests, avoiding the gtest download/dependency
+EXTRA_OECMAKE += "-DABC_SKIP_TESTS=1"
 
 inherit cmake
 

@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=f225922a2c12dfa5218fb70c49db3ea6"
 
 SRC_URI = "gitsm://github.com/litex-hub/pythondata-software-picolibc;protocol=https;branch=master"
 SRCREV = "a5e11229885a87083ec54034f8d693ba52ea2718"
-PV = "2023.08+git${SRCPV}"
+PV = "2024.08+git${SRCPV}"
 
 S = "${WORKDIR}/git"
 

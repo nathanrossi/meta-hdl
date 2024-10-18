@@ -11,9 +11,9 @@ DEPENDS += "perl-native"
 DEPENDS += "help2man-native"
 
 SRC_URI = "git://github.com/verilator/verilator;protocol=https;branch=stable"
-SRCREV = "57c816f906cfcb2657ed2bcbdf815f46556825ca"
+SRCREV = "1d79f5c59b0dbe7901dd563a69310d1c9ef60504"
 
-PV = "5.016+git${SRCPV}"
+PV = "5.028+git${SRCPV}"
 
 S = "${WORKDIR}/git"
 
@@ -26,13 +26,22 @@ do_configure() {
     oe_runconf
 }
 
-do_install:append() {
-    # create symlinks from VERILATOR_ROOT to usr/bin
-    for i in verilator verilator_bin verilator_bin_dbg verilator_coverage verilator_coverage_bin_dbg verilator_gantt verilator_profcfunc; do
-        ln -s \
-            ${@os.path.relpath(d.expand("${bindir}"), d.expand("${datadir}/verilator/bin"))}/$i \
-            ${D}${datadir}/verilator/bin/$i
-    done
+do_compile:append:class-target() {
+    # Remove buildpaths/hosttools from verilated.mk
+    sed -i "s#AR = .*#AR = ar#g" ${B}/include/verilated.mk
+    sed -i "s#CXX = .*#CXX = g++ ${HOST_CC_ARCH}#g" ${B}/include/verilated.mk
+    sed -i "s#LINK = .*#LINK = g++ ${HOST_CC_ARCH}#g" ${B}/include/verilated.mk
+    sed -i "s#PERL = .*#PERL = perl#g" ${B}/include/verilated.mk
+    sed -i "s#PYTHON3 = .*#PYTHON3 = python3#g" ${B}/include/verilated.mk
+}
+
+do_compile:append:class-nativesdk() {
+    # Remove buildpaths/hosttools from verilated.mk
+    sed -i "s#AR = .*#AR = ar#g" ${B}/include/verilated.mk
+    sed -i "s#CXX = .*#CXX = g++ ${HOST_CC_ARCH}#g" ${B}/include/verilated.mk
+    sed -i "s#LINK = .*#LINK = g++ ${HOST_CC_ARCH}#g" ${B}/include/verilated.mk
+    sed -i "s#PERL = .*#PERL = perl#g" ${B}/include/verilated.mk
+    sed -i "s#PYTHON3 = .*#PYTHON3 = python3#g" ${B}/include/verilated.mk
 }
 
 SYSROOT_DIRS_NATIVE:append = " ${datadir}/verilator"

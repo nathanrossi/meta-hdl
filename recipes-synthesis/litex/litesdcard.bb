@@ -2,7 +2,7 @@ require litesdcard.inc
 
 DEFAULT_PREFERENCE = "-1"
 
-LIC_FILES_CHKSUM = "file://LICENSE;md5=9f3746ccc6348e52617a7a527ae22ff8"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=3ceaec9c552183dfcbe9c1f6105d4fdd"
 
-SRCREV = "cf6ab89e8c224b059dd7b8327b602d8ce2e170ce"
-PV = "2023.08+master+git${SRCPV}"
+SRCREV = "e37e62f0178e18873127cff1853f30f694358cf4"
+PV = "2024.08+master+git${SRCPV}"

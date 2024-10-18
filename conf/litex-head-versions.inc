@@ -1,7 +1,7 @@
 # This include file is provided to make use of the HEAD revision of litex and
 # associated recipes.
 
-LITEX_RELEASE_HEAD_VERSION = "2022.12+master+git%"
+LITEX_RELEASE_HEAD_VERSION = "2024.08+master+git%"
 
 PREFERRED_VERSION_litex = "${LITEX_RELEASE_HEAD_VERSION}"
 PREFERRED_VERSION_litex-native = "${LITEX_RELEASE_HEAD_VERSION}"

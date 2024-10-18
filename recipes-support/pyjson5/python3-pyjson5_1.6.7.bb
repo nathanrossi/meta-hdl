@@ -3,9 +3,9 @@ HOMEPAGE = "https://github.com/Kijewski/pyjson5"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
 
-inherit pypi setuptools3
+inherit pypi python_setuptools_build_meta
 
-SRC_URI[sha256sum] = "227a1e5eff5c570281a9154002ad4e15dcbe7c93334fc1b8f3cd132481382a33"
+SRC_URI[sha256sum] = "c1158a27c72c99eb3caa817c70a6218028e7f48fca1736db6d05852b1586ce42"
 
 DEPENDS += "python3-cython-native"
 

@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=10689772e9dbbd781bf98fd78416470a"
 
 PV = "0+git${SRCPV}"
 SRC_URI = "gitsm://github.com/f4pga/prjxray;protocol=https;branch=master"
-SRCREV = "b9ed4b9a81faccec779e22c5af3aeb90c38bbc66"
+SRCREV = "f2d21573c7f6bdfa98e86fae5a2f5ef52e23b51c"
 S = "${WORKDIR}/git"
 
 inherit python3native
