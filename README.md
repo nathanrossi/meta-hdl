@@ -31,25 +31,6 @@ Additionally the Verilator simulation can be run with `bitbake
 linux-on-litex-vexricv -c sim`. This will start the simulation in a
 terminal (similar to devshell).
 
-## [Fomu](https://tomu.im/)
-
-The `foboot` recipe is provided in order to build the Fomu's boot loader. Set
-the `MACHINE = "fomu"` in local.conf and build `foboot`. The bitstream is
-populated into the deploy directory.
-
-Multiple recipes are provided to build different example projects for the Fomu.
-This includes `micropython` as well as a number of examples from the Fomu
-workshop. The recipe targets are:
-
-- `micropython`
-- `fomu-workshop-riscv-blink`
-- `fomu-workshop-verilog-blink`
-- `fomu-workshop-litex-rgb`
-
-Note: `dfu-util-native` is provided by meta-oe, and can be built and then run
-using `oe-run-native`. `bitbake dfu-util-native -c addto_recipe_sysroot` and
-`oe-run-native dfu-util-native dfu-util ...`
-
 # Dependencies
 
 This layer depends on:
