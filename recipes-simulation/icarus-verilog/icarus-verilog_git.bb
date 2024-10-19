@@ -25,11 +25,11 @@ PARALLEL_MAKEINST = ""
 EXTRA_AUTORECONF += "--exclude=aclocal --exclude=autoheader"
 
 DEPENDS = " \
-	flex-native bison-native \
-	gperf-native \
-	readline ncurses \
-	zlib \
-	"
+    flex-native bison-native \
+    gperf-native \
+    readline ncurses \
+    zlib \
+    "
 
 # expects host readline during configure
 DEPENDS += "readline-native"
@@ -37,8 +37,25 @@ DEPENDS += "readline-native"
 FILES:${PN} += "${libdir}/ivl"
 
 do_configure:prepend () {
-	# prevent use of CFLAGS with BUILDCC
-	sed -i 's/BUILDCC.\s\+..CFLAGS/BUILDCC/' ${S}/Makefile.in
+    # prevent use of CFLAGS with BUILDCC
+    sed -i 's/BUILDCC.\s\+..CFLAGS/BUILDCC/' ${S}/Makefile.in
+}
+
+do_compile:append() {
+    sed -i \
+        -e 's#-fcanon-prefix-map ##g' \
+        -e 's#-fdebug-prefix-map=[^[:space:]]* ##g' \
+        -e 's#-fmacro-prefix-map=[^[:space:]]* ##g' \
+        ${B}/iverilog-vpi
+
+    # Only replace target/nativesdk STAGING_DIR_TARGET, -native is rewritten by
+    # staging.bbclass
+    if [ -n "${STAGING_DIR_TARGET}" ]; then
+        sed -i \
+            -e 's#--sysroot=${STAGING_DIR_TARGET} ##g' \
+            -e 's#${STAGING_DIR_TARGET}##g' \
+            ${B}/iverilog-vpi
+    fi
 }
 
 BBCLASSEXTEND = "native nativesdk"
