@@ -6,18 +6,18 @@ LIC_FILES_CHKSUM = "file://COPYING.BSD;md5=42dd9555eb177f35150cf9aa240b61e5"
 
 inherit autotools-brokensep deploy
 
-SRC_URI = "git://github.com/litex-hub/opensbi.git;protocol=https;branch=0.8-linux-on-litex-vexriscv"
-SRCREV = "a9ce3ada56574fcdb5befae0395f2f3d33134f81"
+SRC_URI = "git://github.com/litex-hub/opensbi.git;protocol=https;branch=1.3.1-linux-on-litex-vexriscv"
+SRCREV = "84c6dc17f7d41c5c02760a5533d7268b57369837"
 S = "${WORKDIR}/git"
 
-PV = "0.8+litex+git${SRCPV}"
+PV = "1.3.1+litex+git${SRCPV}"
 
 SYSROOT_DIRS += "/share/opensbi"
 
 EXTRA_OEMAKE += "PLATFORM=${RISCV_SBI_PLAT} I=${D} FW_PIC=n CLANG_TARGET= "
 
 do_configure:append() {
-    sed -i 's/PLATFORM_RISCV_ISA = rv32.*/PLATFORM_RISCV_ISA = rv32ima_zicsr_zifencei/g' ${S}/platform/litex/vexriscv/config.mk
+    sed -i 's/PLATFORM_RISCV_ISA = rv32.*/PLATFORM_RISCV_ISA = rv32ima_zicsr_zifencei/g' ${S}/platform/litex/vexriscv/objects.mk
 }
 
 do_install:append() {
