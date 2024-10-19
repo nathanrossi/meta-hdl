@@ -5,7 +5,7 @@ SECTION = "devel/verilog"
 
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=d32239bcb673463ab874e80d47fae504"
 SRC_URI = "git://github.com/SRI-CSL/yices2;protocol=https;branch=master"
-SRCREV = "f13608acfea891282092e5e5673452f0c777cea8"
+SRCREV = "234bd18c7b827c53317c3a52497ec5016bb27ec6"
 
 S = "${WORKDIR}/git"
 
@@ -22,10 +22,5 @@ EXTRA_OEMAKE += "YICES_MAKE_INCLUDE=configs/make.include.${TARGET_SYS} STRIP=ech
 
 # prevent use of ldconfig, as running ldconfig on cross builds is not ideal
 EXTRA_OEMAKE += "LDCONFIG=echo"
-
-do_install:append() {
-    # create symlink that matches library soname (this would be done by the ldconfig call)
-    ln -sf libyices.so.2.6.2 ${D}${libdir}/libyices.so.2.6
-}
 
 BBCLASSEXTEND = "native nativesdk"
